@@ -30,7 +30,11 @@ Needed: run _main.py_ providing at least _--vectors_file_ as a parameter.
 Note: The tasks can be executed sequentially or in parallel. If the code raises MemoryError it means that the tasks need more memory than the one available. In that case, run all the tasks sequentially.
 
 ## Supported vectors file format
-The two folders contain two versions of the framework which differ only for the vectors file format. In the TXT_version the vectors file must be a TSV - tab or space separated values - with one line for each entity. Each line has to contain the entity name and the embedded vector. In the HDF5_version the vectors file must be an H5 with one group in it called "Vectors". In this group, there should be one dataset for each entity with the entity name as dataset name and the embedded vector as dataset content.
+The two folders contain two versions of the framework which differ only for the vectors file format. 
+In the TXT_version the vectors file must be a TSV - tab or space separated values - with one line for each entity. 
+Each line has to contain the entity name - without angular backets - and the embedded vector. 
+In the HDF5_version the vectors file must be an H5 with one group in it called "Vectors". 
+In this group, there should be one dataset for each entity with the entity name, base32 encoded, as dataset name and the embedded vector as dataset content.
 
 ## Project structure
 _main.py_ instantiates the distance function to measure the distance between two vectors and the analogy function used in Semantic Analogies task.
