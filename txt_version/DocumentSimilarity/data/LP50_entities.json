@@ -1,0 +1,2804 @@
+[
+  {
+    "text": "The national executive of the strife-torn Democrats last night appointed little-known West Australian senator Brian Greig as interim leader - a shock move likely to provoke further conflict between the party's senators and its organisation. In a move to reassert control over the party's seven senators, the national executive last night rejected Aden Ridgeway's bid to become interim leader, in favour of Senator Greig, a supporter of deposed leader Natasha Stott Despoja and an outspoken gay rights activist.",
+    "annotations": [
+      {
+        "weight": 0.193,
+        "entity": "http://dbpedia.org/resource/Democratic_Party_(United_States)"
+      },
+      {
+        "weight": 0.469,
+        "entity": "http://dbpedia.org/resource/Australian_Senate"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Brian_Greig"
+      },
+      {
+        "weight": 0.389,
+        "entity": "http://dbpedia.org/resource/Interim_leader"
+      },
+      {
+        "weight": 0.258,
+        "entity": "http://dbpedia.org/resource/Interim"
+      },
+      {
+        "weight": 0.795,
+        "entity": "http://dbpedia.org/resource/Aden_Ridgeway"
+      },
+      {
+        "weight": 0.127,
+        "entity": "http://dbpedia.org/resource/Aden"
+      },
+      {
+        "weight": 0.765,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 0.468,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 0.129,
+        "entity": "http://dbpedia.org/resource/List_of_LGBT_rights_activists"
+      },
+      {
+        "weight": 0.281,
+        "entity": "http://dbpedia.org/resource/LGBT_rights_by_country_or_territory"
+      },
+      {
+        "weight": 0.228,
+        "entity": "http://dbpedia.org/resource/Gay"
+      },
+      {
+        "weight": 0.112,
+        "entity": "http://dbpedia.org/resource/Activism"
+      }
+    ]
+  },
+  {
+    "text": "Cash-strapped financial services group AMP has shelved a $400 million plan to buy shares back from investors and will raise $750 million in fresh capital after profits crashed in the six months to June 30. Chief executive Paul Batchelor said the result was \"solid\" in what he described as the worst conditions for stock markets in 20 years. AMP's half-year profit sank 25 per cent to $303 million, or 27c a share, as Australia's largest investor and fund manager failed to hit projected 5 per cent earnings growth targets and was battered by falling returns on share markets.",
+    "annotations": [
+      {
+        "weight": 0.126,
+        "entity": "http://dbpedia.org/resource/Financial_services"
+      },
+      {
+        "weight": 0.325,
+        "entity": "http://dbpedia.org/resource/Financial_services"
+      },
+      {
+        "weight": 0.256,
+        "entity": "http://dbpedia.org/resource/Adenosine_monophosphate"
+      },
+      {
+        "weight": 0.117,
+        "entity": "http://dbpedia.org/resource/Share_(finance)"
+      },
+      {
+        "weight": 0.123,
+        "entity": "http://dbpedia.org/resource/Investor"
+      },
+      {
+        "weight": 0.388,
+        "entity": "http://dbpedia.org/resource/Batchelor,_Northern_Territory"
+      },
+      {
+        "weight": 0.319,
+        "entity": "http://dbpedia.org/resource/Stock_market"
+      },
+      {
+        "weight": 0.312,
+        "entity": "http://dbpedia.org/resource/Stock"
+      },
+      {
+        "weight": 0.253,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 0.189,
+        "entity": "http://dbpedia.org/resource/Investor"
+      },
+      {
+        "weight": 0.105,
+        "entity": "http://dbpedia.org/resource/Asset_management"
+      },
+      {
+        "weight": 0.163,
+        "entity": "http://dbpedia.org/resource/Earnings_growth"
+      },
+      {
+        "weight": 0.13,
+        "entity": "http://dbpedia.org/resource/Earnings"
+      }
+    ]
+  },
+  {
+    "text": "The United States government has said it wants to see President Robert Mugabe removed from power and that it is working with the Zimbabwean opposition to bring about a change of administration. As scores of white farmers went into hiding to escape a round-up by Zimbabwean police, a senior Bush administration official called Mr Mugabe's rule \"illegitimate and irrational\" and said that his re-election as president in March was won through fraud. Walter Kansteiner, the assistant secretary of state for African affairs, went on to blame Mr Mugabe's policies for contributing to the threat of famine in Zimbabwe.",
+    "annotations": [
+      {
+        "weight": 0.301,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.227,
+        "entity": "http://dbpedia.org/resource/Federal_government_of_the_United_States"
+      },
+      {
+        "weight": 0.495,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.107,
+        "entity": "http://dbpedia.org/resource/Government"
+      },
+      {
+        "weight": 0.304,
+        "entity": "http://dbpedia.org/resource/Robert_Mugabe"
+      },
+      {
+        "weight": 0.234,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 0.888,
+        "entity": "http://dbpedia.org/resource/Robert_Mugabe"
+      },
+      {
+        "weight": 0.401,
+        "entity": "http://dbpedia.org/resource/Robert_Mugabe"
+      },
+      {
+        "weight": 0.48,
+        "entity": "http://dbpedia.org/resource/Zimbabwe"
+      },
+      {
+        "weight": 0.513,
+        "entity": "http://dbpedia.org/resource/Zimbabwe_Republic_Police"
+      },
+      {
+        "weight": 0.188,
+        "entity": "http://dbpedia.org/resource/Police"
+      },
+      {
+        "weight": 0.108,
+        "entity": "http://dbpedia.org/resource/Presidency_of_George_W._Bush"
+      },
+      {
+        "weight": 0.214,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.23,
+        "entity": "http://dbpedia.org/resource/Famine"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Zimbabwe"
+      }
+    ]
+  },
+  {
+    "text": "A radical armed Islamist group with ties to Tehran and Baghdad has helped al-Qaida establish an international terrorist training camp in northern Iraq, Kurdish officials say. Intelligence officers in the autonomous Kurdish region of Iraq told the Guardian that the Ansar al-Islam (supporters of Islam) group is harbouring up to 150 al-Qaida members in a string of villages it controls along the Iraq-Iran border. Most of them fled Afghanistan after the US-led offensive, but officials from the Patriotic Union of Kurdistan (PUK), which controls part of north-east Iraq, claim an \"abnormal\" number of recruits are making their way to the area from Jordan, Syria and Egypt.",
+    "annotations": [
+      {
+        "weight": 0.412,
+        "entity": "http://dbpedia.org/resource/Islamism"
+      },
+      {
+        "weight": 0.373,
+        "entity": "http://dbpedia.org/resource/Tehran"
+      },
+      {
+        "weight": 0.442,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.43,
+        "entity": "http://dbpedia.org/resource/Al-Qaeda"
+      },
+      {
+        "weight": 0.102,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.127,
+        "entity": "http://dbpedia.org/resource/Terrorist_training_camp"
+      },
+      {
+        "weight": 0.17,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.486,
+        "entity": "http://dbpedia.org/resource/Iraqi_Kurdistan"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.428,
+        "entity": "http://dbpedia.org/resource/Kurdish_people"
+      },
+      {
+        "weight": 0.163,
+        "entity": "http://dbpedia.org/resource/Kurdish_language"
+      },
+      {
+        "weight": 0.122,
+        "entity": "http://dbpedia.org/resource/Kurdistan_Uyezd"
+      },
+      {
+        "weight": 0.577,
+        "entity": "http://dbpedia.org/resource/Iraqi_Kurdistan"
+      },
+      {
+        "weight": 0.112,
+        "entity": "http://dbpedia.org/resource/Kurdistan"
+      },
+      {
+        "weight": 0.139,
+        "entity": "http://dbpedia.org/resource/Iraqi_Kurdistan"
+      },
+      {
+        "weight": 0.119,
+        "entity": "http://dbpedia.org/resource/Kurdistan_Regional_Government"
+      },
+      {
+        "weight": 0.138,
+        "entity": "http://dbpedia.org/resource/The_Guardian"
+      },
+      {
+        "weight": 0.583,
+        "entity": "http://dbpedia.org/resource/Ansar_al-Islam"
+      },
+      {
+        "weight": 0.652,
+        "entity": "http://dbpedia.org/resource/Islam"
+      },
+      {
+        "weight": 0.558,
+        "entity": "http://dbpedia.org/resource/Iran"
+      },
+      {
+        "weight": 0.412,
+        "entity": "http://dbpedia.org/resource/Afghanistan"
+      },
+      {
+        "weight": 0.12,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.374,
+        "entity": "http://dbpedia.org/resource/Patriotic_Union_of_Kurdistan"
+      },
+      {
+        "weight": 0.569,
+        "entity": "http://dbpedia.org/resource/Patriotic_Union_of_Kurdistan"
+      },
+      {
+        "weight": 0.382,
+        "entity": "http://dbpedia.org/resource/Kurdistan"
+      },
+      {
+        "weight": 0.378,
+        "entity": "http://dbpedia.org/resource/Patriotic_Union_of_Kurdistan"
+      },
+      {
+        "weight": 0.207,
+        "entity": "http://dbpedia.org/resource/Jordan"
+      },
+      {
+        "weight": 0.574,
+        "entity": "http://dbpedia.org/resource/Syria"
+      },
+      {
+        "weight": 0.325,
+        "entity": "http://dbpedia.org/resource/Egypt"
+      }
+    ]
+  },
+  {
+    "text": "Washington has sharply rebuked Russia over bombings of Georgian villages, warning the raids violated Georgian sovereignty and could worsen tensions between Moscow and Tbilisi. \"The United States regrets the loss of life and deplores the violation of Georgia's sovereignty,\" White House spokesman Ari Fleischer said.  Mr Fleischer said US Secretary of State Colin Powell had delivered the same message to his Russian counterpart but that the stern language did not reflect a sign of souring relations between Moscow and Washington.",
+    "annotations": [
+      {
+        "weight": 0.134,
+        "entity": "http://dbpedia.org/resource/Washington_(state)"
+      },
+      {
+        "weight": 0.742,
+        "entity": "http://dbpedia.org/resource/Russia"
+      },
+      {
+        "weight": 0.179,
+        "entity": "http://dbpedia.org/resource/Georgia_(country)"
+      },
+      {
+        "weight": 0.62,
+        "entity": "http://dbpedia.org/resource/Moscow"
+      },
+      {
+        "weight": 0.758,
+        "entity": "http://dbpedia.org/resource/Tbilisi"
+      },
+      {
+        "weight": 0.543,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.677,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.131,
+        "entity": "http://dbpedia.org/resource/Georgia_(country)"
+      },
+      {
+        "weight": 0.178,
+        "entity": "http://dbpedia.org/resource/Georgia_(U.S._state)"
+      },
+      {
+        "weight": 0.138,
+        "entity": "http://dbpedia.org/resource/Georgia_(country)"
+      },
+      {
+        "weight": 0.462,
+        "entity": "http://dbpedia.org/resource/White_House_Press_Secretary"
+      },
+      {
+        "weight": 0.692,
+        "entity": "http://dbpedia.org/resource/White_House"
+      },
+      {
+        "weight": 0.29,
+        "entity": "http://dbpedia.org/resource/Race_and_ethnicity_in_the_United_States_Census"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Ari_Fleischer"
+      },
+      {
+        "weight": 0.641,
+        "entity": "http://dbpedia.org/resource/United_States_Secretary_of_State"
+      },
+      {
+        "weight": 0.491,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.171,
+        "entity": "http://dbpedia.org/resource/United_States_Secretary_of_State"
+      },
+      {
+        "weight": 0.826,
+        "entity": "http://dbpedia.org/resource/Colin_Powell"
+      },
+      {
+        "weight": 0.215,
+        "entity": "http://dbpedia.org/resource/Russian_language"
+      }
+    ]
+  },
+  {
+    "text": "A gay former student of a Melbourne Christian school is taking legal action under equal opportunity legislation, claiming the school discriminated against him because of his sexuality. Tim, 16, alleged a staff member at Hillcrest Christian College in Berwick told him he \"had the devil in him\", and constant bullying by students prompted the principal to tell him to hide his sexuality. He left the school several weeks ago and is continuing Year 10 by distance education after he said homophobic bullies threw rocks at his head, spat on him, called him names and slashed his belongings.",
+    "annotations": [
+      {
+        "weight": 0.617,
+        "entity": "http://dbpedia.org/resource/Gay"
+      },
+      {
+        "weight": 0.115,
+        "entity": "http://dbpedia.org/resource/Homosexuality"
+      },
+      {
+        "weight": 0.388,
+        "entity": "http://dbpedia.org/resource/Student"
+      },
+      {
+        "weight": 0.703,
+        "entity": "http://dbpedia.org/resource/Melbourne"
+      },
+      {
+        "weight": 0.792,
+        "entity": "http://dbpedia.org/resource/Christian_school"
+      },
+      {
+        "weight": 0.943,
+        "entity": "http://dbpedia.org/resource/Christian"
+      },
+      {
+        "weight": 0.747,
+        "entity": "http://dbpedia.org/resource/School"
+      },
+      {
+        "weight": 0.265,
+        "entity": "http://dbpedia.org/resource/Equal_opportunity"
+      },
+      {
+        "weight": 0.458,
+        "entity": "http://dbpedia.org/resource/Discrimination"
+      },
+      {
+        "weight": 0.154,
+        "entity": "http://dbpedia.org/resource/Human_sexuality"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Hillcrest_Christian_College"
+      },
+      {
+        "weight": 0.166,
+        "entity": "http://dbpedia.org/resource/Berwick,_Victoria"
+      },
+      {
+        "weight": 0.159,
+        "entity": "http://dbpedia.org/resource/Devil"
+      },
+      {
+        "weight": 0.476,
+        "entity": "http://dbpedia.org/resource/Bullying"
+      },
+      {
+        "weight": 0.252,
+        "entity": "http://dbpedia.org/resource/Head_teacher"
+      },
+      {
+        "weight": 0.575,
+        "entity": "http://dbpedia.org/resource/Distance_education"
+      },
+      {
+        "weight": 0.63,
+        "entity": "http://dbpedia.org/resource/Education"
+      },
+      {
+        "weight": 0.908,
+        "entity": "http://dbpedia.org/resource/Homophobia"
+      },
+      {
+        "weight": 0.315,
+        "entity": "http://dbpedia.org/resource/Bullying"
+      }
+    ]
+  },
+  {
+    "text": "Senior members of the Saudi royal family paid at least $560 million to Osama bin Laden's terror group and the Taliban for an agreement his forces would not attack targets in Saudi Arabia, according to court documents. The papers, filed in a $US3000 billion ($5500 billion) lawsuit in the US, allege the deal was made after two secret meetings between Saudi royals and leaders of al-Qa'ida, including bin Laden. The money enabled al-Qa'ida to fund training camps in Afghanistan later attended by the September 11 hijackers. The disclosures will increase tensions between the US and Saudi Arabia.",
+    "annotations": [
+      {
+        "weight": 0.305,
+        "entity": "http://dbpedia.org/resource/House_of_Saud"
+      },
+      {
+        "weight": 0.526,
+        "entity": "http://dbpedia.org/resource/House_of_Saud"
+      },
+      {
+        "weight": 0.5,
+        "entity": "http://dbpedia.org/resource/Saudi_Arabia"
+      },
+      {
+        "weight": 0.58,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.911,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.211,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.521,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.252,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.113,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.784,
+        "entity": "http://dbpedia.org/resource/Taliban"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Saudi_Arabia"
+      },
+      {
+        "weight": 0.229,
+        "entity": "http://dbpedia.org/resource/Arabian_Peninsula"
+      },
+      {
+        "weight": 0.121,
+        "entity": "http://dbpedia.org/resource/Lawsuit"
+      },
+      {
+        "weight": 0.162,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.834,
+        "entity": "http://dbpedia.org/resource/Al-Qaeda"
+      },
+      {
+        "weight": 0.11,
+        "entity": "http://dbpedia.org/resource/Afghan_training_camp"
+      },
+      {
+        "weight": 0.678,
+        "entity": "http://dbpedia.org/resource/Afghanistan"
+      },
+      {
+        "weight": 0.431,
+        "entity": "http://dbpedia.org/resource/September_11_attacks"
+      },
+      {
+        "weight": 0.173,
+        "entity": "http://dbpedia.org/resource/September_11_attacks"
+      },
+      {
+        "weight": 0.133,
+        "entity": "http://dbpedia.org/resource/Aircraft_hijacking"
+      },
+      {
+        "weight": 0.138,
+        "entity": "http://dbpedia.org/resource/Hijackers_in_the_September_11_attacks"
+      }
+    ]
+  },
+  {
+    "text": "Palestinian hired gun Abu Nidal, whose violent death was reported last week from Baghdad, was murdered on the orders of Iraqi President Saddam Hussein after refusing to train al-Qa'ida fighters based in Iraq, reports said yesterday. Iraqi intelligence chief Taher Jalil Habbush said last Wednesday Abu Nidal had shot and killed himself after being discovered living illegally in Baghdad and facing interrogation for anti-Iraqi activities. But Western diplomats believe the radical militant was killed for refusing to reactivate his international terrorist network.",
+    "annotations": [
+      {
+        "weight": 0.274,
+        "entity": "http://dbpedia.org/resource/Palestinian_people"
+      },
+      {
+        "weight": 0.701,
+        "entity": "http://dbpedia.org/resource/Abu_Nidal"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.33,
+        "entity": "http://dbpedia.org/resource/President_of_Iraq"
+      },
+      {
+        "weight": 0.18,
+        "entity": "http://dbpedia.org/resource/Iraqi_people"
+      },
+      {
+        "weight": 0.962,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.584,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.102,
+        "entity": "http://dbpedia.org/resource/Hussein_of_Jordan"
+      },
+      {
+        "weight": 0.456,
+        "entity": "http://dbpedia.org/resource/Al-Qaeda"
+      },
+      {
+        "weight": 0.762,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.584,
+        "entity": "http://dbpedia.org/resource/Iraqi_Intelligence_Service"
+      },
+      {
+        "weight": 0.813,
+        "entity": "http://dbpedia.org/resource/Tahir_Jalil_Habbush_al-Tikriti"
+      },
+      {
+        "weight": 0.505,
+        "entity": "http://dbpedia.org/resource/Habbush_letter"
+      },
+      {
+        "weight": 0.128,
+        "entity": "http://dbpedia.org/resource/Interrogation"
+      },
+      {
+        "weight": 0.117,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.206,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      }
+    ]
+  },
+  {
+    "text": "Hunan province remained on high alert last night as thunderstorms threatened to exacerbate the flood crisis, now entering its fifth day and with 108 already dead and hundreds of thousands evacuated. On the flood frontline at Dongting Lake, the water level peaked at just under 35m on Saturday night, then eased about 3cm during the day under a hot sun, with temperatures reaching 35C. But with the lake still brimming at dangerously high levels, and spilling over the top of its banks in some places, locals were fearful that a thunderstorm and high winds forecast to hit the region last night would damage the dikes. About 1800km of dikes around the lake are all that stand between 10 million people in the surrounding farmland and disaster.",
+    "annotations": [
+      {
+        "weight": 0.664,
+        "entity": "http://dbpedia.org/resource/Hunan"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Hunan"
+      },
+      {
+        "weight": 0.168,
+        "entity": "http://dbpedia.org/resource/Thunderstorm"
+      },
+      {
+        "weight": 0.536,
+        "entity": "http://dbpedia.org/resource/Flood"
+      },
+      {
+        "weight": 0.775,
+        "entity": "http://dbpedia.org/resource/Dongting_Lake"
+      },
+      {
+        "weight": 0.492,
+        "entity": "http://dbpedia.org/resource/Dongting_Lake"
+      },
+      {
+        "weight": 0.276,
+        "entity": "http://dbpedia.org/resource/Water"
+      },
+      {
+        "weight": 0.616,
+        "entity": "http://dbpedia.org/resource/Lake"
+      },
+      {
+        "weight": 0.269,
+        "entity": "http://dbpedia.org/resource/Thunderstorm"
+      }
+    ]
+  },
+  {
+    "text": "A U.S.-British air raid in southern Iraq left eight civilians dead and nine wounded, the Iraqi military said Sunday. The military told the official Iraqi News Agency that the warplanes bombed areas in Basra province, 330 miles south of Baghdad.  The U.S. Central Command in Florida said coalition aircraft used precision-guided weapons to strike two air defense radar systems near Basra \"in response to recent Iraqi hostile acts against coalition aircraft monitoring the Southern No-Fly Zone.\"",
+    "annotations": [
+      {
+        "weight": 0.278,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.247,
+        "entity": "http://dbpedia.org/resource/United_Kingdom"
+      },
+      {
+        "weight": 0.196,
+        "entity": "http://dbpedia.org/resource/Strategic_bombing"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.132,
+        "entity": "http://dbpedia.org/resource/Iraqi_Armed_Forces"
+      },
+      {
+        "weight": 0.111,
+        "entity": "http://dbpedia.org/resource/Iraqi_people"
+      },
+      {
+        "weight": 0.138,
+        "entity": "http://dbpedia.org/resource/Military"
+      },
+      {
+        "weight": 0.103,
+        "entity": "http://dbpedia.org/resource/Military_aircraft"
+      },
+      {
+        "weight": 0.285,
+        "entity": "http://dbpedia.org/resource/Basra_Province"
+      },
+      {
+        "weight": 0.968,
+        "entity": "http://dbpedia.org/resource/Basra"
+      },
+      {
+        "weight": 0.862,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.476,
+        "entity": "http://dbpedia.org/resource/United_States_Central_Command"
+      },
+      {
+        "weight": 0.241,
+        "entity": "http://dbpedia.org/resource/Florida"
+      },
+      {
+        "weight": 0.179,
+        "entity": "http://dbpedia.org/resource/Aircraft"
+      },
+      {
+        "weight": 0.3,
+        "entity": "http://dbpedia.org/resource/Precision-guided_munition"
+      },
+      {
+        "weight": 0.239,
+        "entity": "http://dbpedia.org/resource/Precision-guided_munition"
+      },
+      {
+        "weight": 0.166,
+        "entity": "http://dbpedia.org/resource/Precision-guided_munition"
+      },
+      {
+        "weight": 0.258,
+        "entity": "http://dbpedia.org/resource/Anti-aircraft_warfare"
+      },
+      {
+        "weight": 0.362,
+        "entity": "http://dbpedia.org/resource/Radar"
+      },
+      {
+        "weight": 0.19,
+        "entity": "http://dbpedia.org/resource/Iraqi_no-fly_zones"
+      }
+    ]
+  },
+  {
+    "text": "Iraq and Russia are close to signing a $40 billion economic cooperation plan, Iraq's ambassador said Saturday, a deal that could put Moscow at odds with the United States as it considers a military attack against Baghdad. The statement by Ambassador Abbas Khalaf came amid indications that Russia, despite its strong support for the post-Sept. 11 antiterrorism coalition, is maintaining or improving ties with Iran and North Korea, which together with Iraq are the countries President Bush has labeled the \"axis of evil.\"",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.881,
+        "entity": "http://dbpedia.org/resource/Russia"
+      },
+      {
+        "weight": 0.397,
+        "entity": "http://dbpedia.org/resource/Ambassador"
+      },
+      {
+        "weight": 0.378,
+        "entity": "http://dbpedia.org/resource/Moscow"
+      },
+      {
+        "weight": 0.581,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.702,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.509,
+        "entity": "http://dbpedia.org/resource/Abbas_Khalaf"
+      },
+      {
+        "weight": 0.269,
+        "entity": "http://dbpedia.org/resource/September_11_attacks"
+      },
+      {
+        "weight": 0.3,
+        "entity": "http://dbpedia.org/resource/Counter-terrorism"
+      },
+      {
+        "weight": 0.473,
+        "entity": "http://dbpedia.org/resource/Axis_of_evil"
+      },
+      {
+        "weight": 0.615,
+        "entity": "http://dbpedia.org/resource/Iran"
+      },
+      {
+        "weight": 0.848,
+        "entity": "http://dbpedia.org/resource/North_Korea"
+      },
+      {
+        "weight": 0.241,
+        "entity": "http://dbpedia.org/resource/Korea"
+      },
+      {
+        "weight": 0.721,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.238,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 0.363,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.663,
+        "entity": "http://dbpedia.org/resource/Axis_of_evil"
+      }
+    ]
+  },
+  {
+    "text": "U.S. intelligence cannot say conclusively that Saddam Hussein has weapons of mass destruction, an information gap that is complicating White House efforts to build support for an attack on Saddam's Iraqi regime. The CIA has advised top administration officials to assume that Iraq has some weapons of mass destruction. But the agency has not given President Bush a \"smoking gun,\" according to U.S. intelligence and administration officials.",
+    "annotations": [
+      {
+        "weight": 0.114,
+        "entity": "http://dbpedia.org/resource/United_States_Intelligence_Community"
+      },
+      {
+        "weight": 0.166,
+        "entity": "http://dbpedia.org/resource/Central_Intelligence_Agency"
+      },
+      {
+        "weight": 0.436,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.487,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.873,
+        "entity": "http://dbpedia.org/resource/Weapon_of_mass_destruction"
+      },
+      {
+        "weight": 0.467,
+        "entity": "http://dbpedia.org/resource/White_House"
+      },
+      {
+        "weight": 0.161,
+        "entity": "http://dbpedia.org/resource/Race_and_ethnicity_in_the_United_States_Census"
+      },
+      {
+        "weight": 0.532,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.53,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.128,
+        "entity": "http://dbpedia.org/resource/Iraqi_people"
+      },
+      {
+        "weight": 0.843,
+        "entity": "http://dbpedia.org/resource/Central_Intelligence_Agency"
+      },
+      {
+        "weight": 0.693,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.544,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.18,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 0.253,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.114,
+        "entity": "http://dbpedia.org/resource/Smoking_gun"
+      }
+    ]
+  },
+  {
+    "text": "Drug squad detectives have asked the Police Ombudsman to investigate the taskforce that is examining allegations of widespread corruption within the squad. This coincides with the creation of a special unit within the taskforce to track the spending of at least 10 serving and former squad members.  The corruption taskforce, codenamed Ceja, will check tax records and financial statements in a bid to establish if any of the suspects have accrued unexplained wealth over the past seven years. But drug squad detectives have countered with their own set of allegations, complaining to the ombudsman that the internal investigation is flawed, biased and over-zealous.",
+    "annotations": [
+      {
+        "weight": 0.264,
+        "entity": "http://dbpedia.org/resource/Detective"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Police_Ombudsman_for_Northern_Ireland"
+      },
+      {
+        "weight": 0.321,
+        "entity": "http://dbpedia.org/resource/Police"
+      },
+      {
+        "weight": 0.806,
+        "entity": "http://dbpedia.org/resource/Ombudsman"
+      },
+      {
+        "weight": 0.234,
+        "entity": "http://dbpedia.org/resource/Political_corruption"
+      },
+      {
+        "weight": 0.154,
+        "entity": "http://dbpedia.org/resource/Tax"
+      },
+      {
+        "weight": 0.499,
+        "entity": "http://dbpedia.org/resource/Financial_statement"
+      },
+      {
+        "weight": 0.139,
+        "entity": "http://dbpedia.org/resource/Wealth"
+      }
+    ]
+  },
+  {
+    "text": "Queensland senator Andrew Bartlett has launched a last-minutebid to rescue the Australian Democrats from a split that threatens to destroy the party. With nominations for the party leadership to close on Wednesday night, Senator Bartlett met last night with deputy leader Aden Ridgeway to offer him a place on a unity ticket and set up a reform process to begin healing the party's wounds. Party sources said Senator Ridgeway, who turned against former leader Natasha Stott Despoja, is still expected to contest the leadership against one of her two supporters: Senator Bartlett or Brian Greig, installed as interim leader by the party's executive last Thursday.",
+    "annotations": [
+      {
+        "weight": 0.191,
+        "entity": "http://dbpedia.org/resource/Queensland"
+      },
+      {
+        "weight": 0.997,
+        "entity": "http://dbpedia.org/resource/Andrew_Bartlett"
+      },
+      {
+        "weight": 0.815,
+        "entity": "http://dbpedia.org/resource/Australian_Democrats"
+      },
+      {
+        "weight": 0.131,
+        "entity": "http://dbpedia.org/resource/Democratic_Party_(United_States)"
+      },
+      {
+        "weight": 0.89,
+        "entity": "http://dbpedia.org/resource/Aden_Ridgeway"
+      },
+      {
+        "weight": 0.877,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 0.668,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Brian_Greig"
+      },
+      {
+        "weight": 0.142,
+        "entity": "http://dbpedia.org/resource/Interim_leader"
+      }
+    ]
+  },
+  {
+    "text": "Very few women have been appointed to head independent schools, thwarting efforts to show women as good leaders, according to the Victorian Independent Education Union. Although they make up two-thirds of teaching staff, women hold only one-third of principal positions, the union's general secretary, Tony Keenan, said. He believed some women were reluctant to become principals because of the long hours and the nature of the work. But in other cases they were shut out of the top position because of perceptions about their ability to lead and provide discipline.",
+    "annotations": [
+      {
+        "weight": 0.434,
+        "entity": "http://dbpedia.org/resource/Independent_school_(United_Kingdom)"
+      },
+      {
+        "weight": 0.218,
+        "entity": "http://dbpedia.org/resource/Independent_school"
+      },
+      {
+        "weight": 0.366,
+        "entity": "http://dbpedia.org/resource/Victorian_era"
+      },
+      {
+        "weight": 0.115,
+        "entity": "http://dbpedia.org/resource/Victorian_architecture"
+      },
+      {
+        "weight": 0.561,
+        "entity": "http://dbpedia.org/resource/Education"
+      },
+      {
+        "weight": 0.371,
+        "entity": "http://dbpedia.org/resource/Education"
+      },
+      {
+        "weight": 0.118,
+        "entity": "http://dbpedia.org/resource/Teacher"
+      },
+      {
+        "weight": 0.706,
+        "entity": "http://dbpedia.org/resource/Head_teacher"
+      },
+      {
+        "weight": 0.652,
+        "entity": "http://dbpedia.org/resource/General_Secretary"
+      },
+      {
+        "weight": 0.282,
+        "entity": "http://dbpedia.org/resource/General_officer"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Secretary"
+      },
+      {
+        "weight": 0.881,
+        "entity": "http://dbpedia.org/resource/Head_teacher"
+      },
+      {
+        "weight": 0.19,
+        "entity": "http://dbpedia.org/resource/Nature"
+      },
+      {
+        "weight": 0.152,
+        "entity": "http://dbpedia.org/resource/Shutout"
+      },
+      {
+        "weight": 0.117,
+        "entity": "http://dbpedia.org/resource/Discipline"
+      }
+    ]
+  },
+  {
+    "text": "The Bush administration has drawn up plans to escalate the war of words against Iraq, with new campaigns to step up pressure on Baghdad and rally world opinion behind the US drive to oust President Saddam Hussein. This week, the State Department will begin mobilising Iraqis from across North America, Europe and the Arab world, training them to appear on talk shows, write opinion articles and give speeches on reasons to end President Saddam's rule.",
+    "annotations": [
+      {
+        "weight": 0.159,
+        "entity": "http://dbpedia.org/resource/Presidency_of_George_W._Bush"
+      },
+      {
+        "weight": 0.178,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.705,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.826,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.291,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.157,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.509,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      },
+      {
+        "weight": 0.271,
+        "entity": "http://dbpedia.org/resource/United_States_Department_of_State"
+      },
+      {
+        "weight": 0.231,
+        "entity": "http://dbpedia.org/resource/Iraqi_people"
+      },
+      {
+        "weight": 0.296,
+        "entity": "http://dbpedia.org/resource/North_America"
+      },
+      {
+        "weight": 0.212,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.411,
+        "entity": "http://dbpedia.org/resource/Europe"
+      },
+      {
+        "weight": 0.47,
+        "entity": "http://dbpedia.org/resource/Arab_world"
+      },
+      {
+        "weight": 0.285,
+        "entity": "http://dbpedia.org/resource/Arab_people"
+      },
+      {
+        "weight": 0.557,
+        "entity": "http://dbpedia.org/resource/Saddam_Hussein"
+      }
+    ]
+  },
+  {
+    "text": "Beijing has abruptly withdrawn a new car registration system after drivers demonstrated \"an unhealthy fixation\" with symbols of Western military and industrial strength - such as FBI and 007. Senior officials have been infuriated by a popular demonstration of interest in American institutions such as the FBI. Particularly galling was one man's choice of TMD, which stands for Theatre Missile Defence, a US-designed missile system that is regularly vilified by Chinese propaganda channels.",
+    "annotations": [
+      {
+        "weight": 0.899,
+        "entity": "http://dbpedia.org/resource/Beijing"
+      },
+      {
+        "weight": 0.213,
+        "entity": "http://dbpedia.org/resource/Vehicle_registration"
+      },
+      {
+        "weight": 0.337,
+        "entity": "http://dbpedia.org/resource/Automobile"
+      },
+      {
+        "weight": 0.165,
+        "entity": "http://dbpedia.org/resource/Military"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Federal_Bureau_of_Investigation"
+      },
+      {
+        "weight": 0.482,
+        "entity": "http://dbpedia.org/resource/Demonstration_(people)"
+      },
+      {
+        "weight": 0.918,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.185,
+        "entity": "http://dbpedia.org/resource/Missile"
+      },
+      {
+        "weight": 0.772,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.199,
+        "entity": "http://dbpedia.org/resource/China"
+      },
+      {
+        "weight": 0.469,
+        "entity": "http://dbpedia.org/resource/Propaganda"
+      }
+    ]
+  },
+  {
+    "text": "The United Nations World Food Program estimates that up to 14 million people in seven countries - Malawi, Mozambique, Zambia, Angola, Swaziland, Lesotho and Zimbabwe - face death by starvation unless there is a massive international response. In Malawi, as many as 10,000 people may have already died. The signs of malnutrition - swollen stomachs, stick-thin arms, light-coloured hair - are everywhere.",
+    "annotations": [
+      {
+        "weight": 0.316,
+        "entity": "http://dbpedia.org/resource/United_Nations"
+      },
+      {
+        "weight": 0.317,
+        "entity": "http://dbpedia.org/resource/World_Food_Programme"
+      },
+      {
+        "weight": 0.39,
+        "entity": "http://dbpedia.org/resource/United_Nations"
+      },
+      {
+        "weight": 0.344,
+        "entity": "http://dbpedia.org/resource/World_Food_Programme"
+      },
+      {
+        "weight": 0.236,
+        "entity": "http://dbpedia.org/resource/World_Food_Programme"
+      },
+      {
+        "weight": 0.209,
+        "entity": "http://dbpedia.org/resource/Food"
+      },
+      {
+        "weight": 0.725,
+        "entity": "http://dbpedia.org/resource/Malawi"
+      },
+      {
+        "weight": 0.95,
+        "entity": "http://dbpedia.org/resource/Mozambique"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Zambia"
+      },
+      {
+        "weight": 0.308,
+        "entity": "http://dbpedia.org/resource/Angola"
+      },
+      {
+        "weight": 0.67,
+        "entity": "http://dbpedia.org/resource/Swaziland"
+      },
+      {
+        "weight": 0.363,
+        "entity": "http://dbpedia.org/resource/Lesotho"
+      },
+      {
+        "weight": 0.712,
+        "entity": "http://dbpedia.org/resource/Zimbabwe"
+      },
+      {
+        "weight": 0.202,
+        "entity": "http://dbpedia.org/resource/Starvation"
+      },
+      {
+        "weight": 0.549,
+        "entity": "http://dbpedia.org/resource/Malnutrition"
+      },
+      {
+        "weight": 0.272,
+        "entity": "http://dbpedia.org/resource/Coloured"
+      }
+    ]
+  },
+  {
+    "text": "In Malawi, as in other countries in the region, AIDS is making the effects of the famine much worse. The overall HIV infection rate in Malawi is 19 per cent, but in some areas up to 35 percent of people are infected. A significant proportion of the young adult population is too sick to do any productive work. Malnutrition causes people to succumb to the disease much more quickly than they do in the West, and hunger forces women into prostitution in order to feed their families, making them more vulnerable to contracting the disease. Life expectancy has been reduced to 40 years.",
+    "annotations": [
+      {
+        "weight": 0.724,
+        "entity": "http://dbpedia.org/resource/Malawi"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/HIV/AIDS"
+      },
+      {
+        "weight": 0.486,
+        "entity": "http://dbpedia.org/resource/Famine"
+      },
+      {
+        "weight": 0.58,
+        "entity": "http://dbpedia.org/resource/HIV/AIDS"
+      },
+      {
+        "weight": 0.663,
+        "entity": "http://dbpedia.org/resource/HIV"
+      },
+      {
+        "weight": 0.178,
+        "entity": "http://dbpedia.org/resource/Infection"
+      },
+      {
+        "weight": 0.212,
+        "entity": "http://dbpedia.org/resource/Infection"
+      },
+      {
+        "weight": 0.125,
+        "entity": "http://dbpedia.org/resource/Adult"
+      },
+      {
+        "weight": 0.457,
+        "entity": "http://dbpedia.org/resource/Malnutrition"
+      },
+      {
+        "weight": 0.316,
+        "entity": "http://dbpedia.org/resource/Disease"
+      },
+      {
+        "weight": 0.208,
+        "entity": "http://dbpedia.org/resource/Hunger"
+      },
+      {
+        "weight": 0.404,
+        "entity": "http://dbpedia.org/resource/Prostitution"
+      },
+      {
+        "weight": 0.37,
+        "entity": "http://dbpedia.org/resource/Life_expectancy"
+      }
+    ]
+  },
+  {
+    "text": "The United Nations was determined that its showpiece environment summit - the biggest conference the world has ever witnessed - should be staged in Africa. The venue, however, could not be further removed from the grim realities of life in the rest of Africa. Johannesburg's exclusive and formerly whites-only suburb of Sandton is the wealthiest neighbourhood in the continent. Just a few kilometres from Sandton begins the sprawling Alexandra township, where nearly a million people live in squalor. Organisers of the conference, which begins today, seem determined that the two worlds should be kept as far apart as possible. Tight security surrounds Sandton's convention centre and five-star hotels, where world leaders will debate poverty, the environment and sustainable development while enjoying lavish hospitality.",
+    "annotations": [
+      {
+        "weight": 0.138,
+        "entity": "http://dbpedia.org/resource/United_Nations"
+      },
+      {
+        "weight": 0.263,
+        "entity": "http://dbpedia.org/resource/United_Nations"
+      },
+      {
+        "weight": 0.216,
+        "entity": "http://dbpedia.org/resource/Africa"
+      },
+      {
+        "weight": 0.48,
+        "entity": "http://dbpedia.org/resource/Johannesburg"
+      },
+      {
+        "weight": 0.619,
+        "entity": "http://dbpedia.org/resource/Johannesburg"
+      },
+      {
+        "weight": 0.158,
+        "entity": "http://dbpedia.org/resource/Suburb"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Sandton"
+      },
+      {
+        "weight": 0.428,
+        "entity": "http://dbpedia.org/resource/Alexandra,_Gauteng"
+      },
+      {
+        "weight": 0.288,
+        "entity": "http://dbpedia.org/resource/Sustainable_development"
+      },
+      {
+        "weight": 0.163,
+        "entity": "http://dbpedia.org/resource/Sustainability"
+      }
+    ]
+  },
+  {
+    "text": "The Iraqi capital is agog after the violent death of one of the world's most notorious terrorists, but the least of the Palestinian diplomat's worries was the disposal of Abu Nidal's body, which lay on a slab in an undisclosed Baghdad morgue. Abu Nidal's Fatah Revolutionary Council is held responsible for the death or injury of almost 1000 people in 20 countries across Europe and the Middle East in the three decades since he fell out with Yasser Arafat over what Abu Nidal saw as Arafat's willingness to accommodate Israel in the Palestinian struggle.",
+    "annotations": [
+      {
+        "weight": 0.281,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.16,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.515,
+        "entity": "http://dbpedia.org/resource/Palestinian_people"
+      },
+      {
+        "weight": 0.806,
+        "entity": "http://dbpedia.org/resource/Abu_Nidal"
+      },
+      {
+        "weight": 0.44,
+        "entity": "http://dbpedia.org/resource/Baghdad"
+      },
+      {
+        "weight": 0.639,
+        "entity": "http://dbpedia.org/resource/Abu_Nidal"
+      },
+      {
+        "weight": 0.831,
+        "entity": "http://dbpedia.org/resource/Fatah"
+      },
+      {
+        "weight": 0.234,
+        "entity": "http://dbpedia.org/resource/Europe"
+      },
+      {
+        "weight": 0.468,
+        "entity": "http://dbpedia.org/resource/Middle_East"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Yasser_Arafat"
+      },
+      {
+        "weight": 0.599,
+        "entity": "http://dbpedia.org/resource/Yasser_Arafat"
+      },
+      {
+        "weight": 0.842,
+        "entity": "http://dbpedia.org/resource/Israel"
+      },
+      {
+        "weight": 0.234,
+        "entity": "http://dbpedia.org/resource/Palestinian_right_of_return"
+      },
+      {
+        "weight": 0.66,
+        "entity": "http://dbpedia.org/resource/Israeli-Palestinian_conflict"
+      }
+    ]
+  },
+  {
+    "text": "The Federal Government says changes announced today to the work for the dole scheme will benefit participants and taxpayers. Federal Employment Services Minister Mal Brough says that from July 1 those taking part in work for the dole will be able to perform extra hours to complete their mutual obligation more quickly to access training credits.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Work_for_the_Dole"
+      },
+      {
+        "weight": 0.326,
+        "entity": "http://dbpedia.org/resource/Jobseeker's_Allowance"
+      },
+      {
+        "weight": 0.204,
+        "entity": "http://dbpedia.org/resource/Unemployment_benefits"
+      },
+      {
+        "weight": 0.241,
+        "entity": "http://dbpedia.org/resource/Tax"
+      },
+      {
+        "weight": 0.127,
+        "entity": "http://dbpedia.org/resource/Employment"
+      },
+      {
+        "weight": 0.55,
+        "entity": "http://dbpedia.org/resource/Mal_Brough"
+      }
+    ]
+  },
+  {
+    "text": "The biowarfare expert under scrutiny in the anthrax attacks declared, \"I am not the anthrax killer,\" and lashed out today against Attorney General John Ashcroft for calling him a \"person of interest\" in the investigation. For the second time in two weeks, the scientist went before a throng of reporters outside his lawyer's office to profess his innocence and decry the attention from law enforcers that he contends has destroyed his life.",
+    "annotations": [
+      {
+        "weight": 0.467,
+        "entity": "http://dbpedia.org/resource/Biological_warfare"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/2001_anthrax_attacks"
+      },
+      {
+        "weight": 0.921,
+        "entity": "http://dbpedia.org/resource/Anthrax"
+      },
+      {
+        "weight": 0.507,
+        "entity": "http://dbpedia.org/resource/John_Ashcroft"
+      },
+      {
+        "weight": 0.111,
+        "entity": "http://dbpedia.org/resource/United_States_Attorney_General"
+      },
+      {
+        "weight": 0.821,
+        "entity": "http://dbpedia.org/resource/John_Ashcroft"
+      },
+      {
+        "weight": 0.701,
+        "entity": "http://dbpedia.org/resource/Person_of_interest"
+      },
+      {
+        "weight": 0.118,
+        "entity": "http://dbpedia.org/resource/Lawyer"
+      },
+      {
+        "weight": 0.165,
+        "entity": "http://dbpedia.org/resource/Law"
+      }
+    ]
+  },
+  {
+    "text": "China said Sunday it issued new regulations controlling the export of missile technology, taking steps to ease U.S. concerns about transferring sensitive equipment to Middle East countries, particularly Iran.  However, the new rules apparently do not ban outright the transfer of specific items - something Washington long has urged Beijing to do.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/China"
+      },
+      {
+        "weight": 0.302,
+        "entity": "http://dbpedia.org/resource/Export"
+      },
+      {
+        "weight": 0.204,
+        "entity": "http://dbpedia.org/resource/Missile"
+      },
+      {
+        "weight": 0.366,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.857,
+        "entity": "http://dbpedia.org/resource/Middle_East"
+      },
+      {
+        "weight": 0.779,
+        "entity": "http://dbpedia.org/resource/Iran"
+      },
+      {
+        "weight": 0.37,
+        "entity": "http://dbpedia.org/resource/Beijing"
+      }
+    ]
+  },
+  {
+    "text": "Nigerian President Olusegun Obasanjo said he will weep if a single mother sentenced to death by stoning for having a child out of wedlock is killed, but added he has faith the court system will overturn her sentence.  Obasanjo's comments late Saturday appeared to confirm he would not intervene directly in the case, despite an international outcry.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/President_of_Nigeria"
+      },
+      {
+        "weight": 0.851,
+        "entity": "http://dbpedia.org/resource/Nigeria"
+      },
+      {
+        "weight": 0.86,
+        "entity": "http://dbpedia.org/resource/Olusegun_Obasanjo"
+      },
+      {
+        "weight": 0.41,
+        "entity": "http://dbpedia.org/resource/Olusegun_Obasanjo"
+      },
+      {
+        "weight": 0.176,
+        "entity": "http://dbpedia.org/resource/Single_parent"
+      },
+      {
+        "weight": 0.438,
+        "entity": "http://dbpedia.org/resource/Capital_punishment"
+      },
+      {
+        "weight": 0.211,
+        "entity": "http://dbpedia.org/resource/Stoning"
+      },
+      {
+        "weight": 0.407,
+        "entity": "http://dbpedia.org/resource/Stoning"
+      },
+      {
+        "weight": 0.109,
+        "entity": "http://dbpedia.org/resource/Legitimacy_(law)"
+      },
+      {
+        "weight": 0.13,
+        "entity": "http://dbpedia.org/resource/Legitimacy_(law)"
+      },
+      {
+        "weight": 0.113,
+        "entity": "http://dbpedia.org/resource/Marriage"
+      },
+      {
+        "weight": 0.35,
+        "entity": "http://dbpedia.org/resource/Olusegun_Obasanjo"
+      }
+    ]
+  },
+  {
+    "text": "An Islamic high court in northern Nigeria rejected an appeal today by a single mother sentenced to be stoned to death for having sex out of wedlock. Clutching her baby daughter, Amina Lawal burst into tears as the judge delivered the ruling.  Lawal, 30, was first sentenced in March after giving birth to a daughter more than nine months after divorcing.",
+    "annotations": [
+      {
+        "weight": 0.399,
+        "entity": "http://dbpedia.org/resource/Islam"
+      },
+      {
+        "weight": 0.162,
+        "entity": "http://dbpedia.org/resource/Northern_Nigeria"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Nigeria"
+      },
+      {
+        "weight": 0.203,
+        "entity": "http://dbpedia.org/resource/Single_parent"
+      },
+      {
+        "weight": 0.523,
+        "entity": "http://dbpedia.org/resource/Stoning"
+      },
+      {
+        "weight": 0.429,
+        "entity": "http://dbpedia.org/resource/Stoning"
+      },
+      {
+        "weight": 0.402,
+        "entity": "http://dbpedia.org/resource/Legitimacy_(law)"
+      },
+      {
+        "weight": 0.187,
+        "entity": "http://dbpedia.org/resource/Marriage"
+      },
+      {
+        "weight": 0.975,
+        "entity": "http://dbpedia.org/resource/Amina_Lawal"
+      },
+      {
+        "weight": 0.136,
+        "entity": "http://dbpedia.org/resource/Judge"
+      },
+      {
+        "weight": 0.252,
+        "entity": "http://dbpedia.org/resource/Divorce"
+      }
+    ]
+  },
+  {
+    "text": "How did 2,300 allegedly unregistered missile warheads come to be stored on a Canadian businessman's anti-terrorism training facility in New Mexico? U.S. and Canadian officials are still trying to figure that out, but one security expert says the mystery is a \"chilling\" one.  David Hudak, 41, was arrested in the United States more than a week ago when, according to court documents, agents searching his property found the warheads stored in crates that were marked \"Charge Demolition.\"",
+    "annotations": [
+      {
+        "weight": 0.224,
+        "entity": "http://dbpedia.org/resource/Missile"
+      },
+      {
+        "weight": 0.193,
+        "entity": "http://dbpedia.org/resource/Nuclear_weapon"
+      },
+      {
+        "weight": 0.898,
+        "entity": "http://dbpedia.org/resource/Canada"
+      },
+      {
+        "weight": 0.342,
+        "entity": "http://dbpedia.org/resource/Counter-terrorism"
+      },
+      {
+        "weight": 0.787,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.124,
+        "entity": "http://dbpedia.org/resource/Training"
+      },
+      {
+        "weight": 0.638,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.114,
+        "entity": "http://dbpedia.org/resource/Expert"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.204,
+        "entity": "http://dbpedia.org/resource/Property"
+      }
+    ]
+  },
+  {
+    "text": "The Saudi Interior Ministry on Sunday confirmed it is holding a 21-year-old Saudi man the FBI is seeking for alleged links to the Sept. 11 hijackers. Authorities are interrogating Saud Abdulaziz Saud al-Rasheed \"and if it is proven that he was connected to terrorism, he will be referred to the sharia (Islamic) court,\" the official Saudi Press Agency quoted an unidentified ministry official as saying.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Saudi_Arabia"
+      },
+      {
+        "weight": 0.556,
+        "entity": "http://dbpedia.org/resource/Federal_Bureau_of_Investigation"
+      },
+      {
+        "weight": 0.523,
+        "entity": "http://dbpedia.org/resource/September_11_attacks"
+      },
+      {
+        "weight": 0.129,
+        "entity": "http://dbpedia.org/resource/Aircraft_hijacking"
+      },
+      {
+        "weight": 0.145,
+        "entity": "http://dbpedia.org/resource/Saud_of_Saudi_Arabia"
+      },
+      {
+        "weight": 0.1,
+        "entity": "http://dbpedia.org/resource/House_of_Saud"
+      },
+      {
+        "weight": 0.35,
+        "entity": "http://dbpedia.org/resource/Terrorism"
+      },
+      {
+        "weight": 0.56,
+        "entity": "http://dbpedia.org/resource/Sharia"
+      },
+      {
+        "weight": 0.299,
+        "entity": "http://dbpedia.org/resource/Islam"
+      },
+      {
+        "weight": 0.333,
+        "entity": "http://dbpedia.org/resource/Saudi_Press_Agency"
+      }
+    ]
+  },
+  {
+    "text": "Sri Lanka's government will lift a four-year ban on Tamil Tiger rebels on Sept. 6, paving the way for peace talks with the insurgents scheduled for later that month in Thailand, a government minister said Saturday. \"We will lift the ban as promised,\" Minister for Rehabilitation Jayalath Jayawardena told The Associated Press. The lifting of the ban is one of the key rebel conditions for resuming peace negotiations with the government after a hiatus of more than seven years.",
+    "annotations": [
+      {
+        "weight": 0.118,
+        "entity": "http://dbpedia.org/resource/Sri_Lanka"
+      },
+      {
+        "weight": 0.647,
+        "entity": "http://dbpedia.org/resource/Sri_Lanka"
+      },
+      {
+        "weight": 0.254,
+        "entity": "http://dbpedia.org/resource/Liberation_Tigers_of_Tamil_Eelam"
+      },
+      {
+        "weight": 0.424,
+        "entity": "http://dbpedia.org/resource/Liberation_Tigers_of_Tamil_Eelam"
+      },
+      {
+        "weight": 0.141,
+        "entity": "http://dbpedia.org/resource/Tamil_language"
+      },
+      {
+        "weight": 0.263,
+        "entity": "http://dbpedia.org/resource/Iraqi_insurgency"
+      },
+      {
+        "weight": 0.376,
+        "entity": "http://dbpedia.org/resource/Thailand"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Jayalath_Jayawardena"
+      },
+      {
+        "weight": 0.473,
+        "entity": "http://dbpedia.org/resource/Associated_Press"
+      },
+      {
+        "weight": 0.623,
+        "entity": "http://dbpedia.org/resource/Associated_Press"
+      }
+    ]
+  },
+  {
+    "text": "A man accused of making hidden-camera footage up the skirts of women also made child pornography of the worst kind, featuring the rape of children as young as 6, police said Friday. The latest allegations suggest there's nothing humorous about voyeurs who some may perceive to be making secret videos as a joke, Staff-Insp. Gary Ellis said. \"Approximately 20 per cent of voyeurs have also committed sexual assault or rape,\" Ellis said, reading from a recently released federal government report on criminal voyeurism.",
+    "annotations": [
+      {
+        "weight": 0.163,
+        "entity": "http://dbpedia.org/resource/Hidden_camera"
+      },
+      {
+        "weight": 0.123,
+        "entity": "http://dbpedia.org/resource/Footage"
+      },
+      {
+        "weight": 0.317,
+        "entity": "http://dbpedia.org/resource/Child_pornography"
+      },
+      {
+        "weight": 0.391,
+        "entity": "http://dbpedia.org/resource/Pornography"
+      },
+      {
+        "weight": 0.367,
+        "entity": "http://dbpedia.org/resource/Rape"
+      },
+      {
+        "weight": 0.126,
+        "entity": "http://dbpedia.org/resource/Police"
+      },
+      {
+        "weight": 0.305,
+        "entity": "http://dbpedia.org/resource/Voyeurism"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Gary_Ellis"
+      },
+      {
+        "weight": 0.369,
+        "entity": "http://dbpedia.org/resource/Sexual_assault"
+      },
+      {
+        "weight": 0.128,
+        "entity": "http://dbpedia.org/resource/Assault"
+      },
+      {
+        "weight": 0.327,
+        "entity": "http://dbpedia.org/resource/Voyeurism"
+      }
+    ]
+  },
+  {
+    "text": "Police are combing through videotapes trying to spot the gunman dressed in black who shot a 30-year-old man to death at a downtown massage parlour. The victim was hit in the stomach and upper body and died about 3 1/2 hours later in hospital. The woman was not hurt. Police urged business owners to turn over any security-camera videotapes they might have that recorded people on the street at the time. Several such videos are now being reviewed.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Massage_parlor"
+      },
+      {
+        "weight": 0.624,
+        "entity": "http://dbpedia.org/resource/Massage"
+      },
+      {
+        "weight": 0.449,
+        "entity": "http://dbpedia.org/resource/Parlour"
+      },
+      {
+        "weight": 0.168,
+        "entity": "http://dbpedia.org/resource/Hospital"
+      },
+      {
+        "weight": 0.477,
+        "entity": "http://dbpedia.org/resource/Business"
+      }
+    ]
+  },
+  {
+    "text": "The Federal Government did not regret its actions 12 months on from the Tampa asylum seeker crisis, Small Business Minister Joe Hockey said today.  Mr Hockey said the Government was not embarrassed by the Tampa issue, which began on August 27 of last year when the captain of the Norwegian cargo ship rescued more than 400 asylum seekers from an Indonesian ferry north of Christmas Island.",
+    "annotations": [
+      {
+        "weight": 0.286,
+        "entity": "http://dbpedia.org/resource/Asylum_seeker"
+      },
+      {
+        "weight": 0.123,
+        "entity": "http://dbpedia.org/resource/Right_of_asylum"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Joe_Hockey"
+      },
+      {
+        "weight": 0.523,
+        "entity": "http://dbpedia.org/resource/Gordie_Howe"
+      },
+      {
+        "weight": 0.143,
+        "entity": "http://dbpedia.org/resource/August_27"
+      },
+      {
+        "weight": 0.156,
+        "entity": "http://dbpedia.org/resource/Norway"
+      },
+      {
+        "weight": 0.222,
+        "entity": "http://dbpedia.org/resource/Cargo_ship"
+      },
+      {
+        "weight": 0.134,
+        "entity": "http://dbpedia.org/resource/Cargo"
+      },
+      {
+        "weight": 0.347,
+        "entity": "http://dbpedia.org/resource/Ship"
+      },
+      {
+        "weight": 0.119,
+        "entity": "http://dbpedia.org/resource/Asylum_seekers"
+      },
+      {
+        "weight": 0.408,
+        "entity": "http://dbpedia.org/resource/Christmas_Island"
+      },
+      {
+        "weight": 0.156,
+        "entity": "http://dbpedia.org/resource/Christmas"
+      }
+    ]
+  },
+  {
+    "text": "At least three Democrats are considering splitting from the party while no-one has yet nominated to contest the leadership. Three of the \"gang of four\" senators who ousted Natasha Stott Despoja from the leadership are considering forming a new \"progressive centre\" party in the fallout from last week's turmoil. This would leave the Democrats with a rump of three or four members. West Australian Senator Andrew Murray said yesterday unless the Democrats left wing gave ground the party would split.",
+    "annotations": [
+      {
+        "weight": 0.508,
+        "entity": "http://dbpedia.org/resource/Democratic_Party_(United_States)"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 0.352,
+        "entity": "http://dbpedia.org/resource/Natasha_Stott_Despoja"
+      },
+      {
+        "weight": 0.518,
+        "entity": "http://dbpedia.org/resource/Australian_Senate"
+      },
+      {
+        "weight": 0.161,
+        "entity": "http://dbpedia.org/resource/United_States_Senate"
+      },
+      {
+        "weight": 0.155,
+        "entity": "http://dbpedia.org/resource/Left-wing_politics"
+      }
+    ]
+  },
+  {
+    "text": "A young humpback whale remained tangled in a shark net off the Gold Coast yesterday, despite valiant efforts by marine rescuers. With its head snared by the net and an anchor rope wrapped around its tail, the stricken whale was still swimming but hopes for its survival were fading. A second rescue attempt was planned for dawn today after rescuers braved heavy seas, strong wind and driving rain to try to free the whale.",
+    "annotations": [
+      {
+        "weight": 0.749,
+        "entity": "http://dbpedia.org/resource/Humpback_whale"
+      },
+      {
+        "weight": 0.378,
+        "entity": "http://dbpedia.org/resource/Humpback_whale"
+      },
+      {
+        "weight": 0.973,
+        "entity": "http://dbpedia.org/resource/Whale"
+      },
+      {
+        "weight": 0.904,
+        "entity": "http://dbpedia.org/resource/Shark_net"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Shark"
+      },
+      {
+        "weight": 0.115,
+        "entity": "http://dbpedia.org/resource/Gold_Coast,_Queensland"
+      },
+      {
+        "weight": 0.177,
+        "entity": "http://dbpedia.org/resource/Marine_(ocean)"
+      },
+      {
+        "weight": 0.155,
+        "entity": "http://dbpedia.org/resource/Rope"
+      },
+      {
+        "weight": 0.18,
+        "entity": "http://dbpedia.org/resource/Wind"
+      },
+      {
+        "weight": 0.223,
+        "entity": "http://dbpedia.org/resource/Rain"
+      }
+    ]
+  },
+  {
+    "text": "Prince William has told friends his mother was right all along to suspect her former protection officer of spying on her and he doesn't want any detective intruding on his own privacy. William and Prince Harry are so devastated by the treachery of Ken Wharfe, whom they looked on as a surrogate father, they are now refusing to talk to their own detectives.",
+    "annotations": [
+      {
+        "weight": 0.462,
+        "entity": "http://dbpedia.org/resource/Prince_William,_Duke_of_Cambridge"
+      },
+      {
+        "weight": 0.112,
+        "entity": "http://dbpedia.org/resource/Espionage"
+      },
+      {
+        "weight": 0.124,
+        "entity": "http://dbpedia.org/resource/Detective"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Prince_Harry_of_Wales"
+      }
+    ]
+  },
+  {
+    "text": "The spectre of Osama bin Laden rose again today, urging Afghans to launch a new Jihad, or holy war, and predicting the fall of the United States, in a hand-written \"letter\" posted on an Islamic website.  There was no hard proof that the scruffy missive was genuine, but IslamOnline.net said it had been received by their correspondent in Jalalabad, eastern Afghanistan, from an Afghan source who asked to remain anonymous. The source claimed it was the \"most recent letter\" from the world's most wanted man.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.209,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.481,
+        "entity": "http://dbpedia.org/resource/Osama_bin_Laden"
+      },
+      {
+        "weight": 0.167,
+        "entity": "http://dbpedia.org/resource/Afghanistan"
+      },
+      {
+        "weight": 0.491,
+        "entity": "http://dbpedia.org/resource/Jihad"
+      },
+      {
+        "weight": 0.175,
+        "entity": "http://dbpedia.org/resource/Religious_war"
+      },
+      {
+        "weight": 0.405,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.548,
+        "entity": "http://dbpedia.org/resource/Islam"
+      },
+      {
+        "weight": 0.306,
+        "entity": "http://dbpedia.org/resource/Website"
+      },
+      {
+        "weight": 0.156,
+        "entity": "http://dbpedia.org/resource/Letter_(message)"
+      },
+      {
+        "weight": 0.345,
+        "entity": "http://dbpedia.org/resource/IslamOnline"
+      },
+      {
+        "weight": 0.326,
+        "entity": "http://dbpedia.org/resource/IslamOnline"
+      },
+      {
+        "weight": 0.796,
+        "entity": "http://dbpedia.org/resource/Jalalabad"
+      },
+      {
+        "weight": 0.916,
+        "entity": "http://dbpedia.org/resource/Afghanistan"
+      },
+      {
+        "weight": 0.403,
+        "entity": "http://dbpedia.org/resource/Afghanistan"
+      }
+    ]
+  },
+  {
+    "text": "The Johannesburg Earth Summit is set to get under way with the promise that leaders will take action on the environment, debt and poverty. South African President Thabo Mbeki, speaking at the opening ceremony, said: \"Out of Johannesburg and out of Africa must emerge something that takes the world forward.\" But the absence of US President George W Bush was threatening to overshadow the summit.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Johannesburg"
+      },
+      {
+        "weight": 0.39,
+        "entity": "http://dbpedia.org/resource/Earth_Summit"
+      },
+      {
+        "weight": 0.283,
+        "entity": "http://dbpedia.org/resource/Earth"
+      },
+      {
+        "weight": 0.184,
+        "entity": "http://dbpedia.org/resource/Poverty"
+      },
+      {
+        "weight": 0.528,
+        "entity": "http://dbpedia.org/resource/President_of_South_Africa"
+      },
+      {
+        "weight": 0.519,
+        "entity": "http://dbpedia.org/resource/South_Africa"
+      },
+      {
+        "weight": 0.435,
+        "entity": "http://dbpedia.org/resource/Thabo_Mbeki"
+      },
+      {
+        "weight": 0.136,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 0.818,
+        "entity": "http://dbpedia.org/resource/Thabo_Mbeki"
+      },
+      {
+        "weight": 0.227,
+        "entity": "http://dbpedia.org/resource/Thabo_Mbeki"
+      },
+      {
+        "weight": 0.124,
+        "entity": "http://dbpedia.org/resource/Recent_African_origin_of_modern_humans"
+      },
+      {
+        "weight": 0.554,
+        "entity": "http://dbpedia.org/resource/Africa"
+      },
+      {
+        "weight": 0.452,
+        "entity": "http://dbpedia.org/resource/President_of_the_United_States"
+      },
+      {
+        "weight": 0.253,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.251,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.448,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.245,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      },
+      {
+        "weight": 0.104,
+        "entity": "http://dbpedia.org/resource/George_W._Bush"
+      }
+    ]
+  },
+  {
+    "text": "Robert Mugabe strengthened his hold on the Zimbabwean government yesterday by retaining the most combative hardliner ministers in a cabinet shuffle which offered little hope of a moderation of the land seizures and other policies that have kept Zimbabwe in crisis and brought international condemnation.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Robert_Mugabe"
+      },
+      {
+        "weight": 0.578,
+        "entity": "http://dbpedia.org/resource/Robert_Mugabe"
+      },
+      {
+        "weight": 0.658,
+        "entity": "http://dbpedia.org/resource/Politics_of_Zimbabwe"
+      },
+      {
+        "weight": 0.41,
+        "entity": "http://dbpedia.org/resource/Zimbabwe"
+      },
+      {
+        "weight": 0.244,
+        "entity": "http://dbpedia.org/resource/Cabinet_reshuffle"
+      },
+      {
+        "weight": 0.876,
+        "entity": "http://dbpedia.org/resource/Zimbabwe"
+      },
+      {
+        "weight": 0.194,
+        "entity": "http://dbpedia.org/resource/Eminent_domain"
+      }
+    ]
+  },
+  {
+    "text": "They dress in black and disguise their identities with bandannas and sunglasses. Their logo is an image of the Southern Cross constellation, superimposed with a pair of crossed boomerangs, which resembles a swastika. The Blackshirts are former husbands aggrieved by their treatment at the hands of their ex-wives and the courts, who regard themselves as the vanguard of a \"men's rights\" movement in Australia and say that their actions will be remembered as marking a turning-point in history.",
+    "annotations": [
+      {
+        "weight": 0.257,
+        "entity": "http://dbpedia.org/resource/Black"
+      },
+      {
+        "weight": 0.223,
+        "entity": "http://dbpedia.org/resource/Sunglasses"
+      },
+      {
+        "weight": 0.92,
+        "entity": "http://dbpedia.org/resource/Crux"
+      },
+      {
+        "weight": 0.127,
+        "entity": "http://dbpedia.org/resource/Crux"
+      },
+      {
+        "weight": 0.66,
+        "entity": "http://dbpedia.org/resource/Constellation"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Swastika"
+      },
+      {
+        "weight": 0.281,
+        "entity": "http://dbpedia.org/resource/Blackshirts"
+      },
+      {
+        "weight": 0.411,
+        "entity": "http://dbpedia.org/resource/Men's_rights_movement"
+      },
+      {
+        "weight": 0.519,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 0.183,
+        "entity": "http://dbpedia.org/resource/History"
+      }
+    ]
+  },
+  {
+    "text": "The real level of world inequality and environmental degradation may be far worse than official estimates, according to a leaked document prepared for the world's richest countries and seen by the Guardian. It includes new estimates that the world lost almost 10% of its forests in the past 10 years; that carbon dioxide emissions leading to global warming are expected to rise by 33% in rich countries and 100% in the rest of the world in the next 18 years; and that more than 30% more fresh water will be needed by 2020.",
+    "annotations": [
+      {
+        "weight": 0.266,
+        "entity": "http://dbpedia.org/resource/Environmental_degradation"
+      },
+      {
+        "weight": 0.141,
+        "entity": "http://dbpedia.org/resource/The_Guardian"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Carbon_dioxide"
+      },
+      {
+        "weight": 0.264,
+        "entity": "http://dbpedia.org/resource/Carbon"
+      },
+      {
+        "weight": 0.779,
+        "entity": "http://dbpedia.org/resource/Global_warming"
+      },
+      {
+        "weight": 0.147,
+        "entity": "http://dbpedia.org/resource/Developed_country"
+      },
+      {
+        "weight": 0.178,
+        "entity": "http://dbpedia.org/resource/Fresh_water"
+      },
+      {
+        "weight": 0.298,
+        "entity": "http://dbpedia.org/resource/Water"
+      }
+    ]
+  },
+  {
+    "text": "Researchers conducting the most elaborate wild goose chase in history are digesting the news that a bird they have tracked for over 4,500 miles is about to be cooked. Kerry, an Irish light-bellied Brent goose, was one of six birds tagged in Northern Ireland in May by researchers monitoring the species' remarkable migration. Last week, however, he was found dead in an Inuit hunter's freezer in Canada, still wearing his £3,000 satelite tracking device. Kerry was discovered by researchers on the remote Cornwallis Island. They picked up the signal and decided to try to find him.",
+    "annotations": [
+      {
+        "weight": 0.51,
+        "entity": "http://dbpedia.org/resource/Goose"
+      },
+      {
+        "weight": 0.102,
+        "entity": "http://dbpedia.org/resource/Steeplechase"
+      },
+      {
+        "weight": 0.442,
+        "entity": "http://dbpedia.org/resource/Bird"
+      },
+      {
+        "weight": 0.112,
+        "entity": "http://dbpedia.org/resource/Kerry_GAA"
+      },
+      {
+        "weight": 0.118,
+        "entity": "http://dbpedia.org/resource/Ireland"
+      },
+      {
+        "weight": 0.962,
+        "entity": "http://dbpedia.org/resource/Brant_Goose"
+      },
+      {
+        "weight": 0.284,
+        "entity": "http://dbpedia.org/resource/Bird"
+      },
+      {
+        "weight": 0.595,
+        "entity": "http://dbpedia.org/resource/Northern_Ireland"
+      },
+      {
+        "weight": 0.358,
+        "entity": "http://dbpedia.org/resource/Ireland"
+      },
+      {
+        "weight": 0.259,
+        "entity": "http://dbpedia.org/resource/Species"
+      },
+      {
+        "weight": 0.445,
+        "entity": "http://dbpedia.org/resource/Inuit"
+      },
+      {
+        "weight": 0.343,
+        "entity": "http://dbpedia.org/resource/Hunting"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Canada"
+      },
+      {
+        "weight": 0.255,
+        "entity": "http://dbpedia.org/resource/Satellite"
+      },
+      {
+        "weight": 0.119,
+        "entity": "http://dbpedia.org/resource/Tracking_system"
+      },
+      {
+        "weight": 0.667,
+        "entity": "http://dbpedia.org/resource/Cornwallis_Island_(Nunavut)"
+      }
+    ]
+  },
+  {
+    "text": "Russia defended itself against U.S. criticism of its economic ties with countries like Iraq, saying attempts to mix business and ideology were misguided. \"Mixing ideology with economic ties, which was characteristic of the Cold War that Russia and the United States worked to end, is a thing of the past,\" Russian Foreign Ministry spokesman Boris Malakhov said Saturday, reacting to U.S. Defense Secretary Donald Rumsfeld's statement that Moscow's economic relationships with such countries sends a negative signal.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Russia"
+      },
+      {
+        "weight": 0.175,
+        "entity": "http://dbpedia.org/resource/Winter_War"
+      },
+      {
+        "weight": 0.348,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.353,
+        "entity": "http://dbpedia.org/resource/Iraq"
+      },
+      {
+        "weight": 0.164,
+        "entity": "http://dbpedia.org/resource/Ideology"
+      },
+      {
+        "weight": 0.116,
+        "entity": "http://dbpedia.org/resource/Audio_mixing_(recorded_music)"
+      },
+      {
+        "weight": 0.597,
+        "entity": "http://dbpedia.org/resource/Cold_War"
+      },
+      {
+        "weight": 0.438,
+        "entity": "http://dbpedia.org/resource/United_States"
+      },
+      {
+        "weight": 0.301,
+        "entity": "http://dbpedia.org/resource/Ministry_of_Foreign_Affairs_(Russia)"
+      },
+      {
+        "weight": 0.235,
+        "entity": "http://dbpedia.org/resource/Russian_language"
+      },
+      {
+        "weight": 0.584,
+        "entity": "http://dbpedia.org/resource/United_States_Secretary_of_Defense"
+      },
+      {
+        "weight": 0.493,
+        "entity": "http://dbpedia.org/resource/United_States_Secretary_of_Defense"
+      },
+      {
+        "weight": 0.44,
+        "entity": "http://dbpedia.org/resource/Donald_Rumsfeld"
+      },
+      {
+        "weight": 0.794,
+        "entity": "http://dbpedia.org/resource/Donald_Rumsfeld"
+      },
+      {
+        "weight": 0.366,
+        "entity": "http://dbpedia.org/resource/Donald_Rumsfeld"
+      },
+      {
+        "weight": 0.294,
+        "entity": "http://dbpedia.org/resource/Moscow"
+      },
+      {
+        "weight": 0.413,
+        "entity": "http://dbpedia.org/resource/Moscow"
+      }
+    ]
+  },
+  {
+    "text": "Pope John Paul II urged delegates at a major U.N. summit on sustainable growth on Sunday to pursue development that protects the environment and social justice. In comments to tourists and the faithful at his summer residence southeast of Rome, the pope said God had put humans on Earth to be his administrators of the land, \"to cultivate it and take care of it.\" \"In a world ever more interdependent, peace, justice and the safekeeping of creation cannot but be the fruit of a joint commitment of all in pursuing the common good,\" John Paul said.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Pope_John_Paul_II"
+      },
+      {
+        "weight": 0.857,
+        "entity": "http://dbpedia.org/resource/Pope"
+      },
+      {
+        "weight": 0.587,
+        "entity": "http://dbpedia.org/resource/Pope_John_Paul_II"
+      },
+      {
+        "weight": 0.219,
+        "entity": "http://dbpedia.org/resource/Paul_the_Apostle"
+      },
+      {
+        "weight": 0.313,
+        "entity": "http://dbpedia.org/resource/United_Nations"
+      },
+      {
+        "weight": 0.321,
+        "entity": "http://dbpedia.org/resource/Sustainable_development"
+      },
+      {
+        "weight": 0.333,
+        "entity": "http://dbpedia.org/resource/Sustainability"
+      },
+      {
+        "weight": 0.481,
+        "entity": "http://dbpedia.org/resource/Social_justice"
+      },
+      {
+        "weight": 0.234,
+        "entity": "http://dbpedia.org/resource/Justice"
+      },
+      {
+        "weight": 0.448,
+        "entity": "http://dbpedia.org/resource/Rome"
+      },
+      {
+        "weight": 0.18,
+        "entity": "http://dbpedia.org/resource/God"
+      },
+      {
+        "weight": 0.206,
+        "entity": "http://dbpedia.org/resource/Human"
+      },
+      {
+        "weight": 0.196,
+        "entity": "http://dbpedia.org/resource/Earth"
+      },
+      {
+        "weight": 0.178,
+        "entity": "http://dbpedia.org/resource/Agriculture"
+      },
+      {
+        "weight": 0.134,
+        "entity": "http://dbpedia.org/resource/Fruit"
+      },
+      {
+        "weight": 0.241,
+        "entity": "http://dbpedia.org/resource/Common_good"
+      }
+    ]
+  },
+  {
+    "text": "The Russian defense minister said residents shouldn't feel threatened by the growing number of Chinese workers seeking employment in the country's sparsely populated Far Eastern and Siberian regions. There are no exact figures for the number of Chinese working in Russia, but estimates range from 200,000 to as many as 5 million. Most are in the Russian Far East, where they arrive with legitimate work visas to do seasonal work on Russia's low-tech, labor-intensive farms.",
+    "annotations": [
+      {
+        "weight": 0.15,
+        "entity": "http://dbpedia.org/resource/Ministry_of_Defence_(Russia)"
+      },
+      {
+        "weight": 0.11,
+        "entity": "http://dbpedia.org/resource/Russian_language"
+      },
+      {
+        "weight": 0.123,
+        "entity": "http://dbpedia.org/resource/China"
+      },
+      {
+        "weight": 0.504,
+        "entity": "http://dbpedia.org/resource/Siberia"
+      },
+      {
+        "weight": 0.221,
+        "entity": "http://dbpedia.org/resource/Siberia"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Russia"
+      },
+      {
+        "weight": 0.662,
+        "entity": "http://dbpedia.org/resource/Russian_Far_East"
+      },
+      {
+        "weight": 0.273,
+        "entity": "http://dbpedia.org/resource/Far_East"
+      },
+      {
+        "weight": 0.315,
+        "entity": "http://dbpedia.org/resource/Russia"
+      },
+      {
+        "weight": 0.27,
+        "entity": "http://dbpedia.org/resource/Intensive_farming"
+      }
+    ]
+  },
+  {
+    "text": "Australian spies listened to conversations between Norway's ambassador and its foreign office during the Tampa crisis, a soon to be published book will reveal.  Phone calls were tapped by the Defence Signals Directorate when Norwegian ambassador Ove Thorsheim visited the freighter during the stand-off.  A book, Tampa, to be published in Norway in October, recounts the events which triggered Australia's Pacific Solution and transformed Tampa Captain Arne Rinnan into a homeland hero.",
+    "annotations": [
+      {
+        "weight": 0.101,
+        "entity": "http://dbpedia.org/resource/Australians"
+      },
+      {
+        "weight": 0.347,
+        "entity": "http://dbpedia.org/resource/Espionage"
+      },
+      {
+        "weight": 0.489,
+        "entity": "http://dbpedia.org/resource/Norway"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Norway"
+      },
+      {
+        "weight": 0.244,
+        "entity": "http://dbpedia.org/resource/Ambassador"
+      },
+      {
+        "weight": 0.12,
+        "entity": "http://dbpedia.org/resource/Tampa,_Florida"
+      },
+      {
+        "weight": 0.804,
+        "entity": "http://dbpedia.org/resource/Defence_Signals_Directorate"
+      },
+      {
+        "weight": 0.53,
+        "entity": "http://dbpedia.org/resource/Norway"
+      },
+      {
+        "weight": 0.873,
+        "entity": "http://dbpedia.org/resource/Ove_Thorsheim"
+      },
+      {
+        "weight": 0.123,
+        "entity": "http://dbpedia.org/resource/Rugby_league_positions"
+      },
+      {
+        "weight": 0.46,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 0.776,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 0.486,
+        "entity": "http://dbpedia.org/resource/Pacific_Solution"
+      },
+      {
+        "weight": 0.235,
+        "entity": "http://dbpedia.org/resource/Pacific_Ocean"
+      },
+      {
+        "weight": 0.505,
+        "entity": "http://dbpedia.org/resource/Arne_Rinnan"
+      },
+      {
+        "weight": 0.134,
+        "entity": "http://dbpedia.org/resource/Rinnan"
+      }
+    ]
+  },
+  {
+    "text": "Batasuna, a political party that campaigns for an independent Basque state, faces a double blow today: the Spanish parliament is expected to vote overwhelmingly in favour of banning the radical group, while a senior investigative judge is poised to suspend Batasuna's activities on the grounds that they benefit Eta, the outlawed Basque separatist group.",
+    "annotations": [
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Batasuna"
+      },
+      {
+        "weight": 0.313,
+        "entity": "http://dbpedia.org/resource/Political_party"
+      },
+      {
+        "weight": 0.137,
+        "entity": "http://dbpedia.org/resource/Basque_language"
+      },
+      {
+        "weight": 0.106,
+        "entity": "http://dbpedia.org/resource/Basque_people"
+      },
+      {
+        "weight": 0.386,
+        "entity": "http://dbpedia.org/resource/Cortes_Generales"
+      },
+      {
+        "weight": 0.194,
+        "entity": "http://dbpedia.org/resource/Cortes_Generales"
+      },
+      {
+        "weight": 0.213,
+        "entity": "http://dbpedia.org/resource/Spain"
+      },
+      {
+        "weight": 0.111,
+        "entity": "http://dbpedia.org/resource/Political_radicalism"
+      },
+      {
+        "weight": 0.129,
+        "entity": "http://dbpedia.org/resource/Judge"
+      },
+      {
+        "weight": 0.72,
+        "entity": "http://dbpedia.org/resource/Basque_nationalism"
+      },
+      {
+        "weight": 0.258,
+        "entity": "http://dbpedia.org/resource/Separatism"
+      },
+      {
+        "weight": 0.253,
+        "entity": "http://dbpedia.org/resource/Separatism"
+      }
+    ]
+  },
+  {
+    "text": "The river Elbe surged to an all-time record high Friday, flooding more districts of the historic city of Dresden as authorities scrambled to evacuate tens of thousands of residents in the worst flooding to hit central Europe in memory. In the Czech Republic, authorities were counting the cost of the massive flooding as people returned to the homes and the Vlava river receded, revealing the full extent of the damage to lives and landmarks.",
+    "annotations": [
+      {
+        "weight": 0.672,
+        "entity": "http://dbpedia.org/resource/Elbe"
+      },
+      {
+        "weight": 0.28,
+        "entity": "http://dbpedia.org/resource/River"
+      },
+      {
+        "weight": 0.93,
+        "entity": "http://dbpedia.org/resource/Elbe"
+      },
+      {
+        "weight": 0.377,
+        "entity": "http://dbpedia.org/resource/Flood"
+      },
+      {
+        "weight": 0.459,
+        "entity": "http://dbpedia.org/resource/Dresden"
+      },
+      {
+        "weight": 0.688,
+        "entity": "http://dbpedia.org/resource/Dresden"
+      },
+      {
+        "weight": 0.653,
+        "entity": "http://dbpedia.org/resource/Central_Europe"
+      },
+      {
+        "weight": 0.445,
+        "entity": "http://dbpedia.org/resource/Europe"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Czech_Republic"
+      },
+      {
+        "weight": 0.272,
+        "entity": "http://dbpedia.org/resource/Czech_Republic"
+      }
+    ]
+  },
+  {
+    "text": "The European Parliament is spoiling for a fight with Israel. It has voted to review the EU's diplomatic links with the Jewish state, to impose an arms embargo and to threaten wider trade sanctions.  Many MEPs want to go further and dispatch a European military force to the region in order to \"protect the Palestinian people\".",
+    "annotations": [
+      {
+        "weight": 0.904,
+        "entity": "http://dbpedia.org/resource/European_Parliament"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Israel"
+      },
+      {
+        "weight": 0.782,
+        "entity": "http://dbpedia.org/resource/European_Union"
+      },
+      {
+        "weight": 0.858,
+        "entity": "http://dbpedia.org/resource/European_Union"
+      },
+      {
+        "weight": 0.225,
+        "entity": "http://dbpedia.org/resource/Diplomacy"
+      },
+      {
+        "weight": 0.411,
+        "entity": "http://dbpedia.org/resource/Jewish_state"
+      },
+      {
+        "weight": 0.349,
+        "entity": "http://dbpedia.org/resource/Jews"
+      },
+      {
+        "weight": 0.609,
+        "entity": "http://dbpedia.org/resource/Arms_embargo"
+      },
+      {
+        "weight": 0.439,
+        "entity": "http://dbpedia.org/resource/Embargo"
+      },
+      {
+        "weight": 0.595,
+        "entity": "http://dbpedia.org/resource/Economic_sanctions"
+      },
+      {
+        "weight": 0.371,
+        "entity": "http://dbpedia.org/resource/Trade"
+      },
+      {
+        "weight": 0.166,
+        "entity": "http://dbpedia.org/resource/International_sanctions"
+      },
+      {
+        "weight": 0.889,
+        "entity": "http://dbpedia.org/resource/Member_of_the_European_Parliament"
+      },
+      {
+        "weight": 0.259,
+        "entity": "http://dbpedia.org/resource/Military_of_the_European_Union"
+      },
+      {
+        "weight": 0.101,
+        "entity": "http://dbpedia.org/resource/Regions_of_France"
+      },
+      {
+        "weight": 0.676,
+        "entity": "http://dbpedia.org/resource/Palestinian_people"
+      },
+      {
+        "weight": 0.29,
+        "entity": "http://dbpedia.org/resource/Palestinian_people"
+      }
+    ]
+  },
+  {
+    "text": "Australia's Commonwealth Bank on Wednesday said it plans to cut about 1,000 jobs even as it reported its profit rose 11 percent last fiscal year. Workers reacted angrily to the planned cuts, which Australia's second largest bank said were designed to control costs. The cuts will take effect this financial year. The bank reported net profit of 2.66 billion Australian dollars ($1.4 billion) in the year to June 30, up from 2.4 billion Australian dollars in the previous year.",
+    "annotations": [
+      {
+        "weight": 0.312,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Australia"
+      },
+      {
+        "weight": 0.579,
+        "entity": "http://dbpedia.org/resource/Commonwealth_Bank"
+      },
+      {
+        "weight": 0.156,
+        "entity": "http://dbpedia.org/resource/Commonwealth_of_Nations"
+      },
+      {
+        "weight": 0.351,
+        "entity": "http://dbpedia.org/resource/Fiscal_year"
+      },
+      {
+        "weight": 0.128,
+        "entity": "http://dbpedia.org/resource/Bank"
+      },
+      {
+        "weight": 0.307,
+        "entity": "http://dbpedia.org/resource/Fiscal_year"
+      },
+      {
+        "weight": 0.243,
+        "entity": "http://dbpedia.org/resource/Net_profit"
+      },
+      {
+        "weight": 0.803,
+        "entity": "http://dbpedia.org/resource/Australian_dollar"
+      },
+      {
+        "weight": 0.214,
+        "entity": "http://dbpedia.org/resource/Australians"
+      },
+      {
+        "weight": 0.166,
+        "entity": "http://dbpedia.org/resource/United_States_dollar"
+      },
+      {
+        "weight": 0.169,
+        "entity": "http://dbpedia.org/resource/June_30"
+      }
+    ]
+  },
+  {
+    "text": "Labor needed to distinguish itself from the Government on the issue of asylum seekers, Greens leader Bob Brown has said. His Senate colleague Kerry Nettle intends to move a motion today - on the first anniversary of the Tampa crisis - condemning the Government over its refugee policy and calling for an end to mandatory detention. \"We Greens want to bring the Government to book over its serial breach of international obligations as far as asylum seekers in this country are concerned,\" Senator Brown said today.",
+    "annotations": [
+      {
+        "weight": 0.535,
+        "entity": "http://dbpedia.org/resource/Australian_Labor_Party"
+      },
+      {
+        "weight": 0.403,
+        "entity": "http://dbpedia.org/resource/Asylum_seekers"
+      },
+      {
+        "weight": 0.144,
+        "entity": "http://dbpedia.org/resource/Right_of_asylum"
+      },
+      {
+        "weight": 0.162,
+        "entity": "http://dbpedia.org/resource/Australian_Greens"
+      },
+      {
+        "weight": 0.432,
+        "entity": "http://dbpedia.org/resource/Bob_Brown"
+      },
+      {
+        "weight": 1,
+        "entity": "http://dbpedia.org/resource/Kerry_Nettle"
+      },
+      {
+        "weight": 0.279,
+        "entity": "http://dbpedia.org/resource/Right_of_asylum"
+      },
+      {
+        "weight": 0.507,
+        "entity": "http://dbpedia.org/resource/Refugee"
+      },
+      {
+        "weight": 0.421,
+        "entity": "http://dbpedia.org/resource/Mandatory_detention_in_Australia"
+      },
+      {
+        "weight": 0.238,
+        "entity": "http://dbpedia.org/resource/Immigration_detention"
+      }
+    ]
+  }
+]
