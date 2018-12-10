@@ -10,6 +10,11 @@ The implemented tasks are:
     - Entity Relatedness
     - Document Similarity
     - Semantic Analogies
+    
+## Licence
+The Apache licence applies to the provided source code. For the datasets, please check the licensing information. 
+For example, for the licensing information of the classification and regression datasets, see https://dws.informatik.uni-mannheim.de/en/research/a-collection-of-benchmark-datasets-for-ml/; 
+for Entity Relatedness task, see https://old.datahub.io/dataset/kore-50-nif-ner-corpus/resource/840dc999-8451-42d8-baaf-0647f1bc6a20.
 
 ## How to run the code? 
 Environment: 
