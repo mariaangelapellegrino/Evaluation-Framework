@@ -1,6 +1,6 @@
 # Evaluation-Framework
 
-This repository contains an embedding framework to evaluate RDF embedding techniques upon to machine learning (ML) and semantic tasks.
+This repository contains an evaluation framework to test RDF embedding techniques upon to machine learning (ML) and semantic tasks.
 The implemented tasks are:
 - Machine Learning
     - Classification
