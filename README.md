@@ -56,3 +56,6 @@ Your **_analogy function_** has to take
 - the top_k, i.e., the number of vectors you want to use to check if the predicted vector is close to one in your dataset
 
 and it must return the indices of the top_k closest vector to the predicted one.
+
+## History
+To get the Evaluation Framework history, you can follow this link: https://git.rwth-aachen.de/KGEmbedding/evaluationFramework.
