@@ -2,6 +2,7 @@ from documentSimilarity_dataManager import DataManager
 from documentSimilarity_model import DocumentSimilarityModel as Model
 import csv
 import os
+from collections import defaultdict
 
 from code.abstract_taskManager import AbstractTaskManager
 
@@ -42,16 +43,20 @@ class DocumentSimilarityManager (AbstractTaskManager):
 				print('Document similarity : Problems in merging vector with gold standard ' + document_entities_file)
 		else:
 			try:
+				
+				scores = defaultdict(list)
 				with_weights = False
 				model = Model(self.distance_metric, with_weights, self.debugging_mode)
-				result = model.train(data, stats)
-				scores.append(result)
+				result, log_info = model.train(data, stats)
+				scores['without_weights'] = result
+				#log_errors += log_info
 				
 				with_weights = True
 				model = Model(self.distance_metric, with_weights, self.debugging_mode)
-				result = model.train(data, stats)
-				scores.append(result)
-				
+				result, log_info = model.train(data, stats)
+				scores['with_weights'] = result
+				log_errors += log_info
+
 				self.storeResults(results_folder, 'LP50', scores)
 			except Exception as e:
 				log_errors += 'File used as gold standard: ' + document_entities_file + '\n'
@@ -75,12 +80,13 @@ class DocumentSimilarityManager (AbstractTaskManager):
 		file_ignored.close()
 
 	def storeResults(self, results_folder, gold_standard_filename, scores):
-		with open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_results.csv', "a+") as csv_file:
+		with open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
 			fieldnames = ['task_name', 'conf', 'pearson_score', 'spearman_score', 'harmonic_mean']
 			writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 			writer.writeheader()
 			
-			for score in scores:
+			for (method, score) in scores.items():
 				writer.writerow(score)
 				if self.debugging_mode:
-					print('Document Similarity score: ' +   score)
+					print('Document Similarity ' + method + ' score: ' +   str(score))     
+	

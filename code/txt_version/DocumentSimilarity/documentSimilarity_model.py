@@ -17,7 +17,7 @@ class DocumentSimilarityModel(AbstractModel):
 			print('Document similarity model initialized')
 
 	def train(self, data, stats):
-		doc_similarity, log_info = self.compute_doc_distance(data, self.distance_metric)
+		doc_similarity, log_info = self.compute_doc_distance(data)
 		gold_similarity_score, similarity_score = self.get_gold_and_actual_score(stats, doc_similarity)
 		pearson_score, spearman_score, harmonic_mean = self.evaluate_document_similarity(gold_similarity_score, similarity_score)	
 			
@@ -26,14 +26,11 @@ class DocumentSimilarityModel(AbstractModel):
 		else:
 			conf = 'with weights'
 
-		return {'task_name' : 'Document Similarity', 'conf': conf, 'pearson_score': pearson_score, 'spearman_score' : spearman_score, 'harmonic_mean' : harmonic_mean}
+		return {'task_name' : 'Document Similarity', 'conf': conf, 'pearson_score': pearson_score, 'spearman_score' : spearman_score, 'harmonic_mean' : harmonic_mean}, log_info
 
-	def compute_doc_distance(self, data, distance_metric):
+	def compute_doc_distance(self, data):
 		log_info = ""
 		
-		min_distance_score1 = 0
-		min_distance_score2 = 0
-
 		result_dict = {}
 		doc1_list = list()
 		doc2_list = list()
@@ -41,17 +38,17 @@ class DocumentSimilarityModel(AbstractModel):
 
 		for i in range(1, 51):
 			#1. extract entities of document i and j
-			set1 = self.extractEntities(i, data)
-			weight1 = set1[2]
+			set1 = self.extract_entities(i, data)
+			weight1 = set1['weight']
 			if len(set1)==0:
-				log_info += "No entities in doc " + i
+				log_info += "No entities in doc " + str(i) + "\n"
 				continue
 			
 			for j in range(i, 51):
-				set2 = self.extractEntities(j, data)
-				weight2 = set2[2]
+				set2 = self.extract_entities(j, data)
+				weight2 = set2['weight']
 				if len(set2)==0:
-					log_info += "No entities in doc " + i
+					log_info += "No entities in doc " + str(j) + "\n"
 					continue
 			
 				#1. DONE : set 1 and set 2 contain entities of document i and j
@@ -59,50 +56,38 @@ class DocumentSimilarityModel(AbstractModel):
 				#2. compute the similarity for each pair of entities in d_i and d_j
 				# similarity is interpreted as the opposite of distance 
 				distance_score1 = self.compute_distance(set1, set2)
-				
+				distance_score2 = self.compute_distance(set2, set1)
+
+				#3. for each entity in d_i identify the maximum similarity to an entity in d2, and viceversa				
 				max_sim1 = list()
 				for k in range(len(distance_score1)):
-					weight1 = weight1.iloc[2]
-					weight2 = set2.iloc[index_min_distance, 2]
-					max_sim1.append(self.compute_max_similarity(distance_score1[k, :]))
+					weight = weight1.iloc[k]
+					max_sim1.append(self.compute_max_similarity(distance_score1[k, :], weight, weight2))
 
-				
-
-
-				distance_score2 = pairwise_distances(set2.iloc[:, 3:], set1.iloc[:, 3:], metric=distance_metric)
 			
-				min_distance_score_21_list = list()
-				max_similarity_score_21_list = list()
+				max_sim2 = list()
 				for k in range(len(distance_score2)):
-					index_min_distance = np.argmin(distance_score2[k, :])
-					min_distance_score2 = distance_score2[k, index_min_distance]
+					weight = weight2.iloc[k]
+					max_sim2.append(self.compute_max_similarity(distance_score2[k, :], weight, weight1))
+			
+				#4. calculate document similarity
+				sum_max_sim1 = sum(max_sim1)
+				sum_max_sim2 = sum(max_sim2)
+			
+				document_similarity = (sum_max_sim1+sum_max_sim2)/(len(set1)+len(set2))
 
-					if self.with_weights:
-						weight2 = set2.iloc[k, 2]
-						weight1 = set1.iloc[index_min_distance, 2]
-						min_distance_score2 = min_distance_score2 / (weight1 * weight2)
-			
-					min_distance_score_21_list.append(min_distance_score2)
-					
-				max_distance = max(min_distance_score_21_list)
-				for distance in min_distance_score_21_list:
-					normalized_distance = distance/max_distance
-					similarity_score = 1-normalized_distance
-					max_similarity_score_21_list.append(similarity_score)
-			
-				document_distance = (sum(max_similarity_score_12_list)+sum(max_similarity_score_21_list))/(len(set1)+len(set2))
 				if self.debugging_mode:
-					print("Doc " + str(i) + " - Doc " + str(j) + " : distance score " + str(document_distance))
+					print("Doc " + str(i) + " - Doc " + str(j) + " : distance similarity " + str(document_similarity))
 
 				doc1_list.append(i)
 				doc2_list.append(j)
-				doc_similarity.append(document_distance)
+				doc_similarity.append(document_similarity)
 
 		result_dict['doc1'] = doc1_list
 		result_dict['doc2'] = doc2_list
 		result_dict['similarity'] = doc_similarity
 
-		return pd.DataFrame(result_dict)
+		return pd.DataFrame(result_dict), log_info
 
 	def get_gold_and_actual_score(self, gold_stats, actual_stats):
 		merged = pd.merge(gold_stats, actual_stats, on=['doc1', 'doc2'], how='inner')
@@ -130,14 +115,15 @@ class DocumentSimilarityModel(AbstractModel):
 		index_min_distance = np.argmin(distance_list)
 		min_distance_score = distance_list[index_min_distance]
 	
+		max_distance = max(distance_list)
+		if max_distance!=0:
+			normalized_distance = min_distance_score/max_distance
+		else:
+			normalized_distance = min_distance_score
+		similarity_score = 1-normalized_distance
+		
 		if self.with_weights:
-			
-			min_distance_score1 = min_distance_score1 / (weight1 * weight2)
+			weight2 = weight_list.iloc[index_min_distance]
+			similarity_score = similarity_score * (weight1 * weight2) # ?? similarity_score / (weight1 * weight2) 
 
-					min_distance_score_12_list.append(min_distance_score1)
-
-				max_distance = max(min_distance_score_12_list)
-				for distance in min_distance_score_12_list:
-					normalized_distance = distance/max_distance
-					similarity_score = 1-normalized_distance
-					max_similarity_score_12_list.append(similarity_score)
+		return similarity_score
