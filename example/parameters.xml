@@ -1,0 +1,15 @@
+<parameters>
+	<vector_filename></vector_filename>
+	<vector_file_format></vector_file_format>
+	<vector_size></vector_size>
+	<tasks>
+		<value></value>
+	</tasks>
+	<similarity_function>cosine</similarity_function>
+	<top_k>2</top_k>
+	<parallel>false</parallel>
+	<debugging_mode>true</debugging_mode>
+	<compare_with>
+		<value></value>
+	</compare_with>
+</parameters>
