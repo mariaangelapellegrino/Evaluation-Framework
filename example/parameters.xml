@@ -1,14 +1,14 @@
 <parameters>
-	<vector_filename></vector_filename>
-	<vector_file_format></vector_file_format>
-	<vector_size></vector_size>
+	<vector_filename>country_vectors.txt</vector_filename>
+	<vector_file_format>txt</vector_file_format>
+	<vector_size>200</vector_size>
 	<tasks>
-		<value></value>
+		<value>Classification</value>
 	</tasks>
 	<similarity_function>cosine</similarity_function>
 	<top_k>2</top_k>
 	<parallel>false</parallel>
-	<debugging_mode>true</debugging_mode>
+	<debugging_mode>false</debugging_mode>
 	<compare_with>
 		<value></value>
 	</compare_with>

@@ -1,5 +1,5 @@
-from code.manager import EvaluationManager
+from code.manager import FrameworkManager
 
 if __name__ == "__main__":
-    evaluation_manager = EvaluationManager()
-    evaluation_manager.evaluate('country_vectors.txt', tasks=['DocumentSimilarity'], debugging_mode = True)
+    evaluation_manager = FrameworkManager()
+    evaluation_manager.evaluate('country_vectors.txt', parallel=True,  debugging_mode = False)

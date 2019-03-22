@@ -6,5 +6,5 @@ class AbstractModel():
         super().__init__()
     
     @abstractmethod
-    def train(self, debugging_mode):
+    def train(self):
         pass

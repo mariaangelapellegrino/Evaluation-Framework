@@ -6,5 +6,5 @@ class AbstractTaskManager():
         super().__init__()
     
     @abstractmethod
-    def evaluate(self, vectors, result_directory):
+    def evaluate(self, vectors, vector_file, vector_size, result_directory, log_dictionary = None):
         pass

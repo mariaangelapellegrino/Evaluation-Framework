@@ -1,13 +1,14 @@
-from xml.dom import minidom
+import xml.etree.ElementTree as ET
 
-from txt_version.txt_evaluationManager import EvaluationManager as TxtEvaluationManager
-#from hdf5_version.evaluation_manager import EvaluationManager as Hdf5EvaluationManager
+from evaluationManager import EvaluationManager
+from txt_dataManager import DataManager as TxtDataManager
+from hdf5_dataManager import DataManager as Hdf5DataManager
 
 available_tasks = ['Classification', 'Regression', 'Clustering', 
     'DocumentSimilarity', 'EntityRelatedness', 'SemanticAnalogies']
 available_file_formats = ['txt', 'hdf5']
 
-class EvaluationManager():
+class FrameworkManager():
     def __init__(self):
         print('Start evaluation...')
 
@@ -30,9 +31,11 @@ class EvaluationManager():
         self.check_parameters()
 
         if vector_file_format == 'txt':
-            self.evaluation_manager = TxtEvaluationManager(debugging_mode = debugging_mode)
-        #elif vector_file_format == 'hdf5':
-        #    self.evaluation_manager = Hdf5EvaluationManager(debugging_mode = debugging_mode)
+            self.dataManager = TxtDataManager(self.debugging_mode)
+        elif vector_file_format == 'hdf5':
+            self.dataManager = Hdf5DataManager(self.debugging_mode)
+                    
+        self.evaluation_manager = EvaluationManager(self.dataManager, self.debugging_mode)
 
         self.evaluation_manager.create_result_directory()
 
@@ -74,27 +77,40 @@ class EvaluationManager():
 
     def get_parameters_xmlFile(self, xml_file):
         parameters_dict = {}
+        
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
 
-        # parse an xml file by name
-        mydoc = minidom.parse(xml_file)
+        string_tags = ['vector_filename', 'vector_file_format', 'similarity_function']
 
-        parameters = mydoc.getElementsByTagName('parameters')
-        tags = ['vector_filename', 'vector_file_format', 'vector_size', 
-            'similarity_function', 'top_k',
-            'parallel', 'debugging_mode']
-
-        for tag in tags:
-            actual_tag = parameters.find(tag)
+        for tag in string_tags:
+            actual_tag = root.find(tag)
             if not actual_tag is None:
-                parameters_dict[tag] = actual_tag.value
+                parameters_dict[tag] = actual_tag.text
+                
+        int_tags = ['vector_size', 'top_k']
+
+        for tag in int_tags:
+            actual_tag = root.find(tag)
+            if not actual_tag is None:
+                parameters_dict[tag] = int(actual_tag.text)
+                
+        boolean_tags = ['parallel', 'debugging_mode']
+
+        for tag in boolean_tags:
+            actual_tag = root.find(tag)
+            if not actual_tag is None:
+                parameters_dict[tag] = bool(actual_tag.text)
 
         tags = ['tasks', 'compare_with']
-        tag_values_list = []
         for tag in tags:
-            actual_tag_list = parameters.find(tag)
+            tag_values_list = []
+            actual_tag_list = root.find(tag)
             if not actual_tag_list is None:
-                for actual_tag in actual_tag_list.getElementsByTagName('value'):
-                    tag_values_list.append(actual_tag.value)
+                for actual_tag in actual_tag_list.findall('value'):
+                    tag_values_list.append(actual_tag.text)
                 parameters_dict[tag] = tag_values_list
+                
+        
 
         return parameters_dict
