@@ -12,7 +12,7 @@ class DocumentSimilarityManager (AbstractTaskManager):
 		self.distance_metric = distance_metric
 		self.task_name = 'document_similarity'
 		if self.debugging_mode:
-			print("Document Similarity task Manager initialized")
+			print("Document Similarity task manager initialized")
 
 	def evaluate(self, vectors, vector_file, vector_size, results_folder, log_dictionary= None):
 		log_errors = ""
@@ -75,10 +75,10 @@ class DocumentSimilarityManager (AbstractTaskManager):
 			print('Document similarity: Ignored data : ' + str(len(ignored)))
 
 		file_ignored = open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_ignoredData.txt',"w") 
-		for (index, ignored_item) in ignored.iteritems():
-			if self.debugging_mode: 
-				print('Document similarity : Ignored data: ' + ignored_item)
-			file_ignored.write(ignored_item+'\n')
+		for ignored_tuple in ignored.itertuples():
+			if self.debugging_mode:
+				print('Document similarity : Ignored data: ' + getattr(ignored_tuple,'name'))
+			file_ignored.write(getattr(ignored_tuple,'name').encode('utf-8')+'\n')
 		file_ignored.close()
 
 	def storeResults(self, results_folder, gold_standard_filename, scores):

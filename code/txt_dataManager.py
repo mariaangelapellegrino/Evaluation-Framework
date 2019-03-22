@@ -117,7 +117,7 @@ class DocumentSimilarityDataManager(DataManager):
         outputLeftMerge = pd.merge(entities, vectors, how='outer', indicator=True)
         ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only']
 
-        return merged, ignored['name']
+        return merged, ignored
 
     def get_entities(self, filename):
         with open(filename) as f:
@@ -223,7 +223,7 @@ class SemanticAnalogiesDataManager(DataManager):
         goldStandard_filename, goldStandard_data = None, 
         column_key = None, column_score = None): 
         
-        vocab = self.create_vocab(vectors)
+        vocab = self.create_vocab(vectors, vector_filename, vector_size)
         
         full_data = []
         file_input_stream = codecs.open(goldStandard_filename, 'r', 'utf-8')

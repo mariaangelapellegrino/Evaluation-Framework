@@ -1,10 +1,6 @@
-# this example specifies the parameters by a xml file and the "custom" analogy function (which is the same of the default value). It uses default values for all the other parameters
+# this example specifies the parameters by a xml file
 
-import numpy as np
 from code.manager import FrameworkManager
-
-def default_analogy_function(a, b, c):
-    return np.array(b) - np.array(a) + np.array(c)
 
 if __name__ == "__main__":
     evaluation_manager = FrameworkManager()
@@ -14,8 +10,7 @@ if __name__ == "__main__":
                                 vector_size = parameters_dict['vector_size'], 
                                 parallel = parameters_dict['parallel'], 
                                 tasks = parameters_dict['tasks'], 
-                                similarity_metric = parameters_dict['similarity_function'], 
-                                analogy_function= default_analogy_function, 
+                                similarity_metric = parameters_dict['similarity_function'],  
                                 top_k = parameters_dict['top_k'], 
                                 compare_with = parameters_dict['compare_with'], 
                                 debugging_mode = parameters_dict['debugging_mode'])

@@ -12,7 +12,7 @@ class ClusteringManager (AbstractTaskManager):
         self.distance_metric = distance_metric
         self.task_name = 'clustering'
         if self.debugging_mode:
-            print("Clustering task Manager initialized")
+            print("Clustering task manager initialized")
 
     def evaluate(self, vectors, vector_file, vector_size, results_folder, log_dictionary= None):
         log_errors = ""

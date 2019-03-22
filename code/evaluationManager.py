@@ -68,7 +68,7 @@ class EvaluationManager(AbstractEvaluationManager):
                 try:
                     documentSimilarity_dataManager = self.data_manager.get_data_manager('document_similarity')(self.debugging_mode)
                     doc_similarity_evaluator = Doc_Similarity_evaluator(documentSimilarity_dataManager, similarity_metric, self.debugging_mode)
-                    log_errors = doc_similarity_evaluator.evaluate(self.vectors, self.result_directory)
+                    log_errors = doc_similarity_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory)
                     self.log_file.write(str(log_errors))
                     print('Document similarity finished')
                 except Exception as e:
@@ -94,7 +94,7 @@ class EvaluationManager(AbstractEvaluationManager):
                     semantic_Analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, similarity_metric, analogy_function, top_k, self.debugging_mode)
                     log_errors = semantic_Analogies_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory)
                     self.log_file.write(str(log_errors)) 
-                    print('Semantic Analogy finished')
+                    print('Semantic Analogies finished')
                 except Exception as e:
                     self.log_file.write(str(e))
                 else:
@@ -144,7 +144,7 @@ class EvaluationManager(AbstractEvaluationManager):
                 semantic_analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, analogy_function, similarity_metric, top_k, self.debugging_mode)
                 p6 = Process(target=semantic_analogies_evaluator.evaluate, args=(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary))
                 p6.start()
-                processes['EntityRelatedness'] = p6
+                processes['SemanticAnalogies'] = p6
             else:
                 print('The task ' + task + ' is not supported')
 

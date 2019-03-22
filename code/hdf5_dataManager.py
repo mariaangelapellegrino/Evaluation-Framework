@@ -20,11 +20,10 @@ class DataManager(AbstractDataManager):
         self.taskDataManager['semantic_analogies'] = SemanticAnalogiesDataManager
 
     def initialize_vectors(self, vector_filename, vector_size):
-        return self.read_vector_file(vector_filename, vector_size)
+        return None#self.read_vector_file(vector_filename, vector_size)
 
     def read_vector_file(self, vector_filename, vec_size):
-        local_vectors = pd.read_csv(vector_filename, "\s+",  names=self.create_header(vec_size),  encoding='utf-8', index_col=False)
-        return local_vectors
+        pass
 
     def create_header(self, vec_size):
         headers = ['name']
@@ -91,7 +90,8 @@ class ClassificationDataManager(DataManager):
             except KeyError:
                 ignored.append(row.DBpedia_URI15)
 
-        return merged, ignored  
+        ignored_df = pd.DataFrame(ignored, columns=['name'])
+        return merged, ignored_df
     
     def create_header(self, vec_size):
         headers = ['name', 'label']
@@ -122,7 +122,7 @@ class ClusteringDataManager(DataManager):
         gold.rename(columns={column_key: 'name'}, inplace=True)
         gold.rename(columns={column_score: 'cluster'}, inplace=True)
 
-        merged = pd.DataFrame(columns= DataManager.create_header(vector_size))
+        merged = pd.DataFrame(columns= self.create_header(vector_size))
         ignored = pd.DataFrame(columns= ['name', 'cluster'])
 
         for row in gold.itertuples():
@@ -161,7 +161,7 @@ class DocumentSimilarityDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        merged = pd.DataFrame(columns= DataManager.create_header(vector_size))
+        merged = pd.DataFrame(columns= self.create_header(vector_size))
         ignored = list()
         
         entities = self.get_entities(goldStandard_filename)
@@ -177,9 +177,11 @@ class DocumentSimilarityDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(base64.b32decode(row.name))
+                ignored.append(row.name)
+                
+        ignored_df = pd.DataFrame(ignored, columns = ['name'])
 
-        return merged, ignored
+        return merged, ignored_df
 
     def get_entities(self, filename):
         with open(filename) as f:
@@ -246,10 +248,11 @@ class EntityRelatednessDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        merged = pd.DataFrame(columns= DataManager.create_header(vector_size))
+        merged = pd.DataFrame(columns=self.create_header(vector_size))
         ignored = list()
         
-        entities_df = pd.DataFrame()  #TODO
+        entities = self.read_file(goldStandard_filename)
+        entities_df = pd.DataFrame(list(entities.keys()), columns=['name'])
         
         for row in entities_df.itertuples():
             try:
@@ -262,8 +265,9 @@ class EntityRelatednessDataManager(DataManager):
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
                 ignored.append(row.name)
-        
-        return merged, ignored
+                
+        ignored_df = pd.DataFrame(ignored, columns=['name'])
+        return merged, ignored_df
     
     def create_header(self, vec_size):
         headers = ['name']
@@ -290,7 +294,7 @@ class RegressionDataManager(DataManager):
         fields = ['DBpedia_URI15', column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
-
+        
         gold.rename(columns={column_key: 'name'}, inplace=True)
         gold.rename(columns={column_score: 'label'}, inplace=True)
 
@@ -309,7 +313,8 @@ class RegressionDataManager(DataManager):
             except KeyError:
                 ignored.append(row.DBpedia_URI15)
 
-        return merged, ignored
+        ignored_df = pd.DataFrame(ignored, columns=['name'])
+        return merged, ignored_df
     
 class SemanticAnalogiesDataManager(DataManager):    
     def __init__(self, debugging_mode):

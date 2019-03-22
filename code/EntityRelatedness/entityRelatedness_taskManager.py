@@ -23,8 +23,6 @@ class EntityRelatednessManager (AbstractTaskManager):
         
         groups = self.data_manager.read_file(gold_standard_file)
 
-        #entities_df = pd.DataFrame(list(entities), columns = ['name']) # ??
-
         scores = list()
 
         left_entities_df = pd.DataFrame({'name':groups.keys()})

@@ -12,7 +12,7 @@ class RegressionManager (AbstractTaskManager):
         self.data_manager = data_manager
         self.task_name = 'regression'
         if debugging_mode:
-            print("Regression task Manager initialized")
+            print("Regression task manager initialized")
 
     def evaluate(self, vectors, vector_file, vector_size, results_folder, log_dictionary= None):
         log_errors = ""
@@ -63,9 +63,14 @@ class RegressionManager (AbstractTaskManager):
         
         file_ignored = codecs.open(results_folder+'/regression_'+gold_standard_filename+'_ignoredData.txt',"w", 'utf-8') 
         for ignored_tuple in ignored.itertuples():
+            value = getattr(ignored_tuple,'name')
             if self.debugging_mode:
-                print('Regression : Ignored data: ' + getattr(ignored_tuple,'name'))
-            file_ignored.write(getattr(ignored_tuple,'name')+'\n')
+                print('Regression : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
+            
+            if isinstance(value, str):
+                value = unicode(value, "utf-8").encode(encoding='UTF-8', errors='ignore')
+            file_ignored.write(value+'\n')
+            
         file_ignored.close() 
                 
     def storeResults(self, results_folder, gold_standard_filename, scores):
