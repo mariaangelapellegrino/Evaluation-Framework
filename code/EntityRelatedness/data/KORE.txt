@@ -1,4 +1,4 @@
-http://dbpedia.org/resource/Apple_Inc.
+﻿http://dbpedia.org/resuorce/Apple_Inc.
 	http://dbpedia.org/resource/Steve_Jobs
 	http://dbpedia.org/resource/Steve_Wozniak
 	http://dbpedia.org/resource/Jonathan_Ive

@@ -2,6 +2,8 @@ import numpy as np
 
 from code.abstract_model import AbstractModel
 
+float_precision = 15
+
 def default_analogy_function(a, b, c):
     return np.array(b) - np.array(a) + np.array(c)
 
@@ -19,25 +21,27 @@ class SemanticAnalogiesModel(AbstractModel):
         if debugging_mode:
             print('SemanticAnalogies model initialized')
 
-    def train(self, vocab, data, W, top_k, analogy_function = default_analogy_function):
-       
-        split_size = 100
-
+    def train(self, vocab, data, W):
         correct_sem = 0; 
         count_sem = 0; 
 
         indices = np.array([[vocab[word] for word in row] for row in data])
         ind1, ind2, ind3, ind4 = indices.T
 
-        predictions = np.zeros((len(indices),top_k))
-        num_iter = int(np.ceil(len(indices) / float(split_size)))
-        
-        for j in range(num_iter):
-            subset = np.arange(j*split_size, min((j + 1)*split_size, len(ind1)))
-            predictions[subset] = analogy_function(W[ind1[subset], :], W[ind2[subset], :], W[ind3[subset], :], ind1[subset], ind2[subset], ind3[subset],  W, top_k)
+        predictions = np.zeros((len(indices), self.top_k))
+      
+        for j in range(len(indices)):
+            pred_vec = self.analogy_function(W[ind1[j], :], W[ind2[j], :], W[ind3[j], :])
+            dist = np.dot(W, pred_vec.T)
 
+            dist[ind1[j]] = -np.Inf
+            dist[ind2[j]] = -np.Inf
+            dist[ind3[j]] = -np.Inf
+
+            predictions[j] = np.argsort(-dist, axis=0)[:self.top_k].T
+            
         max_val = np.zeros(0) # correct predictions
-        for pred_index in range(top_k):
+        for pred_index in range(self.top_k):
             val = (ind4 == predictions[:,pred_index]) 
             if sum(val)>sum(max_val):
                 max_val = val
@@ -54,6 +58,6 @@ class SemanticAnalogiesModel(AbstractModel):
                 print('SemanticAnalogies : No data to check')
         else:
             if self.debugging_mode:
-                print('SemanticAnalogies : ACCURACY TOP %d: %.2f%% (%d/%d)' % (top_k, accuracy, num_right_answers, num_tot_answers))
+                print('SemanticAnalogies : ACCURACY TOP %d: %.2f%% (%d/%d)' % (self.top_k, accuracy, num_right_answers, num_tot_answers))
         
-        return {'task_name':'Semantic Analogies', 'top_k_value':top_k, 'right_answers':num_right_answers, 'tot_answers':num_tot_answers, 'accuracy':accuracy}
+        return {'task_name':'Semantic Analogies', 'top_k_value':self.top_k, 'right_answers':num_right_answers, 'tot_answers':num_tot_answers, 'accuracy':round(accuracy, float_precision)}

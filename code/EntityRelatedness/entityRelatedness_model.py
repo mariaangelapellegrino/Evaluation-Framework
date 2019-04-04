@@ -1,8 +1,12 @@
+# -*- coding: utf-8 -*-
+
 import numpy as np
 from scipy.spatial import distance
 from scipy.stats import kendalltau
 
 from code.abstract_model import AbstractModel
+
+float_precision = 15
 
 class EntityRelatednessModel(AbstractModel):
 
@@ -48,6 +52,6 @@ class EntityRelatednessModel(AbstractModel):
             kendalltau_correlation, kendalltau_pvalue = kendalltau(gold_ranking_list[i], predicted_ranking_list[i])
             if self.debugging_mode: 
                 print('Entity Relatedness : ' +  entities_list[i] + ' kendall tau correlation ' + str(kendalltau_correlation) + ' kendall tau pvalue ' + str(kendalltau_pvalue))
-            score_list.append({'task_name' : 'Entity Relatedness', 'entity_name' : entities_list[i], 'kendalltau_correlation': kendalltau_correlation, 'kendalltau_pvalue': kendalltau_pvalue})
+            score_list.append({'task_name' : 'Entity Relatedness', 'entity_name' : entities_list[i], 'kendalltau_correlation': round(kendalltau_correlation,float_precision), 'kendalltau_pvalue': round(kendalltau_pvalue, float_precision)})
 
         return score_list

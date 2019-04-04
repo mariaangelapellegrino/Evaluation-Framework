@@ -6,6 +6,8 @@ import numpy as np
 
 from code.abstract_model import AbstractModel
 
+float_precision = 15
+
 class RegressionModel (AbstractModel):
     def __init__(self, modelName, debugging_mode):
         self.name = modelName
@@ -38,9 +40,9 @@ class RegressionModel (AbstractModel):
                  " than the number of samples: {1}.").format(n_splits, n_samples) + "\n")
             
         scores = cross_val_score(self.model, data.iloc[:, 2:], data["label"], cv=n_splits, scoring=scoring)
-        scoring = "root mean squared error"
+        scoring = "root_mean_squared_error"
         scoring_value = np.mean(np.sqrt(np.abs(scores)))
         if self.debugging_mode:
             print(self.name, self.configuration, scoring, scoring_value)
 
-        return {'task_name':'Regression', 'model_name':self.name, 'model_configuration':self.configuration, 'score_type':scoring, 'score_value':scoring_value}          
+        return {'task_name':'Regression', 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          

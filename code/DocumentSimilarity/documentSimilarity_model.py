@@ -6,12 +6,15 @@ from sklearn.metrics import pairwise_distances
 
 from code.abstract_model import AbstractModel
 
+float_precision = 15
+
 class DocumentSimilarityModel(AbstractModel):
 
-	def __init__(self, distance_metric, with_weights, debugging_mode):
+	def __init__(self, task_name, distance_metric, with_weights, debugging_mode):
 		self.debugging_mode = debugging_mode
 		self.distance_metric = distance_metric
 		self.with_weights = with_weights
+		self.task_name = task_name
 		if self.debugging_mode:
 			print('Document similarity model initialized')
 
@@ -23,9 +26,12 @@ class DocumentSimilarityModel(AbstractModel):
 		if self.with_weights:
 			conf = 'without_weights'
 		else:
-			conf = 'with weights'
+			conf = 'with_weights'
 
-		return {'task_name' : 'Document Similarity', 'conf': conf, 'pearson_score': pearson_score, 'spearman_score' : spearman_score, 'harmonic_mean' : harmonic_mean}, log_info
+		return {'task_name' : self.task_name, 'conf': conf, 
+			'pearson_score': round(pearson_score,float_precision), 
+			'spearman_score' : round(spearman_score,float_precision), 
+			'harmonic_mean' : round(harmonic_mean,float_precision)}, log_info
 
 	def compute_doc_distance(self, data):
 		log_info = ""

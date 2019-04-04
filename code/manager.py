@@ -8,14 +8,30 @@ available_tasks = ['Classification', 'Regression', 'Clustering',
     'DocumentSimilarity', 'EntityRelatedness', 'SemanticAnalogies']
 available_file_formats = ['txt', 'hdf5']
 
+"""
+It checks the parameters of the evaluation and starts it.
+"""
 class FrameworkManager():
     def __init__(self):
         print('Start evaluation...')
 
+    """
+    It checks the parameters of the evaluation and starts it.
+    
+    vector_filename: path of the vector file provided in input
+    vector_file_format: {txt, hdf5}. Default: txt
+    vector_size: size of the vectors. Default: 200
+    parallel: {True, False}, True to run the tasks in parallel, False otherwise. Default: False
+    tasks: list of the tasks to run
+    similarity_metric: metric used to compute the distance among vectors. Default: cosine
+    top_k: parameter used in the SemanticAnalogies task. Default: 2
+    compare_with: list of the technique to compare the results with. Default: _all
+    debugging_mode: {True, False}, True to run the tasks by reporting all the information collected during the run, False otherwise. Default: False
+    analogy_function: function to compute the analogy among vectors. Default: None to use the default function.
+    """
     def evaluate(self, vector_filename, vector_file_format='txt', vector_size=200, 
-        parallel=False, tasks=available_tasks, similarity_metric='cosine', 
-        analogy_function=None, top_k=2, 
-        compare_with='_all', debugging_mode=False ):
+        parallel=False, tasks=available_tasks, similarity_metric='cosine', top_k=2, 
+        compare_with='_all', debugging_mode=False, analogy_function=None ):
 
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
@@ -42,12 +58,16 @@ class FrameworkManager():
         self.evaluation_manager.initialize_vectors(vector_filename, vector_size)
 
         if parallel:
-            self.evaluation_manager.run_tests_in_parallel(tasks=tasks, similarity_metric=similarity_metric, analogy_function=analogy_function, top_k=top_k)
+            scores_dictionary = self.evaluation_manager.run_tests_in_parallel(tasks, similarity_metric, top_k, analogy_function)
         else:
-            self.evaluation_manager.run_tests_in_sequential(tasks=tasks, similarity_metric=similarity_metric, analogy_function=analogy_function, top_k=top_k)
-
-        self.evaluation_manager.compare_with(compare_with)
+            scores_dictionary = self.evaluation_manager.run_tests_in_sequential(tasks, similarity_metric, top_k, analogy_function)        
+        
+        self.evaluation_manager.compare_with(compare_with, scores_dictionary)
     
+    """
+    It checks if the parameters are all valid. 
+    If no problem occurs, the evaluation will start.
+    """
     def check_parameters(self):
         if self.vector_filename==None:
             raise Exception('The vector filename is a mandatory parameter.')
@@ -75,6 +95,12 @@ class FrameworkManager():
         if self.debugging_mode!=True and self.debugging_mode!=False:
             raise Exception('The parameter DEBUGGING_MODE is boolean.') 
 
+    """
+    It reads a xml_file and it recovers the parameters which can be passed in input to the evaluate() function.
+    It returns a dictionary containing all the read parameters.
+    
+    xml_file: path of the xml file.
+    """
     def get_parameters_xmlFile(self, xml_file):
         parameters_dict = {}
         

@@ -6,6 +6,8 @@ import pandas as pd
 
 from code.abstract_model import AbstractModel
 
+float_precision = 15
+
 class ClusteringModel(AbstractModel):
 
     def __init__(self, modelName, metric, n_clusters, debugging_mode):
@@ -61,10 +63,10 @@ class ClusteringModel(AbstractModel):
         if self.debugging_mode:
             print(self.name + ' Number of clusters : ' + str(n_clusters))
 
-        trueLabels = merged.iloc[:, 1]
-        trueLabels = pd.concat([trueLabels, ignored['cluster']])
-        trueLabels = np.array(labels, dtype=np.float_)
-        
+        trueLabels = merged['cluster']
+        trueLabels = pd.concat([trueLabels, ignored['cluster']], ignore_index=True, axis=0)
+        trueLabels = trueLabels.values
+                
         if labels.ndim!=1:
             raise ValueError(
                 "predicted labels must be 1D: shape is " + labels.ndim)
@@ -73,7 +75,7 @@ class ClusteringModel(AbstractModel):
                 "true labels must be 1D: shape is " + trueLabels.ndim)
         if labels.shape != trueLabels.shape:
             raise ValueError(
-                "true labels and predicted labels must have same size, got "+str(trueLabels.shape[0])+" and "+str(labels.shape[0]))      
+                "true labels and predicted labels must have same size, got "+str(len(trueLabels))+" and "+str(len(labels)))      
 
         adjusted_rand_score = metrics.adjusted_rand_score(trueLabels, labels)
         if self.debugging_mode:
@@ -102,6 +104,8 @@ class ClusteringModel(AbstractModel):
             print(self.name + ' V_measure_score : ' + str(v_measure_score))
 
         return {'task_name':'Clustering', 'model_name':self.name, 'model_configuration':self.configuration, 'num_clusters' :n_clusters, 
-            'adjusted_rand_index':adjusted_rand_score, 'adjusted_mutual_info_score':adjusted_mutual_info_score, 
-            'homogeneity_score':homogeneity_score, 
-            'completeness_score':completeness_score, 'v_measure_score': v_measure_score }   #'fowlkes_mallows_score':fowlkes_mallows_score,        
+            'adjusted_rand_index':round(adjusted_rand_score, float_precision), 
+            'adjusted_mutual_info_score':round(adjusted_mutual_info_score, float_precision), 
+            'homogeneity_score':round(homogeneity_score, float_precision), 
+            'completeness_score':round(completeness_score,float_precision), 
+            'v_measure_score': round(v_measure_score,float_precision) }   #'fowlkes_mallows_score':fowlkes_mallows_score,        

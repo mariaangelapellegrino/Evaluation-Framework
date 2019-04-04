@@ -6,9 +6,21 @@ from sklearn import tree
 import numpy as np
 
 from code.abstract_model import AbstractModel
+
+float_precision = 15
     
+"""
+Model of the classification task
+"""
 class ClassificationModel(AbstractModel):
-    def __init__(self, modelName, C_value=None, debugging_mode=False):
+    """
+    It initialize the model of the classification task
+    
+    modelName: name of the Classificator to train
+    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    C_value: it is read only if the modelName is SVM
+    """
+    def __init__(self, modelName, debugging_mode, C_value=None):
         self.name = modelName
         self.configuration = None
         self.debugging_mode = debugging_mode
@@ -32,6 +44,13 @@ class ClassificationModel(AbstractModel):
         if self.debugging_mode:
             print('Classification model initialized')
     
+    """
+    It trains the model based on the provided data
+    
+    data: dataframe with entity name as first column, class label as second column and the vectors starting from the third column
+    
+    It returns the result object reporting the task name, the model name and its configuration - if any -, and the accuracy as evaluation metric.
+    """
     def train(self, data):
         if self.debugging_mode:
             print("Classification training...")
@@ -47,4 +66,4 @@ class ClassificationModel(AbstractModel):
         scoring_value = np.mean(scores)
         if self.debugging_mode:
             print('Classification', self.name, self.configuration, scoring, scoring_value)
-        return {'task_name':'Classification', 'model_name':self.name, 'model_configuration':self.configuration, 'score_type':scoring, 'score_value':scoring_value}          
+        return {'task_name':'Classification', 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          
