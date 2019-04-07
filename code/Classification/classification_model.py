@@ -4,7 +4,6 @@ from sklearn.model_selection import cross_val_score
 from sklearn.svm import SVC
 from sklearn import tree
 import numpy as np
-
 from code.abstract_model import AbstractModel
 
 float_precision = 15
@@ -16,14 +15,16 @@ class ClassificationModel(AbstractModel):
     """
     It initialize the model of the classification task
     
+    task_name: name of the task
     modelName: name of the Classificator to train
     debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
     C_value: it is read only if the modelName is SVM
     """
-    def __init__(self, modelName, debugging_mode, C_value=None):
+    def __init__(self, task_name, modelName, debugging_mode, C_value=None):
         self.name = modelName
         self.configuration = None
         self.debugging_mode = debugging_mode
+        self.task_name = task_name
 
         #create the model
         if modelName == "NB":
@@ -66,4 +67,4 @@ class ClassificationModel(AbstractModel):
         scoring_value = np.mean(scores)
         if self.debugging_mode:
             print('Classification', self.name, self.configuration, scoring, scoring_value)
-        return {'task_name':'Classification', 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          
+        return {'task_name':self.task_name, 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          

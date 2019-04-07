@@ -3,16 +3,27 @@ from sklearn import metrics
 from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
 import numpy as np
 import pandas as pd
-
 from code.abstract_model import AbstractModel
 
 float_precision = 15
 
+"""
+Model of the clustering task
+"""
 class ClusteringModel(AbstractModel):
-
-    def __init__(self, modelName, metric, n_clusters, debugging_mode):
+    """
+    It initialize the model of the clustering task
+    
+    task_name: name of the task
+    modelName: name of the Cluster model to train
+    metric: function used to compute the distance metric
+    n_clusters: number of expected clusters
+    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    """
+    def __init__(self, task_name, modelName, metric, n_clusters, debugging_mode):
         self.n_clusters = n_clusters
         self.debugging_mode = debugging_mode
+        self.task_name = task_name
         if modelName == "DB":
             self.model = "DBSCAN(metric='"+metric+"')"
             self.name = "DBSCAN"
@@ -35,6 +46,13 @@ class ClusteringModel(AbstractModel):
         if self.debugging_mode:
             print('Clustering model initialized')
 
+    """
+    It trains the model based on the provided data
+    
+    merged: dataframe with entity name as first column, cluster label as second column and the vectors starting from the third column
+    
+    It returns the result object reporting the task name, the model name and its configuration - if any -, and evaluation metrics.
+    """
     def train(self, merged, ignored):
         n_samples = merged.shape[0]
         if n_samples < self.n_clusters:
@@ -103,7 +121,7 @@ class ClusteringModel(AbstractModel):
         if self.debugging_mode:
             print(self.name + ' V_measure_score : ' + str(v_measure_score))
 
-        return {'task_name':'Clustering', 'model_name':self.name, 'model_configuration':self.configuration, 'num_clusters' :n_clusters, 
+        return {'task_name':self.task_name, 'model_name':self.name, 'model_configuration':self.configuration, 'num_clusters' :n_clusters, 
             'adjusted_rand_index':round(adjusted_rand_score, float_precision), 
             'adjusted_mutual_info_score':round(adjusted_mutual_info_score, float_precision), 
             'homogeneity_score':round(homogeneity_score, float_precision), 

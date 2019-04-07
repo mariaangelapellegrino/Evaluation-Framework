@@ -5,13 +5,22 @@ from entityRelatedness_model import EntityRelatednessModel as Model
 import unicodecsv as csv
 #import csv
 import os
-from numpy import mean
-
 from code.abstract_taskManager import AbstractTaskManager
+from numpy import mean
 
 task_name = 'EntityRelatedness'
 
+"""
+Manager of the Entity relatedness task
+"""
 class EntityRelatednessManager (AbstractTaskManager):
+    """
+    It initializes the manager of the classification task.
+    
+    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
+    distance_metric: distance metric used to compute the similarity score
+    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    """
     def __init__(self, data_manager, distance_metric, debugging_mode):
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
@@ -19,10 +28,23 @@ class EntityRelatednessManager (AbstractTaskManager):
         if self.debugging_mode:
             print("Entity relatedness task manager initialized")
             
+    """
+    It returns the task name.
+    """
     @staticmethod
     def get_task_name():
         return task_name
 
+    """
+    It evaluates the Entity relatedness task.
+    
+    vectors: dataframe which contains the vectors data
+    vector_file: path of the vector file
+    vector_size: size of the vectors
+    result_directory: directory where the results must be stored
+    log_dictionary: dictionary to store all the information to store in the log file
+    scores_dictionary: dictionary to store all the scores which will be used in the comparison phase
+    """
     def evaluate(self, vectors, vector_file, vector_size, results_folder, log_dictionary, scores_dictionary): 
         log_errors = ""              
         gold_standard_filename = "KORE"
@@ -56,7 +78,7 @@ class EntityRelatednessManager (AbstractTaskManager):
                 
                 self.storeIgnored(results_folder, gold_standard_filename, right_ignored)
 
-            model = Model(self.distance_metric, self.debugging_mode)
+            model = Model(task_name, self.distance_metric, self.debugging_mode)
             scores = model.train(left_merged, left_ignored, right_merged_list, right_ignored_list, groups)
             
             for score in scores:
@@ -69,6 +91,13 @@ class EntityRelatednessManager (AbstractTaskManager):
         
         log_dictionary[task_name] = log_errors
 
+    """
+    It stores the entities which are in the dataset used as gold standard, but not in the input file.
+    
+    results_folder: directory where the results must be stored
+    gold_standard_filename: the current dataset used as gold standard
+    ignored: dataframe containing the ignored entities in the column NAME
+    """
     def storeIgnored(self, results_folder, gold_standard_filename, ignored):
         if self.debugging_mode:
             print('Entity relatedness: Ignored data: ' + str(len(ignored)))
@@ -102,7 +131,13 @@ class EntityRelatednessManager (AbstractTaskManager):
                 if self.debugging_mode:
                     print('Entity relatedness : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
                 
-                
+    """
+    It stores the results of the Entity relatedness task.
+    
+    results_folder: directory where the results must be stored
+    gold_standard_filename: the current dataset used as gold standard
+    scores: list of all the results returned by the model
+    """
     def storeResults(self, results_folder, gold_standard_filename, scores):
         with open(results_folder+'/entityRelatedness_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
             fieldnames = ['task_name', 'gold_standard_file', 'entity_name', 'kendalltau_correlation', 'kendalltau_pvalue']
@@ -113,7 +148,12 @@ class EntityRelatednessManager (AbstractTaskManager):
                 writer.writerow(score)
                 if self.debugging_mode:
                     print('Entity Relatedness score: ' +   score)   
-                    
+    
+    """
+    It converts the scores dictionary into a dataframe
+    
+    scores: list of results returned by the model
+    """    
     def resultsAsDataFrame(self, scores):
         data_dict = dict()
         data_dict['task_name'] = list()
@@ -124,15 +164,21 @@ class EntityRelatednessManager (AbstractTaskManager):
         data_dict['score_value'] = list()
         
         metrics = self.get_metric_list()
-        
-        for score in scores:
-            for metric in metrics:                
-                data_dict['task_name'].append(score['task_name'])
-                data_dict['gold_standard_file'].append(score['gold_standard_file'])
-                data_dict['model'].append('')
-                data_dict['model_configuration'].append('')
-                data_dict['metric'].append(metric)
-                data_dict['score_value'].append(score[metric])
+                
+        for metric in metrics: 
+            metric_scores = list()
+            for score in scores:
+                metric_scores.append(score[metric])
+            metric_score = mean(metric_scores)
+                              
+            score = scores[0]
+            
+            data_dict['task_name'].append(score['task_name'])
+            data_dict['gold_standard_file'].append(score['gold_standard_file'])
+            data_dict['model'].append('-')
+            data_dict['model_configuration'].append('-')
+            data_dict['metric'].append(metric)
+            data_dict['score_value'].append(metric_score)
         
         results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
         return results_df

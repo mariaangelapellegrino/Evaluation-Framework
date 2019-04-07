@@ -3,13 +3,22 @@ from sklearn import linear_model
 from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsRegressor
 import numpy as np
-
 from code.abstract_model import AbstractModel
 
 float_precision = 15
 
+"""
+Model of the regression task
+"""
 class RegressionModel (AbstractModel):
-    def __init__(self, modelName, debugging_mode):
+    """
+    It initialize the model of the classification task
+    
+    task_name: name of the task
+    modelName: name of the regression model to train
+    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    """
+    def __init__(self, task_name, modelName, debugging_mode):
         self.name = modelName
         self.configuration = None
         self.debugging_mode = debugging_mode
@@ -28,6 +37,13 @@ class RegressionModel (AbstractModel):
         if self.debugging_mode:
             print('Regression model initialized')
     
+    """
+    It trains the model based on the provided data
+    
+    data: dataframe with entity name as first column, class label as second column and the vectors starting from the third column
+    
+    It returns the result object reporting the task name, the model name and its configuration - if any -, and the RMSE as evaluation metric.
+    """
     def train(self, data):
         if self.debugging_mode:
             print("Regression training...")
@@ -45,4 +61,4 @@ class RegressionModel (AbstractModel):
         if self.debugging_mode:
             print(self.name, self.configuration, scoring, scoring_value)
 
-        return {'task_name':'Regression', 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          
+        return {'task_name':self.task_name, 'model_name':self.name, 'model_configuration':self.configuration, scoring:round(scoring_value, float_precision)}          

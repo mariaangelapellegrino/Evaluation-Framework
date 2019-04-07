@@ -1,5 +1,4 @@
 import numpy as np
-
 from code.abstract_model import AbstractModel
 
 float_precision = 15
@@ -7,10 +6,21 @@ float_precision = 15
 def default_analogy_function(a, b, c):
     return np.array(b) - np.array(a) + np.array(c)
 
+"""
+Model of the semantic analogies task
+"""
 class SemanticAnalogiesModel(AbstractModel):
-    def __init__(self, similarity_metric, top_k, debugging_mode, analogy_function = None):
+    """
+    It initialize the model of the semantic analogies task
+    
+    task_name: name of the task
+    top_k: the predicted vector is compared with all the vectors and the k nearest ones are depicted. If the actual vector is among the k nearest one, the task is considered correct
+    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    analogy_function (optional): is the function to compute the analogy. It takes 3 vectors and returns the predicted one
+    """
+    def __init__(self, task_name, top_k, debugging_mode, analogy_function = None):
         self.debugging_mode = debugging_mode
-        self.similarity_metric = similarity_metric
+        self.task_name = task_name
         
         if analogy_function is None:
             self.analogy_function = default_analogy_function
@@ -21,6 +31,14 @@ class SemanticAnalogiesModel(AbstractModel):
         if debugging_mode:
             print('SemanticAnalogies model initialized')
 
+    """
+    It trains the model based on the provided data
+    
+    vocab: dictionary of all the entities
+    data: dataframe with entity name as first column, class label as second column and the vectors starting from the third column
+    W: all the vectors in the input file (even if they are not present in the dataset used as gold standard)
+    It returns the result object reporting the task name and the evaluation metrics.
+    """
     def train(self, vocab, data, W):
         correct_sem = 0; 
         count_sem = 0; 
@@ -60,4 +78,4 @@ class SemanticAnalogiesModel(AbstractModel):
             if self.debugging_mode:
                 print('SemanticAnalogies : ACCURACY TOP %d: %.2f%% (%d/%d)' % (self.top_k, accuracy, num_right_answers, num_tot_answers))
         
-        return {'task_name':'Semantic Analogies', 'top_k_value':self.top_k, 'right_answers':num_right_answers, 'tot_answers':num_tot_answers, 'accuracy':round(accuracy, float_precision)}
+        return {'task_name': self.task_name, 'top_k_value':self.top_k, 'right_answers':num_right_answers, 'tot_answers':num_tot_answers, 'accuracy':round(accuracy, float_precision)}

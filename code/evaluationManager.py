@@ -42,9 +42,9 @@ class EvaluationManager(AbstractEvaluationManager):
         self.vector_size = vector_size
         self.vectors = self.data_manager.initialize_vectors(vector_filename, vector_size)
         
-        self.log_file.write("Tested configuration:")
-        self.log_file.write("Vector filename: " + vector_filename)
-        self.log_file.write("Vector size:" + str(vector_size))
+        self.log_file.write("TESTED CONFIGURATION\n")
+        self.log_file.write("Vector filename: " + vector_filename+"\n")
+        self.log_file.write("Vector size:" + str(vector_size)+"\n")
 
     """
     It runs the tasks in sequential
@@ -55,6 +55,8 @@ class EvaluationManager(AbstractEvaluationManager):
     analogy_function: function to compute the analogy among vectors
     """
     def run_tests_in_sequential(self, tasks, similarity_metric, top_k, analogy_function = None):
+        self.log_file.write("Distance metric:" + similarity_metric+"\n\n")
+        
         self.similarity_metric = similarity_metric
         self.top_k = top_k
         self.tasks = tasks
@@ -125,7 +127,7 @@ class EvaluationManager(AbstractEvaluationManager):
             elif task==Semantic_Analogies_evaluator.get_task_name():
                 try:
                     semanticAnalogies_dataManager = self.data_manager.get_data_manager('semantic_analogies')(self.debugging_mode)
-                    semantic_Analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, similarity_metric, top_k, self.debugging_mode, analogy_function)
+                    semantic_Analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, top_k, self.debugging_mode, analogy_function)
                     semantic_Analogies_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task]) 
                     print('Semantic Analogies finished')
@@ -190,7 +192,7 @@ class EvaluationManager(AbstractEvaluationManager):
                 processes[Entity_Relatedness_evaluator.get_task_name()] = p5
             elif task==Semantic_Analogies_evaluator.get_task_name():
                 semanticAnalogies_dataManager = self.data_manager.get_data_manager('semantic_analogies')(self.debugging_mode)
-                semantic_analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, similarity_metric, top_k, self.debugging_mode, analogy_function)
+                semantic_analogies_evaluator = Semantic_Analogies_evaluator(semanticAnalogies_dataManager, top_k, self.debugging_mode, analogy_function)
                 p6 = Process(target=semantic_analogies_evaluator.evaluate, args=(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary))
                 p6.start()
                 processes[Semantic_Analogies_evaluator.get_task_name()] = p6

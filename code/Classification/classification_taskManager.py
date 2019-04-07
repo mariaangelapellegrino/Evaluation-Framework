@@ -74,7 +74,7 @@ class ClassificationManager (AbstractTaskManager):
                     data = data.sample(frac=1, random_state=i).reset_index(drop=True)
                     for model_name in classification_model_names:
                         # initialize the model
-                        model = Model(model_name, self.debugging_mode)
+                        model = Model(task_name, model_name, self.debugging_mode)
                         # train and print score
                         try:
                             result = model.train(data)
@@ -88,7 +88,7 @@ class ClassificationManager (AbstractTaskManager):
                             
                     for conf in SVM_configurations:
                         # initialize the model
-                        model = Model("SVM", self.debugging_mode, conf)
+                        model = Model(task_name, "SVM", self.debugging_mode, conf)
                         # train and print score
                         try:
                             result = model.train(data)
