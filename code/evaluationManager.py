@@ -75,7 +75,13 @@ class EvaluationManager(AbstractEvaluationManager):
                     self.log_file.write("Classification: " + str(e))
                 else:
                     end_time = time.time()
-                    self.log_file.write("Classification execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
+                    seconds = end_time-self.start_time
+                    m, s = divmod(seconds, 60)
+                    h, m = divmod(m, 60)
+                    execution_time = str(h) + ":" + str(round(m, 2)) + ":" + str(round(s, 2))
+                    self.log_file.write("Classification execution time: " + execution_time + " seconds\n")
+                    print "%d:%02d:%02d" % (h, m, s)
+
             elif task==Regression_evaluator.get_task_name():
                 try:
                     regression_dataManager = self.data_manager.get_data_manager('regression')(self.debugging_mode)

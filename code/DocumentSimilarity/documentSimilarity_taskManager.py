@@ -140,7 +140,7 @@ class DocumentSimilarityManager (AbstractTaskManager):
 			for (method, score) in scores.items():
 				writer.writerow(score)
 				if self.debugging_mode:
-					print(score)     
+					print('DocumentSimilarity: configuration ' + method, score)     
 			
 	"""
     It converts the scores dictionary into a dataframe

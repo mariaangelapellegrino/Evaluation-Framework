@@ -1,4 +1,4 @@
-﻿http://dbpedia.org/resuorce/Apple_Inc.
+http://dbpedia.org/resource/Apple_Inc.
 	http://dbpedia.org/resource/Steve_Jobs
 	http://dbpedia.org/resource/Steve_Wozniak
 	http://dbpedia.org/resource/Jonathan_Ive
@@ -193,7 +193,7 @@ http://dbpedia.org/resource/Leonardo_DiCaprio
 	http://dbpedia.org/resource/Frank_Abagnale
 	http://dbpedia.org/resource/Kate_Winslet
 	http://dbpedia.org/resource/Bar_Refaeli
-	http://dbpedia.org/resource/Golden_Globe_Award_for_Best_Actor_–_Motion_Picture_Drama
+	http://dbpedia.org/resource/Golden_Globe_Award_for_Best_Actor_-_Motion_Picture_Drama
 	http://dbpedia.org/resource/Tobey_Maguire
 	http://dbpedia.org/resource/Los_Angeles
 	http://dbpedia.org/resource/Steven_Spielberg

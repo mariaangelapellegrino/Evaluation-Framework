@@ -55,14 +55,13 @@ class EntityRelatednessModel(AbstractModel):
     def compute_relatedness(self, left_merged, left_ignored, right_merged_list, right_ignored_list):
         predicted_rank_list = list()       
 
-        for i in range(len(left_merged)):
-
+        for i in range(len(left_merged['name'])):
             distances = []
 
             if right_merged_list[i].size>0:
                 distances = distance.cdist(left_merged.iloc[[i], 1:], right_merged_list[i].iloc[:, 1:], metric= self.distance_metric).flatten() 
-            
-            ignored_distances = np.array([1 for j in range(len(right_ignored_list[i]))]) #max dist??            
+                        
+            ignored_distances = np.array([1 for j in range(len(right_ignored_list[i]))]) #max dist?? 
             distances = np.concatenate((distances, ignored_distances))
 
             predicted_rank_list.append(list(np.argsort(distances)))

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pandas as pd
 import json
 import codecs
@@ -25,6 +27,9 @@ class DataManager(AbstractDataManager):
         self.taskDataManager['document_similarity'] = DocumentSimilarityDataManager
         self.taskDataManager['entity_relatedness'] = EntityRelatednessDataManager
         self.taskDataManager['semantic_analogies'] = SemanticAnalogiesDataManager
+        
+        if self.debugging_mode:
+            print('HDF5 data manager initialized')
 
     """
     It reads the vectors file or it stores the information to read it.
@@ -201,7 +206,7 @@ class ClusteringDataManager(DataManager):
     columns: list of columns to retrieve
     """
     def read_file(self, filename, columns):
-        return pd.read_csv(filename, usecols=columns, delim_whitespace=True, index_col=False, header=None, names=columns, skipinitialspace=True, skip_blank_lines=True, encoding='utf-8') 
+        return pd.read_csv(filename, delim_whitespace=True, usecols=columns, index_col=False, skipinitialspace=True, skip_blank_lines=True, encoding='utf-8')
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -313,7 +318,7 @@ class DocumentSimilarityDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(row.name)
+                ignored.append(base64.b32decode(row.name))
                 
         ignored_df = pd.DataFrame(ignored, columns = ['name'])
 
@@ -335,10 +340,11 @@ class DocumentSimilarityDataManager(DataManager):
         for doc_obj in data:
             i += 1
             for annotation in doc_obj["annotations"]:
-                key = annotation['entity']
-
                 doc_list.append(i)
-                entities_list.append(key)
+                
+                key = annotation['entity']
+                entities_list.append(base64.b32encode(bytes(key)))
+                
                 weight_list.append(float(annotation['weight']))
 
         dict_entities['doc'] = doc_list
@@ -383,14 +389,15 @@ class EntityRelatednessDataManager(DataManager):
         f = codecs.open(filename, 'r', 'utf-8')
 
         for i, line in enumerate(f):
-            key = line.rstrip().lstrip()
+            key = line.strip()
+            encodedKey = base64.b32encode(key)
  
             if i%21 == 0:           
-                main_entitiy = key
+                main_entitiy = encodedKey
                 related_entities = []
 
             else :
-                related_entities.append(key)    
+                related_entities.append(encodedKey)    
                 
             if i%21 == 20:
                 entities_groups[main_entitiy] = related_entities
@@ -419,12 +426,13 @@ class EntityRelatednessDataManager(DataManager):
         merged = pd.DataFrame(columns=self.create_header(vector_size))
         ignored = list()
         
-        entities = self.read_file(goldStandard_filename)
-        entities_df = pd.DataFrame(list(entities.keys()), columns=['name'])
+        if goldStandard_data is None:
+            entities = self.read_file(goldStandard_filename)
+            goldStandard_data = pd.DataFrame({'name':entities.keys()})
         
-        for row in entities_df.itertuples():
+        for row in goldStandard_data.itertuples():
             try:
-                encoded_name = base64.b32encode(row.name)
+                encoded_name = row.name
                 values = vector_group[encoded_name][0]
                 
                 new_row = dict(zip(np.arange(vector_size), values))
@@ -432,9 +440,10 @@ class EntityRelatednessDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(row.name)
+                ignored.append(base64.b32decode(encoded_name))
                             
         ignored_df = pd.DataFrame(ignored, columns=['name'])
+
         return merged, ignored_df
     
     """
@@ -468,7 +477,7 @@ class RegressionDataManager(DataManager):
     columns: list of columns to retrieve
     """
     def read_file(self, filename, columns):
-        pass
+        return pd.read_csv(filename,"\t", usecols=columns, encoding='utf-8') 
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.

@@ -102,31 +102,28 @@ class EntityRelatednessManager (AbstractTaskManager):
         if self.debugging_mode:
             print('Entity relatedness: Ignored data: ' + str(len(ignored)))
         
-        with open(results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.csv', "a+") as csv_file:
+        filename = results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.csv'
+        file_exists = os.path.isfile(filename)
+        
+        with open(filename, "a+") as csv_file:
             fieldnames = ['entity', 'related_to']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-            writer.writeheader()
+            if not file_exists:
+                writer.writeheader()
             
             for ignored_tuple in ignored.itertuples():
                 if 'related_to' in ignored.columns:
                     related_to_value = getattr(ignored_tuple,'related_to')
                 else:
                     related_to_value = ''
-                    
-                value = getattr(ignored_tuple,'name')
             
-                '''
-                if isinstance(value, str):
-                    value = unicode(value, "utf-8").encode(encoding='UTF-8', errors='ignore')
-                    
-                if isinstance(related_to_value, str):
-                    related_to_value = unicode(related_to_value, "utf-8").encode(encoding='UTF-8', errors='ignore')
-                '''
                 try:
+                    value = getattr(ignored_tuple,'name')
                     writer.writerow({'entity':value, 'related_to':related_to_value})
                 except UnicodeEncodeError:
-                    print(value)
-                    print(related_to_value)
+                    if self.debugging_mode:
+                        print("EntityRelatedness: problems in writing ", value, " or " + related_to_value +" into the file")
+                    continue
                 
                 if self.debugging_mode:
                     print('Entity relatedness : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
@@ -147,7 +144,7 @@ class EntityRelatednessManager (AbstractTaskManager):
             for score in scores:
                 writer.writerow(score)
                 if self.debugging_mode:
-                    print('Entity Relatedness score: ' +   score)   
+                    print("EntityRelatedness", score)   
     
     """
     It converts the scores dictionary into a dataframe

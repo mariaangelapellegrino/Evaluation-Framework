@@ -143,7 +143,7 @@ class ClusteringManager (AbstractTaskManager):
                 for score in scoresForMethod:
                     writer.writerow(score)
                     if self.debugging_mode:
-                        print('Clustering ' + method + ' score: ' +   score)      
+                        print("Clustering " + method, score)      
     
     """
     It converts the scores dictionary into a dataframe

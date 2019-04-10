@@ -132,7 +132,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
             for score in scores:
                 writer.writerow(score)
                 if self.debugging_mode:
-                    print(score)  
+                    print("SemanticAnalogies", score)  
     
     """
     It converts the scores dictionary into a dataframe
@@ -149,9 +149,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
         data_dict['score_value'] = list()
                 
         metrics = self.get_metric_list()
-        
-        print(scores)
-        
+                
         for (gold_standard_filename, gold_standard_scores) in scores.items():
             for metric in metrics: 
                 metric_scores = list()

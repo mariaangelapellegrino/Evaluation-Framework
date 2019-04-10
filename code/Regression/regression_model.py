@@ -22,6 +22,7 @@ class RegressionModel (AbstractModel):
         self.name = modelName
         self.configuration = None
         self.debugging_mode = debugging_mode
+        self.task_name = task_name
         
         #create the model
         if modelName == "LR":

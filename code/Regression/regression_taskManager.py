@@ -134,7 +134,7 @@ class RegressionManager (AbstractTaskManager):
                 for score in scoresForMethod:
                     writer.writerow(score)
                     if self.debugging_mode:
-                        print('Regression ' + method + ' score: ' +   score)  
+                        print("Regression " + method, score)  
            
     """
     It converts the scores dictionary into a dataframe
@@ -153,7 +153,6 @@ class RegressionManager (AbstractTaskManager):
         data_dict['score_value'] = list()
         
         metrics = self.get_metric_list()
-        print(scores)
         
         for (gold_standard_filename, gold_standard_scores) in scores.items():
             for (method, scoresForMethod) in gold_standard_scores.items():

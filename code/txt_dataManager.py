@@ -23,6 +23,9 @@ class DataManager(AbstractDataManager):
         self.taskDataManager['document_similarity'] = DocumentSimilarityDataManager
         self.taskDataManager['entity_relatedness'] = EntityRelatednessDataManager
         self.taskDataManager['semantic_analogies'] = SemanticAnalogiesDataManager
+        
+        if self.debugging_mode:
+            print('TXT data manager initialized')
 
     """
     It reads the vectors file or it stores the information to read it.
@@ -114,7 +117,7 @@ class ClassificationDataManager(DataManager):
     def __init__(self, debugging_mode):
         self.debugging_mode = debugging_mode 
         if self.debugging_mode:
-            print('CLassification data manager initialized')
+            print('Classification data manager initialized')
     
     """
     It reads the dataset used as gold standard
@@ -170,7 +173,7 @@ class ClusteringDataManager(DataManager):
     columns: list of columns to retrieve
     """
     def read_file(self, filename, columns):
-        return pd.read_csv(filename, usecols=columns, delim_whitespace=True, index_col=False, header=None, names=columns, skipinitialspace=True, skip_blank_lines=True, encoding='utf-8') 
+        return pd.read_csv(filename, delim_whitespace=True, usecols=columns, index_col=False, skipinitialspace=True, skip_blank_lines=True, encoding='utf-8')
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -291,14 +294,12 @@ class EntityRelatednessDataManager(DataManager):
     def read_file(self, filename, columns = None):
         entities_groups = {}
         related_entities = []
-        #entities = set()
+
         f = codecs.open(filename, 'r', 'utf-8')
 
         for i, line in enumerate(f):
             key = line.rstrip().lstrip()
  
-            #entities.add(key)
-
             if i%21 == 0:           
                 main_entitiy = key
                 related_entities = []
@@ -309,7 +310,7 @@ class EntityRelatednessDataManager(DataManager):
             if i%21 == 20:
                 entities_groups[main_entitiy] = related_entities
 
-        return entities_groups#entities, entities_groups
+        return entities_groups
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -328,7 +329,8 @@ class EntityRelatednessDataManager(DataManager):
         column_key = None, column_score = None): 
         
         if goldStandard_data is None:
-            goldStandard_data = self.read_file(goldStandard_filename)
+            entities = self.read_file(goldStandard_filename)
+            goldStandard_data = pd.DataFrame({'name':entities.keys()})
         
         merged = pd.merge(goldStandard_data, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(goldStandard_data, vectors, on='name', how='outer', indicator=True)
