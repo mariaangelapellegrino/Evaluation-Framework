@@ -56,7 +56,7 @@ In the _code_ folder there is the whole framework code.
 	- abstract_evaluation: abstract class to supervise the whole evaluation
 	- abstract_dataManager: interface to manage a new input file format
 	- abstract_taskManager: interface which defines all the methods a new task has to implement
-	- asbtract_model: interface to define a new model used by the task manager
+	- abstract_model: interface to define a new model used by the task manager
 	- manager: check the correctness of the parameters and start the evaluation
 	- evaluationManager: implements the abstrac_evaluation interface
 	- txt_dataManager and hdf5_dataManager: concrete dataManager which manage, respectively, the TXT and the HDF5 data format
