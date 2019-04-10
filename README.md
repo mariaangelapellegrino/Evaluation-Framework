@@ -52,20 +52,21 @@ In this group, there should be one dataset for each entity with the entity name,
 
 ## Project structure
 In the _code_ folder there is the whole framework code. 
-    code
-      |_  abstract_evaluation: abstract class to supervise the whole evaluation
-      |_  abstract_dataManager: interface to manage a new input file format
-      |_  abstract_taskManager: interface which defines all the methods a new task has to implement
-      |_  asbtract_model: interface to define a new model used by the task manager
-      |_  manager: check the correctness of the parameters and start the evaluation
-      |_  evaluationManager: implements the abstrac_evaluation interface
-      |_  txt_dataManager and hdf5_dataManager: concrete dataManager which manage, respectively, the TXT and the HDF5 data format
-      |_  one folder for each implemented task which contain
-            |_  data folder with the dataset(s) by the task
-            |_  taskManager which implements the abstract_taskManager interface
-            |_  model which implements the abstract_model interface
+- code
+	- abstract_evaluation: abstract class to supervise the whole evaluation
+	- abstract_dataManager: interface to manage a new input file format
+	- abstract_taskManager: interface which defines all the methods a new task has to implement
+	- asbtract_model: interface to define a new model used by the task manager
+	- manager: check the correctness of the parameters and start the evaluation
+	- evaluationManager: implements the abstrac_evaluation interface
+	- txt_dataManager and hdf5_dataManager: concrete dataManager which manage, respectively, the TXT and the HDF5 data format
+	
+	- one folder for each implemented task which contains
+		- data folder with the dataset(s) by the task
+		- taskManager which implements the abstract_taskManager interface
+		- model which implements the abstract_model interface
             
-   example folder contains several main files showing the different ways to initialize the framework 
+ - example folder contains several main files showing the different ways to initialize the framework 
     
 The evaluation manager instantiates the correct data manager - TXT or HDF5 one - according to the file format provided as input. Then, according to the user settings, the evaluation manager determines which tasks the user asked for and how they have to be run - in sequential or in parallel. For each task, it starts the suitable task manager. 
 
