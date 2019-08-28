@@ -84,7 +84,7 @@ class FrameworkManager():
         if self.tasks!='_all':
             for task in self.tasks:
                 if not task in available_tasks:
-                    raise Exception(task + ' is not a supported task. The managed tasks are ' + available_tasks + ' or \'_all\'.')
+                    raise Exception(task + ' is not a supported task. The managed tasks are ' + ', '.join(available_tasks) + ' or \'_all\'.')
         
         #similarity_metric TODO
         if self.top_k < 0:

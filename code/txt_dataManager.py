@@ -189,7 +189,7 @@ class ClusteringDataManager(DataManager):
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15', column_score = 'cluster'): 
+        column_key ='DBpedia_URI', column_score = 'cluster'): 
         
         gold = self.read_file(goldStandard_filename, [column_key, column_score])
 

@@ -389,7 +389,7 @@ class EntityRelatednessDataManager(DataManager):
         f = codecs.open(filename, 'r', 'utf-8')
 
         for i, line in enumerate(f):
-            key = line.strip()
+            key = line.strip().encode('utf-8')
             encodedKey = base64.b32encode(key)
  
             if i%21 == 0:           
@@ -440,7 +440,7 @@ class EntityRelatednessDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(base64.b32decode(encoded_name))
+                ignored.append(base64.b32decode(encoded_name).decode('utf-8'))
                             
         ignored_df = pd.DataFrame(ignored, columns=['name'])
 
@@ -523,6 +523,16 @@ class RegressionDataManager(DataManager):
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
     
+    """
+    It returns a list which can be used as header, e.g. of a dataframe. 
+    
+    vec_size: size of the vectors
+    """
+    def create_header(self, vec_size):
+        headers = ['name', 'label']
+        for i in range(0, vec_size):
+            headers.append(i)
+        return headers   
 """
 DataManager attached to the SemanticAnalogies task
 """
