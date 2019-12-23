@@ -26,5 +26,5 @@ The results are calculated using stratified _10-fold cross-validation_.
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Optimum** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Accuracy | \[0,1\] | Highest |
