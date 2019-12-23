@@ -20,7 +20,7 @@ The Document Similarity task simply ignores any *missing entities* and computes 
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Interpretation** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Pearson correlation coefficient (P\_cor) | \[-1,1\] | Extreme values: correlation, Values close to 0: no correlation |
 | Spearman correlation coefficient (S\_cor) | \[-1,1\] | Extreme values: correlation, Values close to 0: no correlation |
 | Harmonic mean of P\_cor and S\_cor  | \[-1,1\] | Extreme values: correlation, Values close to 0: no correlation |
