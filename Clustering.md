@@ -7,7 +7,7 @@
 |   Teams    |     {Football Teams, Basketball Teams}      |           2 |      4,206 
 | (Balanced) Cities and Countries | {Cities, Countries} | 2 | 4,344 |
 | Cities, Albums, Movies, AAUP, Forbes | {Cities, Albums, Movies, Universities, Companies}| 5 | 6,357 |
-! Cities and Countries | {Cities, Countries| 2 | 11,182 |
+! Cities and Countries | {Cities, Countries}| 2 | 11,182 |
 
 ### Model and its configuration
 
