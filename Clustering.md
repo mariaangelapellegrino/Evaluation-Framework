@@ -26,7 +26,7 @@ The evaluation metrics are applied to the combination of the clusters returned b
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Optimum** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Adjusted rand score | [-1,1] | Highest |
 | Adjusted mutual info score | [0,1] | Highest |
 | Fowlkes Mallow index | [0,1] | Highest |
