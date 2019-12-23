@@ -75,7 +75,8 @@ Each task follows the same workflow:
 
 We will separately analyse each task, by detailing the gold standard datasets, the configuration of the model(s), and the computed evaluation metrics.
 
-## Parameters
+## Framework details
+### Parameters
 
 | **Parameter** | **Default** | **Options** | **Mandatory** | **Used_by** |
 |:-------------:|:-----------:|:-----------:|:-------------:|:-----------:|
