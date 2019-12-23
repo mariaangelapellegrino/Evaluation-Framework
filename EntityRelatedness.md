@@ -7,7 +7,7 @@
 |   [KORE](https://old.datahub.io/dataset/kore-50-nif-ner-corpus)    |  _main entity_ with a sorted list of 20 _related entities_ | 420 entities |
 
 ### Model 
-    sim_scores = \[\]
+    sim_scores = []
     for each main entity as me:
       for each related entity as re:
         sim_scores.add(similarity_function(me,re))
@@ -22,5 +22,5 @@ Missing entities are managed as follows:
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Interpretation** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Kendall's tau correlation coefficient | \[-1,1\] | Extreme values: correlation, Values close to 0: no correlation |
