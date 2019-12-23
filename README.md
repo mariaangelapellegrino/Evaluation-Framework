@@ -48,7 +48,7 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 	- _one folder for each implemented task_ which contains
 		- _data_ folder with the dataset(s) by the task
 		- _taskManager_ which implements the abstract_taskManager interface
-		- _model_ which implements the abstract_model interface
+		- _model_ which implements the abstract_model interface  
 		For instance, about the classification task
 		the folder **Evaluation-Framework/code/Classification** contains
 		- **classification_model** and **classification_taskManager**
