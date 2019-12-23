@@ -60,7 +60,7 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 ## Tasks 
 The implemented tasks are:
 - Machine Learning
-    - Classification
+    - [Classification](./Classification.md)
     - Regression
     - Clustering
 - Semantic tasks
