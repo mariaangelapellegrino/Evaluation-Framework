@@ -1,5 +1,3 @@
-# Evaluation-Framework
-
 This repository contains a (software) *evaluation framework* to perform evaluation and comparison on *node embedding techniques*. It can be easily extended by also considering edges into the evaluation. The provided tasks range from Machine Learning (ML) (*classification, regression, and clustering*) and semantic tasks (*entity relatedness and document similarity*) to *semantic analogies*. The framework is designed to be extended with additional tasks. It  is  useful  both  for  embedding  algorithm  developers  and  users.  On  one  side, when  a  new  embedding  algorithm  is  defined,  there  is  the  need  to  evaluate  it upon tasks it was created for. On the other side, users can be interested in performing particular tests and choosing the embedding algorithm that performs best for their application. Our goal is to address both situations providing a ready-to-use framework that can be customized and easily extended. A preliminar overview of the framework and its results can be access through [A Configurable Evaluation Framework for Node Embedding Techniques](https://link.springer.com/chapter/10.1007%2F978-3-030-32327-1_31).
 
 We provide the framework as a command-line tool and we are working to the REST API development (you can inspect the *dev* branch).
@@ -49,11 +47,10 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 		- _data_ folder with the dataset(s) by the task
 		- _taskManager_ which implements the abstract_taskManager interface
 		- _model_ which implements the abstract_model interface
-		
-	For instance, about the classification task
-	the folder **Evaluation-Framework/code/Classification** contains
-	- **classification_model** and **classification_taskManager**
-	- **Evaluation-Framework/code/Classification/data** folder that contains all the datasets used as gold standard.
+		For instance, about the classification task
+		the folder **Evaluation-Framework/code/Classification** contains
+		- **classification_model** and **classification_taskManager**
+		- **Evaluation-Framework/code/Classification/data** folder that contains all the datasets used as gold standard.
             
  - **Evaluation-Framework/example** folder contains several main files showing the different ways to initialize the framework 
 
@@ -61,12 +58,12 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 The implemented tasks are:
 - Machine Learning
     - [Classification](./Classification.md)
-    - Regression
-    - Clustering
+    - [Regression](./Regression.md)
+    - [Clustering](./Clustering.md)
 - Semantic tasks
-    - Entity Relatedness
-    - Document Similarity
-    - Semantic Analogies
+    - [Entity Relatedness](./EntityRelatedness.md)
+    - [Document Similarity](./DocumentSimilarity.md)
+    - [Semantic Analogies](./SemanticAnalogies.md)
     
 Each task follows the same workflow:
 1.  the task manager asks data manager to merge each gold standard dataset and the input file and keeps track of both the retrieved vectors and the **missing entities**,  i.e.,  entities  required  by  the  gold  standard  dataset,  but  absent  inthe input file;
@@ -76,34 +73,7 @@ Each task follows the same workflow:
 
 We will separately analyse each task, by detailing the gold standard datasets, the configuration of the model(s), and the computed evaluation metrics.
 
-### Classification 
-
-| **Dataset** | **Semantic of classes** | **Classes** | **Size** | **Source** |
-| :---------: | :---------------------: | ----------: | -------: | :--------: |
-|   [Cities](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/CitiesQualityOfLiving/)    |      Living style       |           3 |      212 |   Mercer   |
-|   [AAUP](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/DatasetsWithFeatures/AAUP/)     |  Salary of professors   |           3 |      960 |    JSE     |
-|   [Forbes](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/DatasetsWithFeatures/Forbes2013/)    |      Agency income      |           3 |    1,585 |   Forbes   |
-|   [Albums](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/MetacriticAlbums/)    |    Album popularity     |           2 |    1,600 | Metacritic |
-|   [Movies](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/MetacriticMovies/)    |    Movie popularity     |           2 |    2,000 | Metacritic |
-
-| **Model** | **Configuration** |
-| :---------: | :---------------------: |
-| Naive Bayes | - |
-| C 4.5 decision tree | - |
-| k-NN | k=3 |
-| Support Vector Machine | C = {10^{-3}, 10^{-2}, 0.1, 1, 10, 10^2, 10^3} |
-
-**Missing entities** are simply ignored.
-
-The results are calculated using stratified _10-fold cross-validation_.
-
-| **Metric** | **Range** | **Optimum** |
-| :---------: | :---------------------: | ----------: |
-| Accuracy | \[0,1\] | Highest |
-
-## Evaluation framework details
-
-### Parameters
+## Evaluation Framework - Parameters
 
 | **Parameter** | **Default** | **Options** | **Mandatory** | **Used_by** |
 |:-------------:|:-----------:|:-----------:|:-------------:|:-----------:|
@@ -135,7 +105,7 @@ The **TXT** file must be a white-space separated value file with a line for each
 The **HDF5** vectors file must be an H5 file with a single `group` called `Vectors`. 
 In this group there must be a `dataset` for each entity with the `base32 encoding` of the entity name as the dataset name and the embedded vector as its value.
 
-### Running details
+### Evalution Framework - Running details
 
 The evaluation framework can be run from the command line. Users can customize the evaluation settings by: 
 1) specifying parameters on the command line (useful when only a few settings must be specified and the user desires to use the default value for most of the parameters);
