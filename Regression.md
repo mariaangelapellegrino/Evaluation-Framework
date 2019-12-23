@@ -25,5 +25,5 @@ The results are calculated using stratified _10-fold cross-validation_.
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Optimum** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Root Mean Squared Error (RMSE) | \[0,1\] | Lowest |
