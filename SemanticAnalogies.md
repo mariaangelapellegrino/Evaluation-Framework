@@ -5,9 +5,9 @@
 | **Dataset** | **Structure** | **Size** | **Source** |
 | :---------: | :---------------------: | : ----------: |  : ----------: | 
 | Capitals and countries | ca1 co1 ca2 co2 | 505 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
-| Currency (and Countries)| cu1 co1 cu2 co2 | 866 [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
-| Cities and State | ci1 st1 ci2 st2 | 2,467 [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
-| (All) capitals and countries | ca1 co1 ca2 co2| 4,523 [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
+| Currency (and Countries)| cu1 co1 cu2 co2 | 866 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
+| Cities and State | ci1 st1 ci2 st2 | 2,467 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
+| (All) capitals and countries | ca1 co1 ca2 co2| 4,523 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
 
 ### Model 
 The task takes the quadruplets (v\_1, v\_2, v\_3, v\_4) and works on the first three vectors to predict the fourth one.
@@ -23,5 +23,5 @@ The analogy function to compute the predicted vector and the top\_k value can be
 ### Output of the evaluation
 
 | **Metric** | **Range** | **Interpretation** |
-| :---------: | :---------------------: | ----------: |
+| :---------: | :---------------------: | :----------: |
 | Accuracy | \[0,1\] | Highest |
