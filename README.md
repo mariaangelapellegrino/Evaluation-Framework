@@ -160,4 +160,4 @@ for Entity Relatedness task, see [here](https://old.datahub.io/dataset/kore-50-n
 	}
 
 ## History
-To get the Evaluation Framework history, you can follow this (link)[https://git.rwth-aachen.de/KGEmbedding/evaluationFramework].
+To get the Evaluation Framework history, you can follow this [link](https://git.rwth-aachen.de/KGEmbedding/evaluationFramework).
