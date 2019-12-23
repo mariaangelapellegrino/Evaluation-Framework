@@ -23,5 +23,4 @@ Missing entities are managed as follows:
 
 | **Metric** | **Range** | **Interpretation** |
 | :---------: | :---------------------: | :----------: |
-| Kendall's tau correlation coefficient | \[-1,1\] | Extreme values: correlation,   
-Values close to 0: no correlation |
+| Kendall's tau correlation coefficient | \[-1,1\] | Extreme values: correlation,   Values close to 0: no correlation |
