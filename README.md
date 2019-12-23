@@ -137,8 +137,8 @@ The required dependencies are: Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19
 
 ## License
 The Apache license applies to the provided source code. For the datasets, please check the licensing information. 
-For example, for the licensing information of the classification and regression datasets, see https://dws.informatik.uni-mannheim.de/en/research/a-collection-of-benchmark-datasets-for-ml/; 
-for Entity Relatedness task, see https://old.datahub.io/dataset/kore-50-nif-ner-corpus/resource/840dc999-8451-42d8-baaf-0647f1bc6a20.
+For example, for the licensing information of the classification and regression datasets, see [here](https://dws.informatik.uni-mannheim.de/en/research/a-collection-of-benchmark-datasets-for-ml/); 
+for Entity Relatedness task, see [here](https://old.datahub.io/dataset/kore-50-nif-ner-corpus/resource/840dc999-8451-42d8-baaf-0647f1bc6a20).
 
 ## Cite
 
@@ -160,4 +160,4 @@ for Entity Relatedness task, see https://old.datahub.io/dataset/kore-50-nif-ner-
 	}
 
 ## History
-To get the Evaluation Framework history, you can follow this link: https://git.rwth-aachen.de/KGEmbedding/evaluationFramework.
+To get the Evaluation Framework history, you can follow this (link)[https://git.rwth-aachen.de/KGEmbedding/evaluationFramework].
