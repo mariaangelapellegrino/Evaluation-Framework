@@ -75,7 +75,7 @@ Each task follows the same workflow:
 
 We will separately analyse each task, by detailing the gold standard datasets, the configuration of the model(s), and the computed evaluation metrics.
 
-## Evaluation Framework - Parameters
+## Parameters
 
 | **Parameter** | **Default** | **Options** | **Mandatory** | **Used_by** |
 |:-------------:|:-----------:|:-----------:|:-------------:|:-----------:|
@@ -107,7 +107,7 @@ The **TXT** file must be a white-space separated value file with a line for each
 The **HDF5** vectors file must be an H5 file with a single `group` called `Vectors`. 
 In this group there must be a `dataset` for each entity with the `base32 encoding` of the entity name as the dataset name and the embedded vector as its value.
 
-### Evalution Framework - Running details
+### Running details
 
 The evaluation framework can be run from the command line. Users can customize the evaluation settings by: 
 1) specifying parameters on the command line (useful when only a few settings must be specified and the user desires to use the default value for most of the parameters);
