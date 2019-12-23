@@ -22,6 +22,6 @@ The analogy function to compute the predicted vector and the top\_k value can be
 
 ### Output of the evaluation
 
-| **Metric** | **Range** | **Interpretation** |
+| **Metric** | **Range** | **Optimum** |
 | :---------: | :---------------------: | :----------: |
 | Accuracy | \[0,1\] | Highest |
