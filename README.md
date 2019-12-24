@@ -1,4 +1,4 @@
-# Evaluation-Framework
+# Evaluation Framework
 
 This repository contains a (software) *evaluation framework* to perform evaluation and comparison on *node embedding techniques*. It can be easily extended by also considering edges into the evaluation. The provided tasks range from Machine Learning (ML) (*classification, regression, and clustering*) and semantic tasks (*entity relatedness and document similarity*) to *semantic analogies*. The framework is designed to be extended with additional tasks. It  is  useful  both  for  embedding  algorithm  developers  and  users.  On  one  side, when  a  new  embedding  algorithm  is  defined,  there  is  the  need  to  evaluate  it upon tasks it was created for. On the other side, users can be interested in performing particular tests and choosing the embedding algorithm that performs best for their application. Our goal is to address both situations providing a ready-to-use framework that can be customized and easily extended. A preliminar overview of the framework and its results can be access through [A Configurable Evaluation Framework for Node Embedding Techniques](https://link.springer.com/chapter/10.1007%2F978-3-030-32327-1_31).
 
@@ -36,7 +36,7 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 
 ## Repository structure
 
-- **Evaluation-Framework/evaluation_framework** contains
+- **Evaluation-Framework/code** contains
 	- **_abstract_evaluation_**: abstract class to supervise the whole evaluation
 	- **_abstract_dataManager_**: interface to manage a new input file format
 	- **_abstract_taskManager_**: interface which defines all the methods a new task has to implement
@@ -48,25 +48,24 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 	- _one folder for each implemented task_ which contains
 		- _data_ folder with the dataset(s) by the task
 		- _taskManager_ which implements the abstract_taskManager interface
-		- _model_ which implements the abstract_model interface
-		
-	For instance, about the classification task
-	the folder **Evaluation-Framework/evaluation_framework/Classification** contains
-	- **classification_model** and **classification_taskManager**
-	- **Evaluation-Framework/evaluation_framework/Classification/data** folder that contains all the datasets used as gold standard.
+		- _model_ which implements the abstract_model interface  
+		For instance, about the classification task
+		the folder **Evaluation-Framework/code/Classification** contains
+		- **classification_model** and **classification_taskManager**
+		- **Evaluation-Framework/code/Classification/data** folder that contains all the datasets used as gold standard.
             
  - **Evaluation-Framework/example** folder contains several main files showing the different ways to initialize the framework 
 
 ## Tasks 
 The implemented tasks are:
 - Machine Learning
-    - Classification
-    - Regression
-    - Clustering
+    - [Classification](./Classification.md)
+    - [Regression](./Regression.md)
+    - [Clustering](./Clustering.md)
 - Semantic tasks
-    - Entity Relatedness
-    - Document Similarity
-    - Semantic Analogies
+    - [Entity Relatedness](./EntityRelatedness.md)
+    - [Document Similarity](./DocumentSimilarity.md)
+    - [Semantic Analogies](./SemanticAnalogies.md)
     
 Each task follows the same workflow:
 1.  the task manager asks data manager to merge each gold standard dataset and the input file and keeps track of both the retrieved vectors and the **missing entities**,  i.e.,  entities  required  by  the  gold  standard  dataset,  but  absent  inthe input file;
@@ -76,33 +75,7 @@ Each task follows the same workflow:
 
 We will separately analyse each task, by detailing the gold standard datasets, the configuration of the model(s), and the computed evaluation metrics.
 
-### Classification 
-
-| **Dataset** | **Semantic of classes** | **Classes** | **Size** | **Source** |
-| :---------: | :---------------------: | ----------: | -------: | :--------: |
-|   [Cities](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/CitiesQualityOfLiving/)    |      Living style       |           3 |      212 |   Mercer   |
-|   [AAUP](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/DatasetsWithFeatures/AAUP/)     |  Salary of professors   |           3 |      960 |    JSE     |
-|   [Forbes](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/DatasetsWithFeatures/Forbes2013/)    |      Agency income      |           3 |    1,585 |   Forbes   |
-|   [Albums](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/MetacriticAlbums/)    |    Album popularity     |           2 |    1,600 | Metacritic |
-|   [Movies](http://data.dws.informatik.uni-mannheim.de/rmlod/LOD_ML_Datasets/data/datasets/MetacriticMovies/)    |    Movie popularity     |           2 |    2,000 | Metacritic |
-
-| **Model** | **Configuration** |
-| :---------: | :---------------------: |
-| Naive Bayes | - |
-| C 4.5 decision tree | - |
-| k-NN | k=3 |
-| Support Vector Machine | C = {10^{-3}, 10^{-2}, 0.1, 1, 10, 10^2, 10^3} |
-
-**Missing entities** are simply ignored.
-
-The results are calculated using stratified _10-fold cross-validation_.
-
-| **Metric** | **Range** | **Optimum** |
-| :---------: | :---------------------: | ----------: |
-| Accuracy | \[0,1\] | Highest |
-
-## Evaluation framework details
-
+## Framework details
 ### Parameters
 
 | **Parameter** | **Default** | **Options** | **Mandatory** | **Used_by** |
@@ -164,8 +137,8 @@ The required dependencies are: Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19
 
 ## License
 The Apache license applies to the provided source code. For the datasets, please check the licensing information. 
-For example, for the licensing information of the classification and regression datasets, see https://dws.informatik.uni-mannheim.de/en/research/a-collection-of-benchmark-datasets-for-ml/; 
-for Entity Relatedness task, see https://old.datahub.io/dataset/kore-50-nif-ner-corpus/resource/840dc999-8451-42d8-baaf-0647f1bc6a20.
+For example, for the licensing information of the classification and regression datasets, see [here](https://dws.informatik.uni-mannheim.de/en/research/a-collection-of-benchmark-datasets-for-ml/); 
+for Entity Relatedness task, see [here](https://old.datahub.io/dataset/kore-50-nif-ner-corpus/resource/840dc999-8451-42d8-baaf-0647f1bc6a20).
 
 ## Cite
 
@@ -187,4 +160,4 @@ for Entity Relatedness task, see https://old.datahub.io/dataset/kore-50-nif-ner-
 	}
 
 ## History
-To get the Evaluation Framework history, you can follow this link: https://git.rwth-aachen.de/KGEmbedding/evaluationFramework.
+To get the Evaluation Framework history, you can follow this [link](https://git.rwth-aachen.de/KGEmbedding/evaluationFramework).
