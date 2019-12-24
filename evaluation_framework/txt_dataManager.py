@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import codecs
 import numpy as np
-from code.abstract_dataManager import AbstractDataManager
+from evaluation_framework.abstract_dataManager import AbstractDataManager
 
 """
 It models how to manage vectors provided in TXT file.

@@ -5,7 +5,7 @@ from entityRelatedness_model import EntityRelatednessModel as Model
 import unicodecsv as csv
 #import csv
 import os
-from code.abstract_taskManager import AbstractTaskManager
+from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 
 task_name = 'EntityRelatedness'

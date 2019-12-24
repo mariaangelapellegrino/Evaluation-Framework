@@ -5,7 +5,7 @@ import codecs
 import os
 import pandas as pd
 
-from code.abstract_taskManager import AbstractTaskManager
+from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 
 task_name = 'Classification'

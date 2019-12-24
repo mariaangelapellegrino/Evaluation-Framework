@@ -3,7 +3,7 @@ from sklearn import metrics
 from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
 import numpy as np
 import pandas as pd
-from code.abstract_model import AbstractModel
+from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 

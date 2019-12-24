@@ -5,7 +5,7 @@ from multiprocessing import Process
 import multiprocessing
 import pandas as pd
 
-from code.abstract_evaluationManager import AbstractEvaluationManager
+from evaluation_framework.abstract_evaluationManager import AbstractEvaluationManager
 
 from Classification.classification_taskManager import ClassificationManager as Classification_evaluator
 from Regression.regression_taskManager import RegressionManager as Regression_evaluator

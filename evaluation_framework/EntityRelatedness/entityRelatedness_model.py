@@ -3,7 +3,7 @@
 import numpy as np
 from scipy.spatial import distance
 from scipy.stats import kendalltau
-from code.abstract_model import AbstractModel
+from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 

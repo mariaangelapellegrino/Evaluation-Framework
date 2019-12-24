@@ -5,7 +5,7 @@ import pandas as pd
 from collections import defaultdict
 from numpy import mean
 
-from code.abstract_taskManager import AbstractTaskManager
+from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = 'DocumentSimilarity'
 

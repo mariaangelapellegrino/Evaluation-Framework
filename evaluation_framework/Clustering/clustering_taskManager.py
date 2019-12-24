@@ -6,7 +6,7 @@ import pandas as pd
 import sys
 from numpy import mean
 
-from code.abstract_taskManager import AbstractTaskManager
+from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = 'Clustering'
 

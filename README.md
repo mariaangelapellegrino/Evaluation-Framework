@@ -36,7 +36,7 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 
 ## Repository structure
 
-- **Evaluation-Framework/code** contains
+- **Evaluation-Framework/evaluation_framework** contains
 	- **_abstract_evaluation_**: abstract class to supervise the whole evaluation
 	- **_abstract_dataManager_**: interface to manage a new input file format
 	- **_abstract_taskManager_**: interface which defines all the methods a new task has to implement
@@ -51,9 +51,9 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 		- _model_ which implements the abstract_model interface
 		
 	For instance, about the classification task
-	the folder **Evaluation-Framework/code/Classification** contains
+	the folder **Evaluation-Framework/evaluation_framework/Classification** contains
 	- **classification_model** and **classification_taskManager**
-	- **Evaluation-Framework/code/Classification/data** folder that contains all the datasets used as gold standard.
+	- **Evaluation-Framework/evaluation_framework/Classification/data** folder that contains all the datasets used as gold standard.
             
  - **Evaluation-Framework/example** folder contains several main files showing the different ways to initialize the framework 
 

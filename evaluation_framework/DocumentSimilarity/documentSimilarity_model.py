@@ -3,7 +3,7 @@ from scipy.stats import pearsonr
 import pandas as pd
 import numpy as np
 from sklearn.metrics import pairwise_distances
-from code.abstract_model import AbstractModel
+from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 

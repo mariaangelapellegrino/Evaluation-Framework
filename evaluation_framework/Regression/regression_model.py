@@ -3,7 +3,7 @@ from sklearn import linear_model
 from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsRegressor
 import numpy as np
-from code.abstract_model import AbstractModel
+from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 

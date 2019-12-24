@@ -6,7 +6,7 @@ import codecs
 import numpy as np
 import base64
 import h5py
-from code.abstract_dataManager import AbstractDataManager
+from evaluation_framework.abstract_dataManager import AbstractDataManager
 
 """
 It models how to manage vectors provided in HDF5 file.
