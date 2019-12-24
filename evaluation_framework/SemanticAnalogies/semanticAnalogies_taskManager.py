@@ -2,7 +2,7 @@ import csv
 from semanticAnalogies_model import SemanticAnalogiesModel as Model
 import os
 import pandas as pd
-from code.abstract_taskManager import AbstractTaskManager
+from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 from _collections import defaultdict
 
