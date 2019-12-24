@@ -1,5 +1,5 @@
 import numpy as np
-from code.abstract_model import AbstractModel
+from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 
