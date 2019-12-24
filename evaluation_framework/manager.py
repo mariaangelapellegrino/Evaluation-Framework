@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 
-from evaluationManager import EvaluationManager
-from txt_dataManager import DataManager as TxtDataManager
-from hdf5_dataManager import DataManager as Hdf5DataManager
+from evaluation_framework.evaluationManager import EvaluationManager
+from evaluation_framework.txt_dataManager import DataManager as TxtDataManager
+from evaluation_framework.hdf5_dataManager import DataManager as Hdf5DataManager
 
 available_tasks = ['Classification', 'Regression', 'Clustering', 
     'DocumentSimilarity', 'EntityRelatedness', 'SemanticAnalogies']
