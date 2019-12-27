@@ -80,7 +80,7 @@ We will separately analyse each task, by detailing the gold standard datasets, t
 
 |       Parameter      |                     Default                    |                                                      Options                                                      | Mandatory |       Used\_by      |
 |:--------------------:|:----------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------:|
-|     vectors\_file    |                        -                       |                                                  vector file path                                                 |     <ul><li>- [x] </li><\ul>    |         all         |
+|     vectors\_file    |                        -                       |                                                  vector file path                                                 |     <ul><li>- [x] </li></ul>    |         all         |
 | vector\_file\_format |                       TXT                      |                                                     TXT, HDF5                                                     |           |    data\_manager    |
 |     vectors\_size    |                       200                      |                                                   numeric value                                                   |           |    data\_manager    |
 |         tasks        |                      \_all                     |                                       Class, Reg, Clu, EntRel, DocSim, SemAn                                      |           | evaluation\_manager |
