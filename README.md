@@ -2,8 +2,8 @@
 
 This repository contains a (software) *evaluation framework* to perform evaluation and comparison on *node embedding techniques*. It can be easily extended by also considering edges into the evaluation. The provided tasks range from Machine Learning (ML) (*classification, regression, and clustering*) and semantic tasks (*entity relatedness and document similarity*) to *semantic analogies*. The framework is designed to be extended with additional tasks. It  is  useful  both  for  embedding  algorithm  developers  and  users.  On  one  side, when  a  new  embedding  algorithm  is  defined,  there  is  the  need  to  evaluate  it upon tasks it was created for. On the other side, users can be interested in performing particular tests and choosing the embedding algorithm that performs best for their application. Our goal is to address both situations providing a ready-to-use framework that can be customized and easily extended. A preliminar overview of the framework and its results can be access through [A Configurable Evaluation Framework for Node Embedding Techniques](https://link.springer.com/chapter/10.1007%2F978-3-030-32327-1_31).
 
-We provide the framework as a command-line tool and we are working to the REST API development (you can inspect the *dev* branch).
-
+We provide the framework as a command-line tool. We are working to the REST API development (you can inspect the *dev* branch) and we are providing it as [API](https://pypi.org/project/evaluation-framework/).
+ 
 Please refer [https://mariaangelapellegrino.github.io/Evaluation-Framework/](https://mariaangelapellegrino.github.io/Evaluation-Framework/) to access the readme as a webpage.
 
 ## Framework structure and extension points
