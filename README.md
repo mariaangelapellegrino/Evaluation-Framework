@@ -48,9 +48,7 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 	- _one folder for each implemented task_ which contains
 		- _data_ folder with the dataset(s) by the task
 		- _taskManager_ which implements the abstract_taskManager interface
-		- _model_ which implements the abstract_model interface  
-		For instance, about the classification task
-		the folder **Evaluation-Framework/evaluation_framework/Classification** contains
+		- _model_ which implements the abstract_model interface. For instance, about the classification task the folder **Evaluation-Framework/evaluation_framework/Classification** contains
 		- **classification_model** and **classification_taskManager**
 		- **Evaluation-Framework/evaluation_framework/Classification/data** folder that contains all the datasets used as gold standard.
             
@@ -58,14 +56,8 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 
 ## Tasks 
 The implemented tasks are:
-- Machine Learning
-    - [Classification](./Classification.md)
-    - [Regression](./Regression.md)
-    - [Clustering](./Clustering.md)
-- Semantic tasks
-    - [Entity Relatedness](./EntityRelatedness.md)
-    - [Document Similarity](./DocumentSimilarity.md)
-    - [Semantic Analogies](./SemanticAnalogies.md)
+- Machine Learning * [Classification](./Classification.md) * [Regression](./Regression.md) * [Clustering](./Clustering.md)
+- Semantic tasks * [Entity Relatedness](./EntityRelatedness.md) * [Document Similarity](./DocumentSimilarity.md) * [Semantic Analogies](./SemanticAnalogies.md)
     
 Each task follows the same workflow:
 1.  the task manager asks data manager to merge each gold standard dataset and the input file and keeps track of both the retrieved vectors and the **missing entities**,  i.e.,  entities  required  by  the  gold  standard  dataset,  but  absent  inthe input file;
@@ -78,19 +70,18 @@ We will separately analyse each task, by detailing the gold standard datasets, t
 ## Framework details
 ### Parameters
 
-| **Parameter** | **Default** | **Options** | **Mandatory** | **Used_by** |
-|:-------------:|:-----------:|:-----------:|:-------------:|:-----------:|
-| **vectors_file** | - | vector file path |     [x]     | all |
-| **vector_file_format** | TXT | TXT, HDF5 |         | data_manager       |
-| **vectors_size**  | 200  | numeric value  |      | data_manager       |
-| **tasks**                | \_all   | list of _Class_, _Reg_, _Clu_, _EntRel_, _DocSim_, _SemAn_   |        | evaluation_manager |
-| **parallel**    | False | boolean |    | evaluation_manager |
-| **debugging_mode**  | False  | boolean |       | all|
-| **similarity_metric**   | cosine | [Sklearn affinity metrics](https://scikit-learn.org/stable/modules/classes.html\#module-sklearn.metrics.pairwise) |  | Clu, DocSim   |
-| **analogy_function**    | None (to use the _default\_analogy\_function_) | handler to function  |    | SemAn   |
-| **top_k**     | 2     | numeric value   |     | SemAn     |
-| **compare_with**        | \_all   | list of run IDs   |   | evaluation_manager |
-
+|       Parameter      |                     Default                    |                                                      Options                                                      | Mandatory |       Used\_by      |
+|:--------------------:|:----------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------:|
+|     vectors\_file    |                        -                       |                                                  vector file path                                                 |    [x]    |         all         |
+| vector\_file\_format |                       TXT                      |                                                     TXT, HDF5                                                     |           |    data\_manager    |
+|     vectors\_size    |                       200                      |                                                   numeric value                                                   |           |    data\_manager    |
+|         tasks        |                      \_all                     |                                       Class, Reg, Clu, EntRel, DocSim, SemAn                                      |           | evaluation\_manager |
+|       parallel       |                      False                     |                                                      boolean                                                      |           | evaluation\_manager |
+|    debugging\_mode   |                      False                     |                                                      boolean                                                      |           |          *          |
+|  similarity\_metric  |                     cosine                     | [Sklearn affinity metrics](https://scikit-learn.org/stable/modules/classes.html\#module-sklearn.metrics.pairwise) |           |     Clu, DocSim     |
+|   analogy\_function  | None (to use the _default\_analogy\_function_) |                                                handler to function                                                |           |  semantic\_analogy  |
+|        top\_k        |                        2                       |                                                   numeric value                                                   |           |        SemAn        |
+|     compare\_with    |                      \_all                     |                                                  list of run IDs                                                  |           | evaluation\_manager |
 - analogy function details:
 	the semantic analogy tasks takes a quadruplet of vectors (a,b,c,d) and it verifies if by manipulating the first three vectors it is possible to predict the last one. The manipulation happens by the analogy function.
 	
