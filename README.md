@@ -56,8 +56,16 @@ To extend the evaluation also to edges, it is enough to create gold standard dat
 
 ## Tasks 
 The implemented tasks are:
-- Machine Learning * [Classification](./Classification.md) * [Regression](./Regression.md) * [Clustering](./Clustering.md)
-- Semantic tasks * [Entity Relatedness](./EntityRelatedness.md) * [Document Similarity](./DocumentSimilarity.md) * [Semantic Analogies](./SemanticAnalogies.md)
+
+- Machine Learning 
+	* [Classification](./doc/Classification.md) 
+	* [Regression](./doc/Regression.md) 
+	* [Clustering](./doc/Clustering.md)
+
+- Semantic tasks 
+	* [Entity Relatedness](./doc/EntityRelatedness.md) 
+	* [Document Similarity](./doc/DocumentSimilarity.md) 
+	* [Semantic Analogies](./doc/SemanticAnalogies.md)
     
 Each task follows the same workflow:
 1.  the task manager asks data manager to merge each gold standard dataset and the input file and keeps track of both the retrieved vectors and the **missing entities**,  i.e.,  entities  required  by  the  gold  standard  dataset,  but  absent  inthe input file;
@@ -72,7 +80,7 @@ We will separately analyse each task, by detailing the gold standard datasets, t
 
 |       Parameter      |                     Default                    |                                                      Options                                                      | Mandatory |       Used\_by      |
 |:--------------------:|:----------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------:|
-|     vectors\_file    |                        -                       |                                                  vector file path                                                 |    [x]    |         all         |
+|     vectors\_file    |                        -                       |                                                  vector file path                                                 |     <ul><li>- [x] </li><\ul>    |         all         |
 | vector\_file\_format |                       TXT                      |                                                     TXT, HDF5                                                     |           |    data\_manager    |
 |     vectors\_size    |                       200                      |                                                   numeric value                                                   |           |    data\_manager    |
 |         tasks        |                      \_all                     |                                       Class, Reg, Clu, EntRel, DocSim, SemAn                                      |           | evaluation\_manager |
