@@ -4,7 +4,7 @@ from distutils.core import setup
 setup(
   name = 'evaluation_framework',         # How you named your package folder (MyLib)
   packages = ['evaluation_framework'],   # Chose the same as "name"
-  version = '0.1.8',      # Start with a small number and increase it with every change you make
+  version = '0.1.9',      # Start with a small number and increase it with every change you make
   license='apache-2.0',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Evaluation Framework for testing and comparing graph embedding techniques',   # Give a short description about your library
   long_description=open('pip_readme.md').read(),
@@ -12,7 +12,7 @@ setup(
   author = 'Maria Angela Pellegrino',                   # Type in your name
   author_email = 'mariaangelapellegrino94@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/mariaangelapellegrino/Evaluation-Framework',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/mariaangelapellegrino/Evaluation-Framework/archive/v_0.1.8.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/mariaangelapellegrino/Evaluation-Framework/archive/v_0.1.9.tar.gz',    # I explain this later on
   keywords = ['evaluation', 'graph-embedding', 'python', 'library', 'benchmark-framework', 'machine learning tasks', 'semantic tasks'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'numpy==1.14.0',
