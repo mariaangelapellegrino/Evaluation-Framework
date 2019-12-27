@@ -2,7 +2,7 @@
 
 import argparse
 
-from code.manager import FrameworkManager
+from evaluation_manager.manager import FrameworkManager
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Evaluation framework for RDF embedding methods')

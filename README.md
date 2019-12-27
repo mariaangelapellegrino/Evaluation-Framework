@@ -124,7 +124,7 @@ In particular, about the comparison, it reports the values effectively considere
 ## Dependencies
 The framework is tested to work on Python 2.7.
 
-The required dependencies are: Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19.2, Scipy==1.1.0, H5py==2.8.0.
+The required dependencies are: Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19.2, Scipy==1.1.0, H5py==2.8.0, unicodecsv==0.14.1.
 
 ## License
 The Apache license applies to the provided source code. For the datasets, please check the licensing information. 

@@ -1,7 +1,7 @@
 # this example specifies the parameters by a xml file and the "custom" analogy function (which is the same of the default value). It uses default values for all the other parameters
 
 import numpy as np
-from code.manager import FrameworkManager
+from evaluation_manager.manager import FrameworkManager
 
 def default_analogy_function(a, b, c):
     return np.array(b) - np.array(a) + np.array(c)
