@@ -90,6 +90,7 @@ We will separately analyse each task, by detailing the gold standard datasets, t
 |   analogy\_function  | None (to use the _default\_analogy\_function_) |                                                handler to function                                                |           |  semantic\_analogy  |
 |        top\_k        |                        2                       |                                                   numeric value                                                   |           |        SemAn        |
 |     compare\_with    |                      \_all                     |                                                  list of run IDs                                                  |           | evaluation\_manager |
+
 - analogy function details:
 	the semantic analogy tasks takes a quadruplet of vectors (a,b,c,d) and it verifies if by manipulating the first three vectors it is possible to predict the last one. The manipulation happens by the analogy function.
 	
