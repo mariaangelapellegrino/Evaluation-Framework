@@ -1,0 +1,6 @@
+TESTED CONFIGURATION
+Vector filename: /media/marpel/DATA/uniform_classification_regression.txt
+Vector size:200
+Distance metric:cosine
+
+Classification execution time: 0.0:22.0:31.67 seconds
