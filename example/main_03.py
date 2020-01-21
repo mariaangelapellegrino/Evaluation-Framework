@@ -3,7 +3,7 @@
 import argparse
 import numpy as np
 
-from evaluation_manager.manager import FrameworkManager
+from evaluation_framework.manager import FrameworkManager
 
 def default_analogy_function(a, b, c):
     return np.array(b) - np.array(a) + np.array(c)

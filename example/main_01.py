@@ -1,4 +1,4 @@
-from evaluation_manager.manager import FrameworkManager
+from evaluation_framework.manager import FrameworkManager
 
 if __name__ == "__main__":
     evaluation_manager = FrameworkManager()

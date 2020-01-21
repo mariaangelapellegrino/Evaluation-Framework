@@ -4,3 +4,4 @@ scipy==1.1.0
 h5py==2.8.0
 numpy==1.14.0
 pandas==0.22.0
+pathlib2

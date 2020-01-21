@@ -226,7 +226,9 @@ class EvaluationManager(AbstractEvaluationManager):
     """
     def create_result_directory(self):
         script_dir = os.path.dirname(__file__)
-        rel_path = '../results'
+
+        curr_dir = os.getcwd()
+        rel_path = curr_dir+'/results'
         self.result_directory = os.path.join(script_dir, rel_path)
         
         if not os.path.exists(self.result_directory):
@@ -257,7 +259,10 @@ class EvaluationManager(AbstractEvaluationManager):
     def compare_with(self, compare_with, scores_dictionary):   
         #read data for the comparison             
         script_dir = os.path.dirname(__file__)
-        rel_path = '../comparison.csv'
+
+        curr_dir = os.getcwd()
+        rel_path = curr_dir+'/comparison.csv'
+        
         self.comparison_filename = os.path.join(script_dir, rel_path)
         exists = os.path.isfile(self.comparison_filename)
         if exists:
