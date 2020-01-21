@@ -1,0 +1,2 @@
+global-include data/*.tsv data/*.csv data/*.txt
+include pip_readme.md
