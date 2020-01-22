@@ -17,19 +17,16 @@ def generate_cropped_files():
 	store_path = "test_vectors/"
 
 	crop = [10, 20, 50, 100, 150, 180, 200]
-	#evaluation_manager = FrameworkManager()
 
 	for break_index in crop:
-		#headers = ['name']
-		#for i in range(0, break_index+1):
-		#    headers.append(i)
+		headers = ['name']
+		for i in range(0, break_index+1):
+		    headers.append(i)
 
 		filename = store_path+"vectors_"+str(break_index)+".csv"
-		#vectors_df.loc[:, headers].to_csv(filename, sep=" ", encoding='utf-8', index=False, header=False, float_format='%.15f')
+		vectors_df.loc[:, headers].to_csv(filename, sep=" ", encoding='utf-8', index=False, header=False, float_format='%.15f')
 
 		vectors_file[filename] = break_index
-
-		#evaluation_manager.evaluate(filename, vector_size=break_index, tasks=['Classification'], parallel=True,  debugging_mode = False)
 
 def evaluate_cropped_files():
 	evaluation_manager = FrameworkManager()
