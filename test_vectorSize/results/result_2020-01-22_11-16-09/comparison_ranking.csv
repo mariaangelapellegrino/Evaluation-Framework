@@ -1,0 +1,16 @@
+task_name gold_standard_file model model_configuration metric ranking absolute_total relative_total
+Regression Forbes KNN K=3 root_mean_squared_error 1 3 3
+Regression Forbes M5 - root_mean_squared_error 1 3 3
+Regression Forbes LR - root_mean_squared_error 1 3 3
+Regression Cities KNN K=3 root_mean_squared_error 1 3 3
+Regression Cities M5 - root_mean_squared_error 0 3 3
+Regression Cities LR - root_mean_squared_error 0 3 3
+Regression MetacriticMovies KNN K=3 root_mean_squared_error 1 3 3
+Regression MetacriticMovies M5 - root_mean_squared_error 1 3 3
+Regression MetacriticMovies LR - root_mean_squared_error 1 3 3
+Regression AAUP KNN K=3 root_mean_squared_error 1 3 3
+Regression AAUP M5 - root_mean_squared_error 1 3 3
+Regression AAUP LR - root_mean_squared_error 1 3 3
+Regression MetacriticAlbums KNN K=3 root_mean_squared_error 1 3 3
+Regression MetacriticAlbums M5 - root_mean_squared_error 1 3 3
+Regression MetacriticAlbums LR - root_mean_squared_error 1 3 3

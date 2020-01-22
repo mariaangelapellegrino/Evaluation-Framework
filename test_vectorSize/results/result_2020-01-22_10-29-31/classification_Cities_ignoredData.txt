@@ -1,0 +1,4 @@
+http://dbpedia.org/resource/Omuta
+http://dbpedia.org/resource/Katsuyama
+http://dbpedia.org/resource/Lome
+http://dbpedia.org/resource/Sanaa

@@ -1,0 +1,4 @@
+TESTED CONFIGURATION
+Vector filename: test_vectors/vectors_50.csv
+Vector size:50
+Classification execution time: 459.29 seconds 

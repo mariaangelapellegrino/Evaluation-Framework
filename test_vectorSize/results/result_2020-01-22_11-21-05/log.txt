@@ -1,0 +1,4 @@
+TESTED CONFIGURATION
+Vector filename: test_vectors/vectors_100.csv
+Vector size:100
+Regression execution time: 71.78 seconds 
