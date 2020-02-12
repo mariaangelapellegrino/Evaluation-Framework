@@ -13,4 +13,4 @@ if __name__ == "__main__":
     parser.add_argument('--vectors_file', type=str, required=True, help='Path of the file where your vectors are stored. File format: one line for each entity with entity and vector')
     args = parser.parse_args()
     evaluation_manager = FrameworkManager()
-    evaluation_manager.evaluate(vector_file=args.vectors_file)
+    evaluation_manager.evaluate(vector_filename=args.vectors_file)
