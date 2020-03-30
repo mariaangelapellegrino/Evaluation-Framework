@@ -3,7 +3,7 @@
 ### Datasets used as gold standard
 
 | **Dataset** | **Structure** | **Size** | **Source** |
-| :---------: | :---------------------: | : ----------: |  : ----------: | 
+|:---------:|:---------------------:|:----------:|:----------:| 
 | Capitals and countries | ca1 co1 ca2 co2 | 505 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
 | Currency (and Countries)| cu1 co1 cu2 co2 | 866 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
 | Cities and State | ci1 st1 ci2 st2 | 2,467 | [Word2Vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) |
