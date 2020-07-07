@@ -80,7 +80,7 @@ You can separately analyze each task by following its link. You will find detail
 
 |       Parameter      |                     Default                    |                                                      Options                                                      | Mandatory |       Used\_by      |
 |:--------------------:|:----------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|:---------:|:-------------------:|
-|     vectors\_file    |                        -                       |                                                  vector file path                                                 |     <ul><li>- [x] </li></ul>    |         all         |
+|     vector\_file    |                        -                       |                                                  vector file path                                                 |     <ul><li>- [x] </li></ul>    |         all         |
 | vector\_file\_format |                       TXT                      |                                                     TXT, HDF5                                                     |           |    data\_manager    |
 |     vector\_size     |                       200                      |                                                   numeric value                                                   |           |    data\_manager    |
 |         tasks        |                      \_all                     |                                       Class, Reg, Clu, EntRel, DocSim, SemAn                                      |           | evaluation\_manager |
