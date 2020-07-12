@@ -60,7 +60,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
         for gold_standard_filename in gold_standard_filenames:
             script_dir = os.path.dirname(__file__)
             rel_path = "data/"+gold_standard_filename+'.txt'
-            gold_standard_file = Path(os.path.join(script_dir, rel_path))
+            gold_standard_file = str(Path(os.path.join(script_dir, rel_path)))
             
             data, ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, gold_standard_file)
             self.storeIgnored(results_folder, gold_standard_filename, ignored)
