@@ -151,7 +151,7 @@ class ClassificationDataManager(DataManager):
 
         merged = pd.merge(gold, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only']
+        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
 
         return merged, ignored                                            
 """
@@ -198,7 +198,7 @@ class ClusteringDataManager(DataManager):
 
         merged = pd.merge(gold, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only']
+        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
 
         return merged, ignored
 """
@@ -241,7 +241,7 @@ class DocumentSimilarityDataManager(DataManager):
         entities = self.get_entities(goldStandard_filename)
         merged = pd.merge(entities, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(entities, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only']
+        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][entities.columns]
 
         return merged, ignored
 
@@ -334,7 +334,7 @@ class EntityRelatednessDataManager(DataManager):
         
         merged = pd.merge(goldStandard_data, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(goldStandard_data, vectors, on='name', how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge']=='left_only']
+        ignored = outputLeftMerge[outputLeftMerge['_merge']=='left_only'][goldStandard_data.columns]
         
         return merged, ignored
     
@@ -382,7 +382,7 @@ class RegressionDataManager(DataManager):
 
         merged = pd.merge(gold, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only']
+        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
 
         return merged, ignored
     
