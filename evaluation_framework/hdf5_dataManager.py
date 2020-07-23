@@ -2,7 +2,6 @@
 
 import pandas as pd
 import json
-import codecs
 import numpy as np
 import base64
 import h5py
@@ -386,21 +385,20 @@ class EntityRelatednessDataManager(DataManager):
         entities_groups = {}
         related_entities = []
 
-        f = codecs.open(filename, 'r', 'utf-8')
+        with open(filename) as f:
+            for i, line in enumerate(f):
+                key = line.strip().encode('utf-8')
+                encodedKey = base64.b32encode(key)
 
-        for i, line in enumerate(f):
-            key = line.strip().encode('utf-8')
-            encodedKey = base64.b32encode(key)
- 
-            if i%21 == 0:           
-                main_entitiy = encodedKey
-                related_entities = []
+                if i%21 == 0:
+                    main_entitiy = encodedKey
+                    related_entities = []
 
-            else :
-                related_entities.append(encodedKey)    
-                
-            if i%21 == 20:
-                entities_groups[main_entitiy] = related_entities
+                else :
+                    related_entities.append(encodedKey)
+
+                if i%21 == 20:
+                    entities_groups[main_entitiy] = related_entities
 
         return entities_groups
 

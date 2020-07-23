@@ -80,7 +80,7 @@ class EvaluationManager(AbstractEvaluationManager):
                     h, m = divmod(m, 60)
                     execution_time = str(h) + ":" + str(round(m, 2)) + ":" + str(round(s, 2))
                     self.log_file.write("Classification execution time: " + execution_time + " seconds\n")
-                    print "%d:%02d:%02d" % (h, m, s)
+                    print("%d:%02d:%02d" % (h, m, s))
 
             elif task==Regression_evaluator.get_task_name():
                 try:

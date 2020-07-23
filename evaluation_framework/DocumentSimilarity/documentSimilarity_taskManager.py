@@ -1,10 +1,10 @@
-from documentSimilarity_model import DocumentSimilarityModel as Model
 import csv
 import os
 import pandas as pd
 from collections import defaultdict
 from numpy import mean
 
+from evaluation_framework.DocumentSimilarity.documentSimilarity_model import DocumentSimilarityModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = 'DocumentSimilarity'
@@ -112,17 +112,10 @@ class DocumentSimilarityManager (AbstractTaskManager):
 		if self.debugging_mode: 
 			print('Document similarity: Ignored data : ' + str(len(ignored)))
 
-		file_ignored = open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_ignoredData.txt',"w") 
-		for ignored_tuple in ignored.itertuples():
-			value = getattr(ignored_tuple,'name')
-			if self.debugging_mode:
-				print('Document similarity : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
-
-			if isinstance(value, str):
-				value = unicode(value, "utf-8").encode(encoding='UTF-8', errors='ignore')
-			file_ignored.write(value+'\n')
-			
-		file_ignored.close()
+		ignored_filepath = results_folder+'/documentSimilarity_'+gold_standard_filename+'_ignoredData.txt'
+		ignored['name'].to_csv(ignored_filepath, index=False, header=False)
+		if self.debugging_mode:
+			print(f'Document similarity : Ignored data: {ignored["name"].tolist()}')
 	
 	"""
     It stores the results of the Document similarity task.

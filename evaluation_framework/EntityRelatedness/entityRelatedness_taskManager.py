@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-from entityRelatedness_model import EntityRelatednessModel as Model
-import unicodecsv as csv
-#import csv
+import csv
 import os
+from evaluation_framework.EntityRelatedness.entityRelatedness_model import EntityRelatednessModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 
@@ -101,32 +100,11 @@ class EntityRelatednessManager (AbstractTaskManager):
     def storeIgnored(self, results_folder, gold_standard_filename, ignored):
         if self.debugging_mode:
             print('Entity relatedness: Ignored data: ' + str(len(ignored)))
-        
-        filename = results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.csv'
-        file_exists = os.path.isfile(filename)
-        
-        with open(filename, "a+") as csv_file:
-            fieldnames = ['entity', 'related_to']
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-            if not file_exists:
-                writer.writeheader()
-            
-            for ignored_tuple in ignored.itertuples():
-                if 'related_to' in ignored.columns:
-                    related_to_value = getattr(ignored_tuple,'related_to')
-                else:
-                    related_to_value = ''
-            
-                try:
-                    value = getattr(ignored_tuple,'name')
-                    writer.writerow({'entity':value, 'related_to':related_to_value})
-                except UnicodeEncodeError:
-                    if self.debugging_mode:
-                        print("EntityRelatedness: problems in writing ", value, " or " + related_to_value +" into the file")
-                    continue
-                
-                if self.debugging_mode:
-                    print('Entity relatedness : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
+
+        ignored_filepath = results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.txt'
+        ignored[['name', 'related_to']].to_csv(ignored_filepath, index=False)
+        if self.debugging_mode:
+            print(f'Document similarity : Ignored data: {ignored["name"].tolist()}')
                 
     """
     It stores the results of the Entity relatedness task.
