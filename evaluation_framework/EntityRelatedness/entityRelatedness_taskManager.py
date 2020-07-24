@@ -117,7 +117,7 @@ class EntityRelatednessManager (AbstractTaskManager):
                     related_to_value = ''
 
                 try:
-                    value = ignored_tuple['name']
+                    value = ignored_tuple.name
                     writer.writerow({'entity':value, 'related_to':related_to_value})
                 except UnicodeEncodeError:
                     if self.debugging_mode:
