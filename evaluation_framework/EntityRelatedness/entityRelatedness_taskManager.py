@@ -55,7 +55,7 @@ class EntityRelatednessManager (AbstractTaskManager):
 
         scores = list()
 
-        left_entities_df = pd.DataFrame({'name':groups.keys()})
+        left_entities_df = pd.DataFrame({'name': list(groups.keys())})
         left_merged, left_ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, gold_standard_file, left_entities_df)
 
         self.storeIgnored(results_folder, gold_standard_filename, left_ignored)

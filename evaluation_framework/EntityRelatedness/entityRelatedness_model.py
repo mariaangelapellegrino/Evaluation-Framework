@@ -40,7 +40,7 @@ class EntityRelatednessModel(AbstractModel):
     def train(self, left_merged, left_ignored, right_merged_list, right_ignored_list, groups):
         predicted_rank_list = self.compute_relatedness(left_merged, left_ignored, right_merged_list, right_ignored_list)
         gold_rank_list = np.tile(np.arange(1, 21), (21, 1))
-        return self.evaluate_ranking(groups.keys(), gold_rank_list, predicted_rank_list)
+        return self.evaluate_ranking(list(groups.keys()), gold_rank_list, predicted_rank_list)
 
     """
     It computes the relatedness among main and right entities.

@@ -328,7 +328,7 @@ class EntityRelatednessDataManager(DataManager):
         
         if goldStandard_data is None:
             entities = self.read_file(goldStandard_filename)
-            goldStandard_data = pd.DataFrame({'name':entities.keys()})
+            goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
         
         merged = pd.merge(goldStandard_data, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(goldStandard_data, vectors, on='name', how='outer', indicator=True)

@@ -426,7 +426,7 @@ class EntityRelatednessDataManager(DataManager):
         
         if goldStandard_data is None:
             entities = self.read_file(goldStandard_filename)
-            goldStandard_data = pd.DataFrame({'name':entities.keys()})
+            goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
         
         for row in goldStandard_data.itertuples():
             try:
