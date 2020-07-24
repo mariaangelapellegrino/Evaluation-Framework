@@ -132,7 +132,7 @@ class ClusteringManager (AbstractTaskManager):
         'adjusted_rand_index', 'adjusted_mutual_info_score', 
         'homogeneity_score', 'completeness_score', 'v_measure_score'] #'fowlkes_mallows_score', 
         
-        with open(results_folder+'/clustering_'+gold_standard_filename+'_results.csv') as csv_file:
+        with open(results_folder+'/clustering_'+gold_standard_filename+'_results.csv', 'w') as csv_file:
             fieldnames = columns 
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

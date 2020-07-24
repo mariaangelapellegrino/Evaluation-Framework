@@ -125,7 +125,7 @@ class DocumentSimilarityManager (AbstractTaskManager):
     scores: dictionary with the configuration (with or without weights) as key and the score returned by the model as value
     """
 	def storeResults(self, results_folder, gold_standard_filename, scores):
-		with open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_results.csv') as csv_file:
+		with open(results_folder+'/documentSimilarity_'+gold_standard_filename+'_results.csv', 'w') as csv_file:
 			fieldnames = ['task_name', 'gold_standard_file', 'conf', 'pearson_score', 'spearman_score', 'harmonic_mean']
 			writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 			writer.writeheader()

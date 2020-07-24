@@ -119,7 +119,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
     scores: list of all the results returned by the model
     """   
     def storeResults(self, results_folder, scores):
-        with open(results_folder+'/semanticAnalogies_results.csv') as file_result:
+        with open(results_folder+'/semanticAnalogies_results.csv', 'w') as file_result:
             fieldnames = ['task_name', 'gold_standard_file', 'top_k_value', 'right_answers', 'tot_answers', 'accuracy']
             writer = csv.DictWriter(file_result, fieldnames=fieldnames)
             writer.writeheader()
