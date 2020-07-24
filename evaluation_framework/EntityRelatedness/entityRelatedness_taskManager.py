@@ -112,7 +112,7 @@ class EntityRelatednessManager (AbstractTaskManager):
 
             for ignored_tuple in ignored.itertuples():
                 if 'related_to' in ignored.columns:
-                    related_to_value = ignored_tuple['related_to']
+                    related_to_value = ignored_tuple.related_to
                 else:
                     related_to_value = ''
 
