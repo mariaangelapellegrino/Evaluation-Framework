@@ -101,11 +101,32 @@ class EntityRelatednessManager (AbstractTaskManager):
         if self.debugging_mode:
             print('Entity relatedness: Ignored data: ' + str(len(ignored)))
 
-        ignored_filepath = results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.txt'
-        ignored[['name', 'related_to']].to_csv(ignored_filepath, index=False)
-        if self.debugging_mode:
-            print(f'Document similarity : Ignored data: {ignored["name"].tolist()}')
-                
+        filename = results_folder+'/entityRelatedness_'+gold_standard_filename+'_ignoredData.csv'
+        file_exists = os.path.isfile(filename)
+
+        with open(filename, "a+") as csv_file:
+            fieldnames = ['entity', 'related_to']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            if not file_exists:
+                writer.writeheader()
+
+            for ignored_tuple in ignored.itertuples():
+                if 'related_to' in ignored.columns:
+                    related_to_value = ignored_tuple['related_to']
+                else:
+                    related_to_value = ''
+
+                try:
+                    value = ignored_tuple['name']
+                    writer.writerow({'entity':value, 'related_to':related_to_value})
+                except UnicodeEncodeError:
+                    if self.debugging_mode:
+                        print("EntityRelatedness: problems in writing ", value, " or " + related_to_value +" into the file")
+                    continue
+
+                if self.debugging_mode:
+                    print('Entity relatedness : Ignored data: ' + value)
+
     """
     It stores the results of the Entity relatedness task.
     
