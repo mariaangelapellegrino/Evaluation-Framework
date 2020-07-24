@@ -131,7 +131,7 @@ class ClassificationManager (AbstractTaskManager):
     scores: dictionary with the model_name as key and the list of all the results returned by the model for the same model_name
     """
     def storeResults(self, results_folder, gold_standard_filename, scores):
-        with open(results_folder+'/classification_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
+        with open(results_folder+'/classification_'+gold_standard_filename+'_results.csv') as csv_file:
             fieldnames = ['task_name', 'gold_standard_file', 'model_name', 'model_configuration', 'accuracy']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

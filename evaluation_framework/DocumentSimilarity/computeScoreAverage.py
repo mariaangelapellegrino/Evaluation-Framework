@@ -20,7 +20,7 @@ if __name__ == "__main__":
                     doc1, doc2 = doc2, doc1
                 combined[(doc1, doc2)].append(score)    
     
-    with open('data/LP50_averageScores.csv', "wb") as csv_file:
+    with open('data/LP50_averageScores.csv') as csv_file:
         fieldnames = ['doc1', 'doc2', 'average']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()

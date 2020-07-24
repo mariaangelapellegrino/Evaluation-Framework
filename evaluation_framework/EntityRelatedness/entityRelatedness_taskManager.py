@@ -114,7 +114,7 @@ class EntityRelatednessManager (AbstractTaskManager):
     scores: list of all the results returned by the model
     """
     def storeResults(self, results_folder, gold_standard_filename, scores):
-        with open(results_folder+'/entityRelatedness_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
+        with open(results_folder+'/entityRelatedness_'+gold_standard_filename+'_results.csv') as csv_file:
             fieldnames = ['task_name', 'gold_standard_file', 'entity_name', 'kendalltau_correlation', 'kendalltau_pvalue']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
