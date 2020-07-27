@@ -162,7 +162,7 @@ class ClassificationDataManager(DataManager):
         
         for row in gold.itertuples():
             try:
-                values = vector_group[row.name][0]
+                values = vector_group[base64.b32encode(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -238,7 +238,7 @@ class ClusteringDataManager(DataManager):
 
         for row in gold.itertuples():
             try:
-                values = vector_group[row.name][0]
+                values = vector_group[base64.b32encode(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -308,7 +308,7 @@ class DocumentSimilarityDataManager(DataManager):
         
         for row in entities.itertuples():
             try:
-                values = vector_group[row.name][0]
+                values = vector_group[base64.b32encode(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['doc'] = row.doc
@@ -317,7 +317,7 @@ class DocumentSimilarityDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(base64.b32decode(row.name))
+                ignored.append(row.name)
                 
         ignored_df = pd.DataFrame(ignored, columns = ['name'])
 
@@ -430,15 +430,14 @@ class EntityRelatednessDataManager(DataManager):
         
         for row in goldStandard_data.itertuples():
             try:
-                encoded_name = row.name
-                values = vector_group[encoded_name][0]
+                values = vector_group[base64.b32encode(row.name)][0]
                 
                 new_row = dict(zip(np.arange(vector_size), values))
-                new_row['name'] = encoded_name
+                new_row['name'] = row.name
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(base64.b32decode(encoded_name).decode('utf-8'))
+                ignored.append(row.name)
                             
         ignored_df = pd.DataFrame(ignored, columns=['name'])
 
@@ -508,7 +507,7 @@ class RegressionDataManager(DataManager):
         
         for row in gold.itertuples():
             try:
-                values = vector_group[row.name][0]
+                values = vector_group[base64.b32encode(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -579,21 +578,11 @@ class SemanticAnalogiesDataManager(DataManager):
             for line in f:
                 quadruplet = line.rstrip().split()
 
-                try:
-                    key_0 = base64.b32encode(quadruplet[0])
-                    key_1 = base64.b32encode(quadruplet[1])
-                    key_2 = base64.b32encode(quadruplet[2])
-                    key_3 = base64.b32encode(quadruplet[3])
-
-                    vector_group[key_0][0]
-                    vector_group[key_1][0]
-                    vector_group[key_2][0]
-                    vector_group[key_3][0]
-
-                    data.append([key_0, key_1, key_2, key_3])
-                except KeyError:
+                if all(base64.b32encode(x) in vector_group for x in quadruplet):
+                    data.append(quadruplet)
+                else:
                     ignored.append(quadruplet)
-        
+
         return data, ignored
 
     """
@@ -608,7 +597,7 @@ class SemanticAnalogiesDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        words = [key for key in vector_group.keys()]
+        words = [base64.b32decode(key) for key in vector_group.keys()]
         vocab = {w: idx for idx, w in enumerate(words)}
 
         return vocab
@@ -625,16 +614,12 @@ class SemanticAnalogiesDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        words = [key for key in vector_group.keys()]
-        vocab = {w: idx for idx, w in enumerate(words)}
-
-        W = np.zeros((len(words), vec_size))
+        W = np.zeros((len(vocab), vec_size))
         
-        for key in words:
-            W[vocab[key], :] = vector_group[key][0]
+        for word, idx in vocab.items():
+            W[idx, :] = vector_group[base64.b32decode(word)][0]
 
         # normalize each word vector to unit length
-        W_norm = np.zeros(W.shape)
         d = (np.sum(W ** 2, 1) ** (0.5))
         W_norm = (W.T / d).T
 
