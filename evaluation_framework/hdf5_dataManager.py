@@ -154,7 +154,7 @@ class ClassificationDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
         
-        fields = ['DBpedia_URI15', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
 
@@ -174,7 +174,7 @@ class ClassificationDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(row.DBpedia_URI15)
+                ignored.append(row['name'])
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
@@ -230,7 +230,7 @@ class ClusteringDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        fields = ['DBpedia_URI', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
         
@@ -250,7 +250,7 @@ class ClusteringDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored = ignored.append({'name':row.DBpedia_URI, 'cluster':row.cluster}, ignore_index=True)
+                ignored = ignored.append({'name': row['name'], 'cluster': row['cluster']}, ignore_index=True)
 
         return merged, ignored    
     
@@ -498,7 +498,7 @@ class RegressionDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
         
-        fields = ['DBpedia_URI15', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
         
@@ -518,7 +518,7 @@ class RegressionDataManager(DataManager):
 
                 merged = merged.append(new_row, ignore_index=True)
             except KeyError:
-                ignored.append(row.DBpedia_URI15)
+                ignored.append(row['name'])
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
