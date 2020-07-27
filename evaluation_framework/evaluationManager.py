@@ -1,4 +1,5 @@
 import os
+import traceback
 import time
 import datetime
 from multiprocessing import Process
@@ -71,8 +72,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     classification_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task])
                     print('Classification finished')
-                except Exception as e:
-                    self.log_file.write("Classification: " + str(e))
+                except Exception:
+                    self.log_file.write("Classification: " + traceback.format_exc())
                 else:
                     end_time = time.time()
                     seconds = end_time-self.start_time
@@ -89,8 +90,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     regression_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task])
                     print('Regression finished')
-                except Exception as e:
-                    self.log_file.write("Regression:" + str(e))
+                except Exception:
+                    self.log_file.write("Regression:" + traceback.format_exc())
                 else:
                     end_time = time.time()
                     self.log_file.write("Regression execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
@@ -101,8 +102,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     clustering_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task])
                     print('Clustering finished')
-                except Exception as e:
-                    self.log_file.write("Clustering: " + str(e))
+                except Exception:
+                    self.log_file.write("Clustering: " + traceback.format_exc())
                 else:
                     end_time = time.time()
                     self.log_file.write("Clustering execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
@@ -113,8 +114,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     doc_similarity_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task])
                     print('Document similarity finished')
-                except Exception as e:
-                    self.log_file.write(str(e))
+                except Exception:
+                    self.log_file.write(traceback.format_exc())
                 else:
                     end_time = time.time()
                     self.log_file.write("Document Similarity execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
@@ -125,8 +126,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     entity_Relatedness_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)    
                     self.log_file.write(log_dictionary[task]) 
                     print('Entity Relatedness finished')
-                except Exception as e:
-                    self.log_file.write(str(e))
+                except Exception:
+                    self.log_file.write(traceback.format_exc())
                 else:
                     end_time = time.time()
                     self.log_file.write("Entity Relatedness execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
@@ -137,8 +138,8 @@ class EvaluationManager(AbstractEvaluationManager):
                     semantic_Analogies_evaluator.evaluate(self.vectors, self.vector_filename, self.vector_size, self.result_directory, log_dictionary, scores_dictionary)
                     self.log_file.write(log_dictionary[task]) 
                     print('Semantic Analogies finished')
-                except Exception as e:
-                    self.log_file.write(str(e))
+                except Exception:
+                    self.log_file.write(traceback.format_exc())
                 else:
                     end_time = time.time()
                     self.log_file.write("Semantic Analogies execution time: " + str(round(end_time-self.start_time, 2)) + " seconds\n")
