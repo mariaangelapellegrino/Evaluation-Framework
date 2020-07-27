@@ -165,16 +165,17 @@ class ClassificationDataManager(DataManager):
         ignored = list()
         
         for row in gold.itertuples():
-            try:
-                values = vector_group[self._to_hdf5_key(row.name)][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['label'] = row.label
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(row['name'])
+            else:
+                ignored.append(row.name)
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
@@ -241,16 +242,17 @@ class ClusteringDataManager(DataManager):
         ignored = pd.DataFrame(columns= ['name', 'cluster'])
 
         for row in gold.itertuples():
-            try:
-                values = vector_group[self._to_hdf5_key(row.name)][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['cluster'] = row.cluster
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored = ignored.append({'name': row['name'], 'cluster': row['cluster']}, ignore_index=True)
+            else:
+                ignored.append({'name': row.name, 'cluster': row.cluster}, ignore_index=True)
 
         return merged, ignored    
     
@@ -311,18 +313,19 @@ class DocumentSimilarityDataManager(DataManager):
         entities = self.get_entities(goldStandard_filename)
         
         for row in entities.itertuples():
-            try:
-                values = vector_group[self._to_hdf5_key(row.name)][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['doc'] = row.doc
                 new_row['name'] = row.name
                 new_row['weight'] = row.weight
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
+            else:
                 ignored.append(row.name)
-                
+
         ignored_df = pd.DataFrame(ignored, columns = ['name'])
 
         return merged, ignored_df
@@ -432,16 +435,17 @@ class EntityRelatednessDataManager(DataManager):
             goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
         
         for row in goldStandard_data.itertuples():
-            try:
-                values = vector_group[self._to_hdf5_key(row.name)][0]
-                
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
+            else:
                 ignored.append(row.name)
-                            
+
         ignored_df = pd.DataFrame(ignored, columns=['name'])
 
         return merged, ignored_df
@@ -509,16 +513,17 @@ class RegressionDataManager(DataManager):
         ignored = list()
         
         for row in gold.itertuples():
-            try:
-                values = vector_group[self._to_hdf5_key(row.name)][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['label'] = row.label
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(row['name'])
+            else:
+                ignored.append(row.name)
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
@@ -620,7 +625,7 @@ class SemanticAnalogiesDataManager(DataManager):
         W = np.zeros((len(vocab), vec_size))
         
         for word, idx in vocab.items():
-            W[idx, :] = vector_group[base64.b32decode(word).decode('utf-8')][0]
+            W[idx, :] = vector_group[self._to_hdf5_key(word)][0]
 
         # normalize each word vector to unit length
         d = (np.sum(W ** 2, 1) ** (0.5))
