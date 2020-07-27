@@ -109,6 +109,10 @@ class DataManager(AbstractDataManager):
     """
     def add_task_dataManager(self, taskName, dataManager):
         self.dict[taskName] = dataManager
+
+    def _to_hdf5_key(self, key: str) -> bytes:
+        """Returns an b32-encoded version of the key which is compatible with the hdf5 format."""
+        return base64.b32encode(key.encode('utf-8'))
     
 """
 DataManager attached to the Classification task
@@ -162,7 +166,7 @@ class ClassificationDataManager(DataManager):
         
         for row in gold.itertuples():
             try:
-                values = vector_group[base64.b32encode(row.name)][0]
+                values = vector_group[self._to_hdf5_key(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -238,7 +242,7 @@ class ClusteringDataManager(DataManager):
 
         for row in gold.itertuples():
             try:
-                values = vector_group[base64.b32encode(row.name)][0]
+                values = vector_group[self._to_hdf5_key(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -308,7 +312,7 @@ class DocumentSimilarityDataManager(DataManager):
         
         for row in entities.itertuples():
             try:
-                values = vector_group[base64.b32encode(row.name)][0]
+                values = vector_group[self._to_hdf5_key(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['doc'] = row.doc
@@ -342,7 +346,7 @@ class DocumentSimilarityDataManager(DataManager):
                 doc_list.append(i)
                 
                 key = annotation['entity']
-                entities_list.append(base64.b32encode(bytes(key)))
+                entities_list.append(key)
                 
                 weight_list.append(float(annotation['weight']))
 
@@ -387,18 +391,17 @@ class EntityRelatednessDataManager(DataManager):
 
         with open(filename) as f:
             for i, line in enumerate(f):
-                key = line.strip().encode('utf-8')
-                encodedKey = base64.b32encode(key)
+                key = line.strip()
 
                 if i%21 == 0:
-                    main_entitiy = encodedKey
+                    main_entity = key
                     related_entities = []
 
                 else :
-                    related_entities.append(encodedKey)
+                    related_entities.append(key)
 
                 if i%21 == 20:
-                    entities_groups[main_entitiy] = related_entities
+                    entities_groups[main_entity] = related_entities
 
         return entities_groups
 
@@ -430,7 +433,7 @@ class EntityRelatednessDataManager(DataManager):
         
         for row in goldStandard_data.itertuples():
             try:
-                values = vector_group[base64.b32encode(row.name)][0]
+                values = vector_group[self._to_hdf5_key(row.name)][0]
                 
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -507,7 +510,7 @@ class RegressionDataManager(DataManager):
         
         for row in gold.itertuples():
             try:
-                values = vector_group[base64.b32encode(row.name)][0]
+                values = vector_group[self._to_hdf5_key(row.name)][0]
                         
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
@@ -578,7 +581,7 @@ class SemanticAnalogiesDataManager(DataManager):
             for line in f:
                 quadruplet = line.rstrip().split()
 
-                if all(base64.b32encode(x) in vector_group for x in quadruplet):
+                if all(self._to_hdf5_key(x) in vector_group for x in quadruplet):
                     data.append(quadruplet)
                 else:
                     ignored.append(quadruplet)
@@ -597,7 +600,7 @@ class SemanticAnalogiesDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        words = [base64.b32decode(key) for key in vector_group.keys()]
+        words = [base64.b32decode(key).decode('utf-8') for key in vector_group.keys()]
         vocab = {w: idx for idx, w in enumerate(words)}
 
         return vocab
@@ -617,10 +620,10 @@ class SemanticAnalogiesDataManager(DataManager):
         W = np.zeros((len(vocab), vec_size))
         
         for word, idx in vocab.items():
-            W[idx, :] = vector_group[base64.b32decode(word)][0]
+            W[idx, :] = vector_group[base64.b32decode(word).decode('utf-8')][0]
 
         # normalize each word vector to unit length
         d = (np.sum(W ** 2, 1) ** (0.5))
         W_norm = (W.T / d).T
 
-        return W_norm        
+        return W_norm
