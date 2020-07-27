@@ -144,12 +144,12 @@ class ClassificationDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'label' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15_Base32', column_score = 'label'):
+        column_key ='DBpedia_URI15', column_score = 'label'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
@@ -220,12 +220,12 @@ class ClusteringDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'cluster' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI_Base32', column_score = 'cluster'): 
+        column_key ='DBpedia_URI', column_score = 'cluster'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
@@ -488,12 +488,12 @@ class RegressionDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'rating' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15_Base32', column_score = 'rating'):
+        column_key ='DBpedia_URI15', column_score = 'rating'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
