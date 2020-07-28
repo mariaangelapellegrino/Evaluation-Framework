@@ -341,7 +341,7 @@ class EvaluationManager(AbstractEvaluationManager):
                                 if task==Regression_evaluator.get_task_name():
                                     sorted_metric_results = sorted(to_sort)  
 
-                                ranking = sorted_metric_results.index(value_to_find) if value_to_find is not math.nan else -1
+                                ranking = sorted_metric_results.index(value_to_find) if not math.isnan(value_to_find) else -1
 
                                 rating_dataframe = rating_dataframe.append({'task_name':task,
                                                          'gold_standard_file':gold_standard_file,
