@@ -5,6 +5,7 @@ import datetime
 from multiprocessing import Process
 import multiprocessing
 import pandas as pd
+import numpy as np
 
 from evaluation_framework.abstract_evaluationManager import AbstractEvaluationManager
 
@@ -339,8 +340,8 @@ class EvaluationManager(AbstractEvaluationManager):
                                 sorted_metric_results = sorted(to_sort, reverse = True)
                                 if task==Regression_evaluator.get_task_name():
                                     sorted_metric_results = sorted(to_sort)  
-                                    
-                                ranking = sorted_metric_results.index(value_to_find)
+
+                                ranking = sorted_metric_results.index(value_to_find) if value_to_find is not np.nan else -1
 
                                 rating_dataframe = rating_dataframe.append({'task_name':task,
                                                          'gold_standard_file':gold_standard_file,
