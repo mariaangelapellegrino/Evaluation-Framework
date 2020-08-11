@@ -2,7 +2,6 @@
 
 import pandas as pd
 import json
-import codecs
 import numpy as np
 import base64
 import h5py
@@ -110,6 +109,10 @@ class DataManager(AbstractDataManager):
     """
     def add_task_dataManager(self, taskName, dataManager):
         self.dict[taskName] = dataManager
+
+    def _to_hdf5_key(self, key: str) -> bytes:
+        """Returns an b32-encoded version of the key which is compatible with the hdf5 format."""
+        return base64.b32encode(key.encode('utf-8'))
     
 """
 DataManager attached to the Classification task
@@ -141,17 +144,17 @@ class ClassificationDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'label' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15_Base32', column_score = 'label'):
+        column_key ='DBpedia_URI15', column_score = 'label'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
         
-        fields = ['DBpedia_URI15', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
 
@@ -162,16 +165,17 @@ class ClassificationDataManager(DataManager):
         ignored = list()
         
         for row in gold.itertuples():
-            try:
-                values = vector_group[row.name][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['label'] = row.label
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(row.DBpedia_URI15)
+            else:
+                ignored.append(row.name)
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
@@ -217,17 +221,17 @@ class ClusteringDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'cluster' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI_Base32', column_score = 'cluster'): 
+        column_key ='DBpedia_URI', column_score = 'cluster'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        fields = ['DBpedia_URI', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
         
@@ -238,16 +242,17 @@ class ClusteringDataManager(DataManager):
         ignored = pd.DataFrame(columns= ['name', 'cluster'])
 
         for row in gold.itertuples():
-            try:
-                values = vector_group[row.name][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['cluster'] = row.cluster
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored = ignored.append({'name':row.DBpedia_URI, 'cluster':row.cluster}, ignore_index=True)
+            else:
+                ignored.append({'name': row.name, 'cluster': row.cluster}, ignore_index=True)
 
         return merged, ignored    
     
@@ -308,18 +313,19 @@ class DocumentSimilarityDataManager(DataManager):
         entities = self.get_entities(goldStandard_filename)
         
         for row in entities.itertuples():
-            try:
-                values = vector_group[row.name][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['doc'] = row.doc
                 new_row['name'] = row.name
                 new_row['weight'] = row.weight
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(base64.b32decode(row.name))
-                
+            else:
+                ignored.append(row.name)
+
         ignored_df = pd.DataFrame(ignored, columns = ['name'])
 
         return merged, ignored_df
@@ -343,7 +349,7 @@ class DocumentSimilarityDataManager(DataManager):
                 doc_list.append(i)
                 
                 key = annotation['entity']
-                entities_list.append(base64.b32encode(bytes(key)))
+                entities_list.append(key)
                 
                 weight_list.append(float(annotation['weight']))
 
@@ -386,21 +392,19 @@ class EntityRelatednessDataManager(DataManager):
         entities_groups = {}
         related_entities = []
 
-        f = codecs.open(filename, 'r', 'utf-8')
+        with open(filename) as f:
+            for i, line in enumerate(f):
+                key = line.strip()
 
-        for i, line in enumerate(f):
-            key = line.strip().encode('utf-8')
-            encodedKey = base64.b32encode(key)
- 
-            if i%21 == 0:           
-                main_entitiy = encodedKey
-                related_entities = []
+                if i%21 == 0:
+                    main_entity = key
+                    related_entities = []
 
-            else :
-                related_entities.append(encodedKey)    
-                
-            if i%21 == 20:
-                entities_groups[main_entitiy] = related_entities
+                else :
+                    related_entities.append(key)
+
+                if i%21 == 20:
+                    entities_groups[main_entity] = related_entities
 
         return entities_groups
 
@@ -428,20 +432,20 @@ class EntityRelatednessDataManager(DataManager):
         
         if goldStandard_data is None:
             entities = self.read_file(goldStandard_filename)
-            goldStandard_data = pd.DataFrame({'name':entities.keys()})
+            goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
         
         for row in goldStandard_data.itertuples():
-            try:
-                encoded_name = row.name
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
                 values = vector_group[encoded_name][0]
-                
+
                 new_row = dict(zip(np.arange(vector_size), values))
-                new_row['name'] = encoded_name
+                new_row['name'] = row.name
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(base64.b32decode(encoded_name).decode('utf-8'))
-                            
+            else:
+                ignored.append(row.name)
+
         ignored_df = pd.DataFrame(ignored, columns=['name'])
 
         return merged, ignored_df
@@ -488,17 +492,17 @@ class RegressionDataManager(DataManager):
     vector_size: size of the vectors
     goldStandard_filename: path of the dataset used as gold standard
     goldStandard_data: dataframe containing the dataset content
-    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15_Base32' according to the provided datasets.
+    column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'rating' according to the provide datasets.
     """
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
         goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15_Base32', column_score = 'rating'):
+        column_key ='DBpedia_URI15', column_score = 'rating'):
         
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
         
-        fields = ['DBpedia_URI15', column_key, column_score]
+        fields = [column_key, column_score]
         
         gold = self.read_file(goldStandard_filename, fields)
         
@@ -509,16 +513,17 @@ class RegressionDataManager(DataManager):
         ignored = list()
         
         for row in gold.itertuples():
-            try:
-                values = vector_group[row.name][0]
-                        
+            encoded_name = self._to_hdf5_key(row.name)
+            if encoded_name in vector_group:
+                values = vector_group[encoded_name][0]
+
                 new_row = dict(zip(np.arange(vector_size), values))
                 new_row['name'] = row.name
                 new_row['label'] = row.label
 
                 merged = merged.append(new_row, ignore_index=True)
-            except KeyError:
-                ignored.append(row.DBpedia_URI15)
+            else:
+                ignored.append(row.name)
 
         ignored_df = pd.DataFrame(ignored, columns=['name'])
         return merged, ignored_df
@@ -581,21 +586,11 @@ class SemanticAnalogiesDataManager(DataManager):
             for line in f:
                 quadruplet = line.rstrip().split()
 
-                try:
-                    key_0 = base64.b32encode(quadruplet[0])
-                    key_1 = base64.b32encode(quadruplet[1])
-                    key_2 = base64.b32encode(quadruplet[2])
-                    key_3 = base64.b32encode(quadruplet[3])
-
-                    vector_group[key_0][0]
-                    vector_group[key_1][0]
-                    vector_group[key_2][0]
-                    vector_group[key_3][0]
-
-                    data.append([key_0, key_1, key_2, key_3])
-                except KeyError:
+                if all(self._to_hdf5_key(x) in vector_group for x in quadruplet):
+                    data.append(quadruplet)
+                else:
                     ignored.append(quadruplet)
-        
+
         return data, ignored
 
     """
@@ -610,7 +605,7 @@ class SemanticAnalogiesDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        words = [key for key in vector_group.keys()]
+        words = [base64.b32decode(key).decode('utf-8') for key in vector_group.keys()]
         vocab = {w: idx for idx, w in enumerate(words)}
 
         return vocab
@@ -627,17 +622,13 @@ class SemanticAnalogiesDataManager(DataManager):
         vector_file = h5py.File(vector_filename, 'r')
         vector_group = vector_file["Vectors"]
 
-        words = [key for key in vector_group.keys()]
-        vocab = {w: idx for idx, w in enumerate(words)}
-
-        W = np.zeros((len(words), vec_size))
+        W = np.zeros((len(vocab), vec_size))
         
-        for key in words:
-            W[vocab[key], :] = vector_group[key][0]
+        for word, idx in vocab.items():
+            W[idx, :] = vector_group[self._to_hdf5_key(word)][0]
 
         # normalize each word vector to unit length
-        W_norm = np.zeros(W.shape)
         d = (np.sum(W ** 2, 1) ** (0.5))
         W_norm = (W.T / d).T
 
-        return W_norm        
+        return W_norm

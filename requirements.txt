@@ -1,7 +1,6 @@
-unicodecsv==0.14.1
-scikit-learn==0.19.2
-scipy==1.1.0
-h5py==2.8.0
-numpy==1.14.0
-pandas==0.22.0
+scikit-learn==0.23.1
+scipy==1.5.1
+h5py==2.10.0
+numpy==1.19.1
+pandas==1.0.5
 pathlib2

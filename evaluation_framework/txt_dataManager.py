@@ -1,6 +1,5 @@
 import pandas as pd
 import json
-import codecs
 import numpy as np
 from evaluation_framework.abstract_dataManager import AbstractDataManager
 
@@ -295,20 +294,19 @@ class EntityRelatednessDataManager(DataManager):
         entities_groups = {}
         related_entities = []
 
-        f = codecs.open(filename, 'r', 'utf-8')
+        with open(filename) as f:
+            for i, line in enumerate(f):
+                key = line.rstrip().lstrip()
 
-        for i, line in enumerate(f):
-            key = line.rstrip().lstrip()
- 
-            if i%21 == 0:           
-                main_entitiy = key
-                related_entities = []
+                if i%21 == 0:
+                    main_entitiy = key
+                    related_entities = []
 
-            else :
-                related_entities.append(key)    
-                
-            if i%21 == 20:
-                entities_groups[main_entitiy] = related_entities
+                else :
+                    related_entities.append(key)
+
+                if i%21 == 20:
+                    entities_groups[main_entitiy] = related_entities
 
         return entities_groups
 
@@ -330,7 +328,7 @@ class EntityRelatednessDataManager(DataManager):
         
         if goldStandard_data is None:
             entities = self.read_file(goldStandard_filename)
-            goldStandard_data = pd.DataFrame({'name':entities.keys()})
+            goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
         
         merged = pd.merge(goldStandard_data, vectors, on='name', how='inner')
         outputLeftMerge = pd.merge(goldStandard_data, vectors, on='name', how='outer', indicator=True)
@@ -427,9 +425,9 @@ class SemanticAnalogiesDataManager(DataManager):
         vocab = self.create_vocab(vectors, vector_filename, vector_size)
         
         full_data = []
-        file_input_stream = codecs.open(goldStandard_filename, 'r', 'utf-8')
-        for line in file_input_stream:
-            full_data.append(line.rstrip().split())
+        with open(goldStandard_filename) as f:
+            for line in f:
+                full_data.append(line.rstrip().split())
 
         data = [x for x in full_data if all(word in vocab for word in x)]
         

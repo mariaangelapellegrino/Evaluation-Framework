@@ -1,11 +1,11 @@
 from collections import defaultdict
-from clustering_model import ClusteringModel as Model
 import csv
 import os
 import pandas as pd
 import sys
 from numpy import mean
 
+from evaluation_framework.Clustering.clustering_model import ClusteringModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = 'Clustering'
@@ -113,12 +113,10 @@ class ClusteringManager (AbstractTaskManager):
         if self.debugging_mode:
             print('Clustering: Ignored data : ' + str(len(ignored)))
 
-        file_ignored = open(results_folder+'/clustering_'+gold_standard_filename+'_ignoredData.txt',"w") 
-        for ignored_tuple in ignored.itertuples():
-            if self.debugging_mode:
-                print('Clustering : Ignored data: ' + getattr(ignored_tuple,'name'))
-            file_ignored.write(getattr(ignored_tuple,'name').encode('utf-8')+'\n')
-        file_ignored.close()
+        ignored_filepath = results_folder+'/clustering_'+gold_standard_filename+'_ignoredData.txt'
+        ignored['name'].to_csv(ignored_filepath, index=False, header=False)
+        if self.debugging_mode:
+            print(f'Clustering : Ignored data: {ignored["name"].tolist()}')
     
     """
     It stores the results of the Clustering task.
@@ -134,7 +132,7 @@ class ClusteringManager (AbstractTaskManager):
         'adjusted_rand_index', 'adjusted_mutual_info_score', 
         'homogeneity_score', 'completeness_score', 'v_measure_score'] #'fowlkes_mallows_score', 
         
-        with open(results_folder+'/clustering_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
+        with open(results_folder+'/clustering_'+gold_standard_filename+'_results.csv', 'w') as csv_file:
             fieldnames = columns 
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

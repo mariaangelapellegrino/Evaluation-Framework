@@ -1,10 +1,9 @@
-from classification_model import ClassificationModel as Model
 import csv
 from collections import defaultdict
-import codecs
 import os
 import pandas as pd
 
+from evaluation_framework.Classification.classification_model import ClassificationModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 
@@ -118,18 +117,11 @@ class ClassificationManager (AbstractTaskManager):
     def storeIgnored(self, results_folder, gold_standard_filename, ignored):
         if self.debugging_mode:
             print('Classification : Ignored data: ' + str(len(ignored)))
-        
-        file_ignored = codecs.open(results_folder+'/classification_'+gold_standard_filename+'_ignoredData.txt',"w", 'utf-8') 
-        for ignored_tuple in ignored.itertuples():        
-            value = getattr(ignored_tuple,'name')
-            if self.debugging_mode:
-                print('Classification : Ignored data: ' + value.encode(encoding='UTF-8', errors='ignore'))
-            
-            if isinstance(value, str):
-                value = unicode(value, "utf-8").encode(encoding='UTF-8', errors='ignore')
-            file_ignored.write(value+'\n')
-        
-        file_ignored.close()  
+
+        ignored_filepath = results_folder+'/classification_'+gold_standard_filename+'_ignoredData.txt'
+        ignored['name'].to_csv(ignored_filepath, index=False, header=False)
+        if self.debugging_mode:
+            print(f'Classification : Ignored data: {ignored["name"].tolist()}')
 
     """
     It stores the results of the Classification task.
@@ -139,7 +131,7 @@ class ClassificationManager (AbstractTaskManager):
     scores: dictionary with the model_name as key and the list of all the results returned by the model for the same model_name
     """
     def storeResults(self, results_folder, gold_standard_filename, scores):
-        with open(results_folder+'/classification_'+gold_standard_filename+'_results.csv', "wb") as csv_file:
+        with open(results_folder+'/classification_'+gold_standard_filename+'_results.csv', 'w') as csv_file:
             fieldnames = ['task_name', 'gold_standard_file', 'model_name', 'model_configuration', 'accuracy']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()

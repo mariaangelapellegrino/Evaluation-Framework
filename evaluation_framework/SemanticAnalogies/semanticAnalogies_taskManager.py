@@ -1,7 +1,8 @@
 import csv
-from semanticAnalogies_model import SemanticAnalogiesModel as Model
 import os
 import pandas as pd
+
+from evaluation_framework.SemanticAnalogies.semanticAnalogies_model import SemanticAnalogiesModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
 from _collections import defaultdict
@@ -104,19 +105,11 @@ class SemanticAnalogiesManager (AbstractTaskManager):
             for ignored_quadruplet in ignored:
                 if self.debugging_mode:
                     print('Semantic analogies: Ignored quadruplet ' + str(ignored_quadruplet))
-                
-                entities = []
-                
-                for i in range(4):
-                    entity = ignored_quadruplet[i]
-                    if isinstance(entity, str):
-                        entity = unicode(entity, "utf-8")
-                    entities.append(entity.encode("utf-8"))
-                    
-                writer.writerow({'entity_1':entities[0], 
-                                 'entity_2':entities[1], 
-                                 'entity_3':entities[2], 
-                                 'entity_4':entities[3]})
+
+                writer.writerow({'entity_1': ignored_quadruplet[0],
+                                 'entity_2': ignored_quadruplet[1],
+                                 'entity_3': ignored_quadruplet[2],
+                                 'entity_4': ignored_quadruplet[3]})
     
     """
     It stores the results of the Semantic Analogies task.
@@ -126,7 +119,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
     scores: list of all the results returned by the model
     """   
     def storeResults(self, results_folder, scores):
-        with open(results_folder+'/semanticAnalogies_results.csv', 'wb') as file_result:
+        with open(results_folder+'/semanticAnalogies_results.csv', 'w') as file_result:
             fieldnames = ['task_name', 'gold_standard_file', 'top_k_value', 'right_answers', 'tot_answers', 'accuracy']
             writer = csv.DictWriter(file_result, fieldnames=fieldnames)
             writer.writeheader()
