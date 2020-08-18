@@ -69,7 +69,8 @@ class ClusteringManager (AbstractTaskManager):
             totalscores_element = defaultdict(list)
 
             data, ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, gold_standard_file)
-            
+            data_coverage = len(data) / (len(data) + len(ignored))
+
             self.storeIgnored(results_folder, gold_standard_filename, ignored)
 
             if data.size == 0:
@@ -83,6 +84,7 @@ class ClusteringManager (AbstractTaskManager):
                     try:                    
                         result = model.train(data, ignored)
                         result['gold_standard_file'] = gold_standard_filename
+                        result['coverage'] = data_coverage
                         scores[model_name].append(result)
                         totalscores_element[model_name].append(result) 
                     except Exception as e:
@@ -127,7 +129,7 @@ class ClusteringManager (AbstractTaskManager):
     """
     def storeResults(self, results_folder, gold_standard_filename, scores):
         
-        columns = ['task_name', 'gold_standard_file', 
+        columns = ['task_name', 'gold_standard_file', 'coverage',
         'model_name', 'model_configuration', 'num_clusters', 
         'adjusted_rand_index', 'adjusted_mutual_info_score', 
         'homogeneity_score', 'completeness_score', 'v_measure_score'] #'fowlkes_mallows_score', 
@@ -154,6 +156,7 @@ class ClusteringManager (AbstractTaskManager):
         data_dict = dict()
         data_dict['task_name'] = list()
         data_dict['gold_standard_file'] = list()
+        data_dict['coverage'] = list()
         data_dict['model'] = list()
         data_dict['model_configuration'] = list()
         data_dict['metric'] = list()
@@ -176,12 +179,13 @@ class ClusteringManager (AbstractTaskManager):
                         
                     data_dict['task_name'].append(score['task_name'])
                     data_dict['gold_standard_file'].append(score['gold_standard_file'])
+                    data_dict['coverage'].append(score['coverage'])
                     data_dict['model'].append(score['model_name'])
                     data_dict['model_configuration'].append(configuration)
                     data_dict['metric'].append(metric)
                     data_dict['score_value'].append(metric_score)
 
-        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
+        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'coverage', 'model', 'model_configuration', 'metric', 'score_value'])
         return results_df
     
     """

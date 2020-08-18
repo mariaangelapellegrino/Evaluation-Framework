@@ -57,6 +57,7 @@ class EntityRelatednessManager (AbstractTaskManager):
 
         left_entities_df = pd.DataFrame({'name': list(groups.keys())})
         left_merged, left_ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, gold_standard_file, left_entities_df)
+        data_coverage = len(left_merged) / (len(left_merged) + len(left_ignored))
 
         self.storeIgnored(results_folder, gold_standard_filename, left_ignored)
 
@@ -82,6 +83,7 @@ class EntityRelatednessManager (AbstractTaskManager):
             
             for score in scores:
                 score['gold_standard_file'] = gold_standard_filename
+                score['coverage'] = data_coverage
                 
             self.storeResults(results_folder, gold_standard_filename, scores)
 
@@ -136,7 +138,7 @@ class EntityRelatednessManager (AbstractTaskManager):
     """
     def storeResults(self, results_folder, gold_standard_filename, scores):
         with open(results_folder+'/entityRelatedness_'+gold_standard_filename+'_results.csv', 'w') as csv_file:
-            fieldnames = ['task_name', 'gold_standard_file', 'entity_name', 'kendalltau_correlation', 'kendalltau_pvalue']
+            fieldnames = ['task_name', 'gold_standard_file', 'coverage', 'entity_name', 'kendalltau_correlation', 'kendalltau_pvalue']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             writer.writeheader()
             
@@ -154,6 +156,7 @@ class EntityRelatednessManager (AbstractTaskManager):
         data_dict = dict()
         data_dict['task_name'] = list()
         data_dict['gold_standard_file'] = list()
+        data_dict['coverage'] = list()
         data_dict['model'] = list()
         data_dict['model_configuration'] = list()
         data_dict['metric'] = list()
@@ -161,7 +164,7 @@ class EntityRelatednessManager (AbstractTaskManager):
         
         metrics = self.get_metric_list()
                 
-        for metric in metrics: 
+        for metric in metrics:
             metric_scores = list()
             for score in scores:
                 metric_scores.append(score[metric])
@@ -171,12 +174,13 @@ class EntityRelatednessManager (AbstractTaskManager):
             
             data_dict['task_name'].append(score['task_name'])
             data_dict['gold_standard_file'].append(score['gold_standard_file'])
+            data_dict['coverage'].append(score['coverage'])
             data_dict['model'].append('-')
             data_dict['model_configuration'].append('-')
             data_dict['metric'].append(metric)
             data_dict['score_value'].append(metric_score)
         
-        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
+        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'coverage', 'model', 'model_configuration', 'metric', 'score_value'])
         return results_df
     
     @staticmethod
