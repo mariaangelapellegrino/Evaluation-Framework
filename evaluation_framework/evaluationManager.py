@@ -259,20 +259,23 @@ class EvaluationManager(AbstractEvaluationManager):
     scores_dictionary: dictionary of the scores of all the tasks
     """
     def compare_with(self, compare_with, scores_dictionary):   
-        #read data for the comparison             
+        # read data for the comparison
         script_dir = os.path.dirname(__file__)
 
         curr_dir = os.getcwd()
         rel_path = curr_dir+'/comparison.csv'
+
+        comparison_columns = ['test_name', 'task_name', 'gold_standard_file', 'coverage', 'model', 'model_configuration', 'metric', 'score_value']
+        ranking_columns = ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'ranking', 'absolute_total', 'relative_total']
         
         self.comparison_filename = os.path.join(script_dir, rel_path)
         exists = os.path.isfile(self.comparison_filename)
         if exists:
-            results_df = pd.read_csv(self.comparison_filename, "\s+",  names=['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'],  encoding='utf-8', header=0)
+            results_df = pd.read_csv(self.comparison_filename, "\s+",  names=comparison_columns,  encoding='utf-8', header=0)
         else:
-            results_df = pd.DataFrame(columns=['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
+            results_df = pd.DataFrame(columns=comparison_columns)
             
-        #define the test name
+        # define the test name
         partial_test_name = os.path.splitext(self.vector_filename)[0]+'_'+str(self.vector_size)+'_'+self.similarity_metric+'_'+str(self.top_k)
         test_name = partial_test_name + '_1'     
             
@@ -285,19 +288,19 @@ class EvaluationManager(AbstractEvaluationManager):
             last_progressive = int(splitted_values[len(splitted_values)-1])
             test_name = partial_test_name + '_' + str(last_progressive+1)
         
-        #the score dictionary is converted into score dataframe and the stored results are updated
-        scores_dataframe = pd.DataFrame(columns=['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
+        # the score dictionary is converted into score dataframe and the stored results are updated
+        scores_dataframe = pd.DataFrame(columns=comparison_columns)
         for (task, current_score_dataframe) in scores_dictionary.items():
             scores_dataframe = pd.concat([scores_dataframe, current_score_dataframe])
         scores_dataframe['test_name'] = test_name
         
         new_results_df = pd.concat([results_df, scores_dataframe])
         
-        new_results_df.to_csv(self.comparison_filename, sep=' ', columns= ['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value' ], index = False)  
+        new_results_df.to_csv(self.comparison_filename, sep=' ', columns=comparison_columns, index = False)
 
-        #start the comparison
-        effective_comparison_df = pd.DataFrame(columns = ['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
-        rating_dataframe = pd.DataFrame(columns=['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'ranking', 'absolute_total', 'relative_total'])
+        # start the comparison
+        effective_comparison_df = pd.DataFrame(columns=comparison_columns)
+        rating_dataframe = pd.DataFrame(columns=ranking_columns)
 
         if compare_with == '_all':
             compare_with = test_names
@@ -352,6 +355,5 @@ class EvaluationManager(AbstractEvaluationManager):
                                                          'absolute_total':len(sorted_metric_results), 
                                                          'relative_total':len(set(sorted_metric_results))}, ignore_index=True)
 
-            effective_comparison_df.to_csv(self.result_directory+'/comparison_values.csv', sep=' ', columns= ['test_name', 'task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value' ], index=False)        
-            rating_dataframe.to_csv(self.result_directory+'/comparison_ranking.csv', sep=' ', columns= ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'ranking', 'absolute_total', 'relative_total' ], index=False)
-        
+            effective_comparison_df.to_csv(self.result_directory+'/comparison_values.csv', sep=' ', columns=comparison_columns, index=False)
+            rating_dataframe.to_csv(self.result_directory+'/comparison_ranking.csv', sep=' ', columns=ranking_columns, index=False)

@@ -64,6 +64,8 @@ class SemanticAnalogiesManager (AbstractTaskManager):
             gold_standard_file = str(Path(os.path.join(script_dir, rel_path)))
             
             data, ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, gold_standard_file)
+            data_coverage = len(data) / (len(data) + len(ignored))
+
             self.storeIgnored(results_folder, gold_standard_filename, ignored)
 
             if len(data) == 0:
@@ -75,6 +77,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
 
                 result = model.train(vocab, data, W_norm)
                 result['gold_standard_file'] = gold_standard_filename
+                result['coverage'] = data_coverage
                 scores.append(result)
 
                 totalscores[gold_standard_filename].append(result)
@@ -120,7 +123,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
     """   
     def storeResults(self, results_folder, scores):
         with open(results_folder+'/semanticAnalogies_results.csv', 'w') as file_result:
-            fieldnames = ['task_name', 'gold_standard_file', 'top_k_value', 'right_answers', 'tot_answers', 'accuracy']
+            fieldnames = ['task_name', 'gold_standard_file', 'coverage', 'top_k_value', 'right_answers', 'tot_answers', 'accuracy']
             writer = csv.DictWriter(file_result, fieldnames=fieldnames)
             writer.writeheader()
             for score in scores:
@@ -137,6 +140,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
         data_dict = dict()
         data_dict['task_name'] = list()
         data_dict['gold_standard_file'] = list()
+        data_dict['coverage'] = list()
         data_dict['model'] = list()
         data_dict['model_configuration'] = list()
         data_dict['metric'] = list()
@@ -155,12 +159,13 @@ class SemanticAnalogiesManager (AbstractTaskManager):
              
                 data_dict['task_name'].append(score['task_name'])
                 data_dict['gold_standard_file'].append(score['gold_standard_file'])
+                data_dict['coverage'].append(score['coverage'])
                 data_dict['model'].append('-')
                 data_dict['model_configuration'].append('-')
                 data_dict['metric'].append(metric)
                 data_dict['score_value'].append(metric_score)
         
-        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'model', 'model_configuration', 'metric', 'score_value'])
+        results_df = pd.DataFrame(data_dict, columns = ['task_name', 'gold_standard_file', 'coverage', 'model', 'model_configuration', 'metric', 'score_value'])
         return results_df
     
     """
@@ -168,7 +173,7 @@ class SemanticAnalogiesManager (AbstractTaskManager):
     """
     @staticmethod
     def get_gold_standard_file():
-        return ['capital_country_entities', 'all_capital_country_entities','currency_entities', 'city_state_entities']
+        return ['capital_country_entities', 'all_capital_country_entities', 'currency_entities', 'city_state_entities']
     
     """
     It returns the metrics used in the evaluation of the semantic analogies task.

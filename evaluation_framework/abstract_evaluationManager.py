@@ -56,5 +56,5 @@ class AbstractEvaluationManager():
     scores_dictionary: dictionary of the scores of all the tasks
     """
     @abstractmethod
-    def compare_with(self, compare_with):
+    def compare_with(self, compare_with, scores_dictionary):
         pass
