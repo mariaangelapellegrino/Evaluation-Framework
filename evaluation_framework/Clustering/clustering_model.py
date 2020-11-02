@@ -149,5 +149,5 @@ class ClusteringModel(AbstractModel):
         w = np.zeros((D, D), dtype=np.int64)
         for i in range(y_pred.size):
             w[y_pred[i], y_true[i]] += 1
-        row_indices, col_indices = linear_sum_assignment(w.max() - w, maximize=True)
+        row_indices, col_indices = linear_sum_assignment(w.max() - w)
         return float(sum([w[i, j] for i, j in zip(row_indices, col_indices)])) / y_pred.size
