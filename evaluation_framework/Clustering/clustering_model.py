@@ -1,6 +1,7 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 from sklearn.cluster import AgglomerativeClustering, DBSCAN, KMeans
+from scipy.optimize import linear_sum_assignment
 import numpy as np
 import pandas as pd
 from evaluation_framework.abstract_model import AbstractModel
@@ -102,12 +103,6 @@ class ClusteringModel(AbstractModel):
         adjusted_mutual_info_score = metrics.adjusted_mutual_info_score(trueLabels, labels)
         if self.debugging_mode:
             print(self.name + ' Adjusted mutual info score : ' + str(adjusted_mutual_info_score))
-
-        '''
-        fowlkes_mallows_score = metrics.fowlkes_mallows_score(trueLabels, labels) 
-        if self.debugging_mode:
-            print(self.name + ' Fowlkes_mallows_score : ' + str(fowlkes_mallows_score))
-        '''
             
         homogeneity_score = metrics.homogeneity_score(trueLabels, labels) 
         if self.debugging_mode:
@@ -121,9 +116,38 @@ class ClusteringModel(AbstractModel):
         if self.debugging_mode:
             print(self.name + ' V_measure_score : ' + str(v_measure_score))
 
-        return {'task_name':self.task_name, 'model_name':self.name, 'model_configuration':self.configuration, 'num_clusters' :n_clusters, 
-            'adjusted_rand_index':round(adjusted_rand_score, float_precision), 
-            'adjusted_mutual_info_score':round(adjusted_mutual_info_score, float_precision), 
-            'homogeneity_score':round(homogeneity_score, float_precision), 
-            'completeness_score':round(completeness_score,float_precision), 
-            'v_measure_score': round(v_measure_score,float_precision) }   #'fowlkes_mallows_score':fowlkes_mallows_score,        
+        normalized_mutual_info_score = metrics.normalized_mutual_info_score(trueLabels, labels)
+        if self.debugging_mode:
+            print(self.name + ' Normalized mutual info score : ' + str(normalized_mutual_info_score))
+
+        clustering_accuracy = self._compute_clustering_accuracy(trueLabels, labels)
+        if self.debugging_mode:
+            print(self.name + ' Clustering accuracy : ' + str(clustering_accuracy))
+
+        return {
+            'task_name': self.task_name,
+            'model_name': self.name,
+            'model_configuration': self.configuration,
+            'num_clusters': n_clusters,
+            'adjusted_rand_index': round(adjusted_rand_score, float_precision),
+            'adjusted_mutual_info_score': round(adjusted_mutual_info_score, float_precision),
+            'homogeneity_score': round(homogeneity_score, float_precision),
+            'completeness_score': round(completeness_score, float_precision),
+            'v_measure_score': round(v_measure_score, float_precision),
+            'normalized_mutual_info_score': round(normalized_mutual_info_score, float_precision),
+            'clustering_accuracy': round(clustering_accuracy, float_precision)
+        }
+
+    @staticmethod
+    def _compute_clustering_accuracy(y_true, y_pred) -> float:
+        """Compute the clustering accuracy (ACC) for an actual (y_true) and a predicted (y_pred) clustering."""
+        y_true = np.array(y_true, np.int64)
+        y_pred = np.array(y_pred, np.int64)
+        if y_pred.size != y_true.size:
+            raise Exception("True and predicated labels for clustering accuracy have to be of the same size.")
+        D = max(y_pred.max(), y_true.max()) + 1
+        w = np.zeros((D, D), dtype=np.int64)
+        for i in range(y_pred.size):
+            w[y_pred[i], y_true[i]] += 1
+        row_indices, col_indices = linear_sum_assignment(w.max() - w)
+        return float(sum([w[i, j] for i, j in zip(row_indices, col_indices)])) / y_pred.size
