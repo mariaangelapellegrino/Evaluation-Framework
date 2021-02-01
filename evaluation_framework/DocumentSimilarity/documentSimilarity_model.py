@@ -70,14 +70,12 @@ class DocumentSimilarityModel(AbstractModel):
 		for i in range(1, 51):
 			#1. extract entities of document i and j
 			set1 = self.extract_entities(i, data)
-			weight1 = set1['weight']
 			if len(set1)==0:
 				log_info += "Document Similarity: No entities in doc " + str(i) + "\n"
 				continue
 			
 			for j in range(i, 51):
 				set2 = self.extract_entities(j, data)
-				weight2 = set2['weight']
 				if len(set2)==0:
 					log_info += "Document Similarity: No entities in doc " + str(j) + "\n"
 					continue
@@ -88,24 +86,16 @@ class DocumentSimilarityModel(AbstractModel):
 				# similarity is interpreted as the opposite of distance 
 				distance_score1 = self.compute_distance(set1, set2)
 				distance_score2 = self.compute_distance(set2, set1)
+				if self.with_weights:  # if weights are enabled - multiply distances with weight matrix
+					distance_score1 = distance_score1 * np.outer(set1['weights'], set2['weights'])
+					distance_score2 = distance_score2 * np.outer(set2['weights'], set1['weights'])
 
-				#3. for each entity in d_i identify the maximum similarity to an entity in d2, and viceversa				
-				max_sim1 = list()
-				for k in range(len(distance_score1)):
-					weight = weight1.iloc[k]
-					max_sim1.append(self.compute_max_similarity(distance_score1[k, :], weight, weight2))
+				#3. for each entity in d_i identify the average similarity to an entity in d2, and viceversa
+				avg_sim1 = np.mean(distance_score1, axis=1)
+				avg_sim2 = np.mean(distance_score2, axis=1)
 
-			
-				max_sim2 = list()
-				for k in range(len(distance_score2)):
-					weight = weight2.iloc[k]
-					max_sim2.append(self.compute_max_similarity(distance_score2[k, :], weight, weight1))
-			
 				#4. calculate document similarity
-				sum_max_sim1 = sum(max_sim1)
-				sum_max_sim2 = sum(max_sim2)
-			
-				document_similarity = (sum_max_sim1+sum_max_sim2)/(len(set1)+len(set2))
+				document_similarity = (sum(avg_sim1) + sum(avg_sim2)) / (len(avg_sim1) + len(avg_sim2))
 
 				if self.debugging_mode:
 					print("Doc " + str(i) + " - Doc " + str(j) + " : distance similarity " + str(document_similarity))
@@ -166,21 +156,3 @@ class DocumentSimilarityModel(AbstractModel):
     """
 	def compute_distance(self, set1, set2):
 		return pairwise_distances(set1.iloc[:, 3:], set2.iloc[:, 3:], metric=self.distance_metric)
-	
-	"""
-	It computes the maximum similarity score in the distance list provided in input.
-	
-	distance_list: list of all the distances
-	weight1: weight returned by the annotator and attached to the the current main entity
-	weight_list: list of weights of all the entities in the second document
-	"""
-	def compute_max_similarity(self, distance_list, weight1, weight_list):
-		index_min_distance = np.argmin(distance_list)
-		min_distance_score = distance_list[index_min_distance]
-		similarity_score = 1 - min_distance_score
-
-		if self.with_weights:
-			weight2 = weight_list.iloc[index_min_distance]
-			similarity_score = similarity_score * (weight1 * weight2)
-
-		return similarity_score
