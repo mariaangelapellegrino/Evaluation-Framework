@@ -53,4 +53,28 @@ class AbstractDataManager():
     @abstractmethod
     def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size, 
         goldStandard_data, goldStandard_filename, column_key, column_score):
-        pass 
+        pass
+
+    """
+    It returns a vocabulary containing all the entities of the vector file provided in input.
+    It return a dictionary which key is the entity name and the value is a progressive value.
+    
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    """
+    @abstractmethod
+    def create_vocab(self, vectors, vector_filename, vector_size):
+        pass
+
+    """
+    It normalizes the vectors to unit length.
+    
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    vocab: dictionary which key is the entity name and the value is a progressive value
+    """
+    @abstractmethod
+    def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
+        pass

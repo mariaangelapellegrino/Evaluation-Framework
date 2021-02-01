@@ -2,7 +2,6 @@ import csv
 import os
 import pandas as pd
 from collections import defaultdict
-from numpy import mean
 
 from evaluation_framework.DocumentSimilarity.documentSimilarity_model import DocumentSimilarityModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
@@ -60,7 +59,11 @@ class DocumentSimilarityManager (AbstractTaskManager):
 		script_dir = os.path.dirname(__file__)
 		rel_path = "data/"+document_entities_filename
 		document_entities_file = os.path.join(script_dir, rel_path)
-				
+
+		vocab = self.data_manager.create_vocab(vectors, vector_file, vector_size)
+		W_norm = self.data_manager.normalize_vectors(vectors, vector_file, vector_size, vocab)
+		vectors.iloc[:, 1:] = W_norm
+
 		data, ignored = self.data_manager.intersect_vectors_goldStandard(vectors, vector_file, vector_size, document_entities_file)
 		data_coverage = len(data) / (len(data) + len(ignored))
 

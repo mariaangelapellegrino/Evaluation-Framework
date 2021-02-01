@@ -105,6 +105,34 @@ class DataManager(AbstractDataManager):
     """ 
     def add_task_dataManager(self, taskName, dataManager):
         self.dict[taskName] = dataManager
+
+    """
+    It returns a vocabulary containing all the entities of the vector file provided in input.
+    It return a dictionary which key is the entity name and the value is a progressive value.
+    
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    """
+    def create_vocab(self, vectors, vector_filename, vector_size):
+        words = vectors['name']
+        vocab = {w: idx for idx, w in enumerate(words)}
+
+        return vocab
+
+    """
+    It normalizes the vectors to unit length.
+    
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    vocab: dictionary which key is the entity name and the value is a progressive value
+    """
+    def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
+        W = vectors.iloc[:, 1:].to_numpy()
+        d = np.sqrt(np.sum(W ** 2, axis=1))
+        return (W.T / d).T
+
     
 """
 DataManager attached to the Classification task

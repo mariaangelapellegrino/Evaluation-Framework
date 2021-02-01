@@ -12,8 +12,8 @@ Model of the Document similarity task
 """
 class DocumentSimilarityModel(AbstractModel):
 	"""
-    It initialize the model of the classification task
-    
+	It initialize the model of the classification task
+
     task_name: name of the task
     distance_metric: distance metric used to compute the similarity score
     with_weights: {TRUE, FALSE} if the evaluation metric should consider the weights provided by the annotator or not
@@ -84,15 +84,15 @@ class DocumentSimilarityModel(AbstractModel):
 				
 				#2. compute the similarity for each pair of entities in d_i and d_j
 				# similarity is interpreted as the opposite of distance 
-				distance_score1 = self.compute_distance(set1, set2)
-				distance_score2 = self.compute_distance(set2, set1)
+				similarity_score1 = self.compute_similarity(set1, set2)
+				similarity_score2 = self.compute_similarity(set2, set1)
 				if self.with_weights:  # if weights are enabled - multiply distances with weight matrix
-					distance_score1 = distance_score1 * np.outer(set1['weights'], set2['weights'])
-					distance_score2 = distance_score2 * np.outer(set2['weights'], set1['weights'])
+					similarity_score1 = similarity_score1 * np.outer(set1['weight'], set2['weight'])
+					similarity_score2 = similarity_score2 * np.outer(set2['weight'], set1['weight'])
 
 				#3. for each entity in d_i identify the average similarity to an entity in d2, and viceversa
-				avg_sim1 = np.mean(distance_score1, axis=1)
-				avg_sim2 = np.mean(distance_score2, axis=1)
+				avg_sim1 = np.mean(similarity_score1, axis=1)
+				avg_sim2 = np.mean(similarity_score2, axis=1)
 
 				#4. calculate document similarity
 				document_similarity = (sum(avg_sim1) + sum(avg_sim2)) / (len(avg_sim1) + len(avg_sim2))
@@ -148,11 +148,11 @@ class DocumentSimilarityModel(AbstractModel):
 		return set1
 	
 	"""
-    It computes the distance among all the entities in the provided inputs.
+    It computes the similarity among all the entities in the provided inputs.
     
     set1, set2: dataframe containing the entities of a document
     
     It returns the pairwise distance of all the pairs in the dataframes provided in input
     """
-	def compute_distance(self, set1, set2):
-		return pairwise_distances(set1.iloc[:, 3:], set2.iloc[:, 3:], metric=self.distance_metric)
+	def compute_similarity(self, set1, set2):
+		return 1 - pairwise_distances(set1.iloc[:, 3:], set2.iloc[:, 3:], metric=self.distance_metric)
