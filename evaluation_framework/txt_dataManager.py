@@ -465,38 +465,3 @@ class SemanticAnalogiesDataManager(DataManager):
             ignored = [x for x in full_data if not x in data]
             
         return data, ignored
-
-    """
-    It returns a vocabulary containing all the entities of the vector file provided in input.
-    It return a dictionary which key is the entity name and the value is a progressive value.
-    
-    vectors: dataframe containing the vectors
-    vector_filename: path of the input file which contains the vectors provided in input
-    vector_size: size of the vectors
-    """
-    def create_vocab(self, vectors, vector_filename, vector_size):
-        words = vectors['name']
-        vocab = {w: idx for idx, w in enumerate(words)}
-
-        return vocab
-    
-    """
-    It normalizes the vector provided in input.
-    
-    vectors: dataframe containing the vectors
-    vector_filename: path of the input file which contains the vectors provided in input
-    vector_size: size of the vectors
-    vocab: dictionary which key is the entity name and the value is a progressive value
-    """
-    def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
-        W = np.zeros((len(vectors), vec_size))
-        
-        for index, row in vectors.iterrows():
-            W[vocab[row['name']], :] = row[1:]
-
-        # normalize each word vector to unit length
-        W_norm = np.zeros(W.shape)
-        d = (np.sum(W ** 2, 1) ** (0.5))
-        W_norm = (W.T / d).T
-
-        return W_norm
