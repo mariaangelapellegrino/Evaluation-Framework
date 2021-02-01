@@ -177,14 +177,8 @@ class DocumentSimilarityModel(AbstractModel):
 	def compute_max_similarity(self, distance_list, weight1, weight_list):
 		index_min_distance = np.argmin(distance_list)
 		min_distance_score = distance_list[index_min_distance]
-	
-		max_distance = max(distance_list)
-		if max_distance!=0:
-			normalized_distance = min_distance_score/max_distance
-		else:
-			normalized_distance = min_distance_score
-		similarity_score = 1-normalized_distance
-		
+		similarity_score = 1 - min_distance_score
+
 		if self.with_weights:
 			weight2 = weight_list.iloc[index_min_distance]
 			similarity_score = similarity_score * (weight1 * weight2)
