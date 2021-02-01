@@ -40,9 +40,6 @@ class SemanticAnalogiesModel(AbstractModel):
     It returns the result object reporting the task name and the evaluation metrics.
     """
     def train(self, vocab, data, W):
-        correct_sem = 0; 
-        count_sem = 0; 
-
         indices = np.array([[vocab[word] for word in row] for row in data])
         ind1, ind2, ind3, ind4 = indices.T
 
@@ -57,25 +54,21 @@ class SemanticAnalogiesModel(AbstractModel):
             dist[ind3[j]] = -np.Inf
 
             predictions[j] = np.argsort(-dist, axis=0)[:self.top_k].T
-            
-        max_val = np.zeros(0) # correct predictions
-        for pred_index in range(self.top_k):
-            val = (ind4 == predictions[:,pred_index]) 
-            if sum(val)>sum(max_val):
-                max_val = val
 
-        count_sem = count_sem + len(ind1)
-        correct_sem = correct_sem + sum(max_val)
+        correct_predictions = 0
+        for actual_entity, predicted_entities in zip(ind4, predictions):
+            if actual_entity in predicted_entities:
+                correct_predictions += 1
+        total_predictions = len(predictions)
+        accuracy = correct_predictions / total_predictions
 
-        num_right_answers = np.sum(max_val)
-        num_tot_answers = len(max_val)
-        accuracy = np.mean(max_val) * 100
-
-        if num_tot_answers == 0 :
-            if self.debugging_mode:
+        if self.debugging_mode:
+            if total_predictions == 0:
                 print('SemanticAnalogies : No data to check')
-        else:
-            if self.debugging_mode:
-                print('SemanticAnalogies : ACCURACY TOP %d: %.2f%% (%d/%d)' % (self.top_k, accuracy, num_right_answers, num_tot_answers))
+            else:
+                print('SemanticAnalogies : ACCURACY TOP %d: %.2f%% (%d/%d)' % (self.top_k, accuracy, correct_predictions, total_predictions))
         
-        return {'task_name': self.task_name, 'top_k_value':self.top_k, 'right_answers':num_right_answers, 'tot_answers':num_tot_answers, 'accuracy':round(accuracy, float_precision)}
+        return {
+            'task_name': self.task_name, 'top_k_value': self.top_k, 'right_answers': correct_predictions,
+            'tot_answers': total_predictions, 'accuracy': round(accuracy, float_precision)
+        }
