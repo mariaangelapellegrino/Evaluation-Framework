@@ -90,12 +90,12 @@ class DocumentSimilarityModel(AbstractModel):
 					similarity_score1 = similarity_score1 * np.outer(set1['weight'], set2['weight'])
 					similarity_score2 = similarity_score2 * np.outer(set2['weight'], set1['weight'])
 
-				#3. for each entity in d_i identify the average similarity to an entity in d2, and viceversa
-				avg_sim1 = np.mean(similarity_score1, axis=1)
-				avg_sim2 = np.mean(similarity_score2, axis=1)
+				#3. for each entity in d_i identify the maximum similarity to an entity in d2, and viceversa
+				max_sim1 = np.max(similarity_score1, axis=1)
+				max_sim2 = np.max(similarity_score2, axis=1)
 
 				#4. calculate document similarity
-				document_similarity = (sum(avg_sim1) + sum(avg_sim2)) / (len(avg_sim1) + len(avg_sim2))
+				document_similarity = (sum(max_sim1) + sum(max_sim2)) / (len(max_sim1) + len(max_sim2))
 
 				if self.debugging_mode:
 					print("Doc " + str(i) + " - Doc " + str(j) + " : distance similarity " + str(document_similarity))
