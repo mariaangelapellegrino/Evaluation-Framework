@@ -113,7 +113,48 @@ class DataManager(AbstractDataManager):
     def _to_hdf5_key(self, key: str) -> bytes:
         """Returns an b32-encoded version of the key which is compatible with the hdf5 format."""
         return base64.b32encode(key.encode('utf-8'))
+
+    """
+    It returns a vocabulary containing all the entities of the vector file provided in input.
+    It return a dictionary which key is the entity name and the value is a progressive value.
     
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    """
+    def create_vocab(self, vectors, vector_filename, vector_size):
+        vector_file = h5py.File(vector_filename, 'r')
+        vector_group = vector_file["Vectors"]
+
+        words = [base64.b32decode(key).decode('utf-8') for key in vector_group.keys()]
+        vocab = {w: idx for idx, w in enumerate(words)}
+
+        return vocab
+
+    """
+    It normalizes the vector provided in input.
+    
+    vectors: dataframe containing the vectors
+    vector_filename: path of the input file which contains the vectors provided in input
+    vector_size: size of the vectors
+    vocab: dictionary which key is the entity name and the value is a progressive value
+    """
+    def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
+        vector_file = h5py.File(vector_filename, 'r')
+        vector_group = vector_file["Vectors"]
+
+        W = np.zeros((len(vocab), vec_size))
+
+        for word, idx in vocab.items():
+            W[idx, :] = vector_group[self._to_hdf5_key(word)][0]
+
+        # normalize each word vector to unit length
+        d = (np.sum(W ** 2, 1) ** (0.5))
+        W_norm = (W.T / d).T
+
+        return W_norm
+
+
 """
 DataManager attached to the Classification task
 """
@@ -592,43 +633,3 @@ class SemanticAnalogiesDataManager(DataManager):
                     ignored.append(quadruplet)
 
         return data, ignored
-
-    """
-    It returns a vocabulary containing all the entities of the vector file provided in input.
-    It return a dictionary which key is the entity name and the value is a progressive value.
-    
-    vectors: dataframe containing the vectors
-    vector_filename: path of the input file which contains the vectors provided in input
-    vector_size: size of the vectors
-    """
-    def create_vocab(self, vectors, vector_filename, vector_size):
-        vector_file = h5py.File(vector_filename, 'r')
-        vector_group = vector_file["Vectors"]
-
-        words = [base64.b32decode(key).decode('utf-8') for key in vector_group.keys()]
-        vocab = {w: idx for idx, w in enumerate(words)}
-
-        return vocab
-
-    """
-    It normalizes the vector provided in input.
-    
-    vectors: dataframe containing the vectors
-    vector_filename: path of the input file which contains the vectors provided in input
-    vector_size: size of the vectors
-    vocab: dictionary which key is the entity name and the value is a progressive value
-    """
-    def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
-        vector_file = h5py.File(vector_filename, 'r')
-        vector_group = vector_file["Vectors"]
-
-        W = np.zeros((len(vocab), vec_size))
-        
-        for word, idx in vocab.items():
-            W[idx, :] = vector_group[self._to_hdf5_key(word)][0]
-
-        # normalize each word vector to unit length
-        d = (np.sum(W ** 2, 1) ** (0.5))
-        W_norm = (W.T / d).T
-
-        return W_norm

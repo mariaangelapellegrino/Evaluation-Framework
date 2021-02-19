@@ -12,8 +12,8 @@ Model of the Document similarity task
 """
 class DocumentSimilarityModel(AbstractModel):
 	"""
-    It initialize the model of the classification task
-    
+	It initialize the model of the classification task
+
     task_name: name of the task
     distance_metric: distance metric used to compute the similarity score
     with_weights: {TRUE, FALSE} if the evaluation metric should consider the weights provided by the annotator or not
@@ -70,14 +70,12 @@ class DocumentSimilarityModel(AbstractModel):
 		for i in range(1, 51):
 			#1. extract entities of document i and j
 			set1 = self.extract_entities(i, data)
-			weight1 = set1['weight']
 			if len(set1)==0:
 				log_info += "Document Similarity: No entities in doc " + str(i) + "\n"
 				continue
 			
 			for j in range(i, 51):
 				set2 = self.extract_entities(j, data)
-				weight2 = set2['weight']
 				if len(set2)==0:
 					log_info += "Document Similarity: No entities in doc " + str(j) + "\n"
 					continue
@@ -86,26 +84,18 @@ class DocumentSimilarityModel(AbstractModel):
 				
 				#2. compute the similarity for each pair of entities in d_i and d_j
 				# similarity is interpreted as the opposite of distance 
-				distance_score1 = self.compute_distance(set1, set2)
-				distance_score2 = self.compute_distance(set2, set1)
+				similarity_score1 = self.compute_similarity(set1, set2)
+				similarity_score2 = self.compute_similarity(set2, set1)
+				if self.with_weights:  # if weights are enabled - multiply distances with weight matrix
+					similarity_score1 = similarity_score1 * np.outer(set1['weight'], set2['weight'])
+					similarity_score2 = similarity_score2 * np.outer(set2['weight'], set1['weight'])
 
-				#3. for each entity in d_i identify the maximum similarity to an entity in d2, and viceversa				
-				max_sim1 = list()
-				for k in range(len(distance_score1)):
-					weight = weight1.iloc[k]
-					max_sim1.append(self.compute_max_similarity(distance_score1[k, :], weight, weight2))
+				#3. for each entity in d_i identify the maximum similarity to an entity in d2, and viceversa
+				max_sim1 = np.max(similarity_score1, axis=1)
+				max_sim2 = np.max(similarity_score2, axis=1)
 
-			
-				max_sim2 = list()
-				for k in range(len(distance_score2)):
-					weight = weight2.iloc[k]
-					max_sim2.append(self.compute_max_similarity(distance_score2[k, :], weight, weight1))
-			
 				#4. calculate document similarity
-				sum_max_sim1 = sum(max_sim1)
-				sum_max_sim2 = sum(max_sim2)
-			
-				document_similarity = (sum_max_sim1+sum_max_sim2)/(len(set1)+len(set2))
+				document_similarity = (sum(max_sim1) + sum(max_sim2)) / (len(max_sim1) + len(max_sim2))
 
 				if self.debugging_mode:
 					print("Doc " + str(i) + " - Doc " + str(j) + " : distance similarity " + str(document_similarity))
@@ -158,35 +148,11 @@ class DocumentSimilarityModel(AbstractModel):
 		return set1
 	
 	"""
-    It computes the distance among all the entities in the provided inputs.
+    It computes the similarity among all the entities in the provided inputs.
     
     set1, set2: dataframe containing the entities of a document
     
     It returns the pairwise distance of all the pairs in the dataframes provided in input
     """
-	def compute_distance(self, set1, set2):
-		return pairwise_distances(set1.iloc[:, 3:], set2.iloc[:, 3:], metric=self.distance_metric)
-	
-	"""
-	It computes the maximum similarity score in the distance list provided in input.
-	
-	distance_list: list of all the distances
-	weight1: weight returned by the annotator and attached to the the current main entity
-	weight_list: list of weights of all the entities in the second document
-	"""
-	def compute_max_similarity(self, distance_list, weight1, weight_list):
-		index_min_distance = np.argmin(distance_list)
-		min_distance_score = distance_list[index_min_distance]
-	
-		max_distance = max(distance_list)
-		if max_distance!=0:
-			normalized_distance = min_distance_score/max_distance
-		else:
-			normalized_distance = min_distance_score
-		similarity_score = 1-normalized_distance
-		
-		if self.with_weights:
-			weight2 = weight_list.iloc[index_min_distance]
-			similarity_score = similarity_score * (weight1 * weight2)
-
-		return similarity_score
+	def compute_similarity(self, set1, set2):
+		return 1 - pairwise_distances(set1.iloc[:, 3:], set2.iloc[:, 3:], metric=self.distance_metric)
