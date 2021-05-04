@@ -3,8 +3,10 @@ from evaluation_framework.abstract_model import AbstractModel
 
 float_precision = 15
 
-def default_analogy_function(a, b, c):
+
+def default_analogy_function(a: np.ndarray, b: np.ndarray, c: np.ndarray) -> np.ndarray:
     return np.array(b) - np.array(a) + np.array(c)
+
 
 """
 Model of the semantic analogies task
