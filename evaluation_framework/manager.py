@@ -1,3 +1,4 @@
+import os.path
 import xml.etree.ElementTree as ET
 
 from evaluation_framework.evaluationManager import EvaluationManager
@@ -32,12 +33,13 @@ class FrameworkManager():
     compare_with: list of the technique to compare the results with. Default: _all
     debugging_mode: {True, False}, True to run the tasks by reporting all the information collected during the run, False otherwise. Default: False
     analogy_function: function to compute the analogy among vectors. Default: None to use the default function.
+    result_directory_path: Optionally set the result directory path. 
     """
-
     def evaluate(self, vector_filename: str, vector_file_format: str = 'txt', vector_size: int = 200,
                  parallel: bool = False, tasks: List[str] = available_tasks, similarity_metric: str = 'cosine',
                  top_k: int = 2, compare_with: str = '_all', debugging_mode: bool = False,
-                 analogy_function: Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray] = None):
+                 analogy_function: Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray] = None,
+                 result_directory_path: str = None):
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
         self.vector_size = vector_size
@@ -58,7 +60,24 @@ class FrameworkManager():
 
         self.evaluation_manager = EvaluationManager(self.dataManager, self.debugging_mode)
 
-        self.evaluation_manager.create_result_directory()
+        if result_directory_path is None:
+            self.evaluation_manager.create_result_directory()
+        else:
+            if os.path.isfile(result_directory_path):
+                print("The specified result directory is a file. Please specify a directory. Using default...")
+                self.evaluation_manager.create_result_directory()
+            else:
+                if not os.path.isdir(result_directory_path):
+                    try:
+                        os.mkdir(result_directory_path)
+                        self.evaluation_manager.result_directory = result_directory_path
+                        self.evaluation_manager.log_file = open(os.path.join(self.evaluation_manager.result_directory, 'log.txt'), "w")
+                    except OSError:
+                        print("Could not create the result directory. Using default...")
+                        self.evaluation_manager.create_result_directory()
+                else:
+                    self.evaluation_manager.result_directory = result_directory_path
+                    self.evaluation_manager.log_file = open(os.path.join(self.evaluation_manager.result_directory, 'log.txt'), "w")
 
         self.evaluation_manager.initialize_vectors(vector_filename, vector_size)
 

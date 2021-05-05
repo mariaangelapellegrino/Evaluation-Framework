@@ -6,9 +6,9 @@ from multiprocessing import Process
 import multiprocessing
 import pandas as pd
 import math
+from typing import Dict
 
 from evaluation_framework.abstract_evaluationManager import AbstractEvaluationManager
-
 from evaluation_framework.Classification.classification_taskManager import ClassificationManager as Classification_evaluator
 from evaluation_framework.Regression.regression_taskManager import RegressionManager as Regression_evaluator
 from evaluation_framework.Clustering.clustering_taskManager import ClusteringManager as Clustering_evaluator
@@ -21,7 +21,7 @@ It coordinates the execution of the tasks.
 """
 class EvaluationManager(AbstractEvaluationManager):
     """
-    It initialize the evaluation manager.
+    It initializes the evaluation manager.
     
     data_manager: data manager related to the specific file format
     debugging_mode: {True, False}
@@ -56,7 +56,7 @@ class EvaluationManager(AbstractEvaluationManager):
     top_k: parameters of the semantic analogies task
     analogy_function: function to compute the analogy among vectors
     """
-    def run_tests_in_sequential(self, tasks, similarity_metric, top_k, analogy_function = None):
+    def run_tests_in_sequential(self, tasks, similarity_metric, top_k, analogy_function=None) -> Dict:
         self.log_file.write("Distance metric:" + similarity_metric+"\n\n")
         
         self.similarity_metric = similarity_metric
