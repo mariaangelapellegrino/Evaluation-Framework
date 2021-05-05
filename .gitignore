@@ -100,8 +100,18 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+# Pycharm project settings
+.idea/
+
 # mkdocs documentation
 /site
 
 # mypy
 .mypy_cache/
+
+# Playgrounds
+playground.py
+
+# Project-specific files
+comparison.csv
+/evaluation_framework/results

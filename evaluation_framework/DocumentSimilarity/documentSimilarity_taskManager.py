@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from collections import defaultdict
 
+
 from evaluation_framework.DocumentSimilarity.documentSimilarity_model import DocumentSimilarityModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
@@ -44,19 +45,19 @@ class DocumentSimilarityManager (AbstractTaskManager):
     scores_dictionary: dictionary to store all the scores which will be used in the comparison phase
     """
 	def evaluate(self, vectors, vector_file, vector_size, results_folder, log_dictionary, scores_dictionary):
+
 		log_errors = ""
-		
+
 		stats_filename = "LP50_averageScores.csv"
 
 		script_dir = os.path.dirname(__file__)
 		rel_path = "data/"+stats_filename
 		stats_file = os.path.join(script_dir, rel_path)
-		
+
 		stats = self.data_manager.read_file(stats_file, ['doc1', 'doc2', 'average'])
 
-		document_entities_filename = "LP50_entities.json"	
-		
-		script_dir = os.path.dirname(__file__)
+		document_entities_filename = "LP50_entities.json"
+
 		rel_path = "data/"+document_entities_filename
 		document_entities_file = os.path.join(script_dir, rel_path)
 

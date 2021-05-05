@@ -1,2 +1,2 @@
-global-include data/*.tsv data/*.csv data/*.txt
+global-include data/*.tsv data/*.csv data/*.txt data/*.json
 include pip_readme.md
