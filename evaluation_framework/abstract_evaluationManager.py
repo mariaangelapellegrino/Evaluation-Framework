@@ -3,21 +3,23 @@ from abc import abstractmethod
 """
 It abstracts the behavior of a Evaluation manager. It should be extended by the evaluation manager.
 """
-class AbstractEvaluationManager():
- 
+
+
+class AbstractEvaluationManager:
     def __init__(self, debugging_mode):
         super().__init__()
-    
+
     """
     It stores the information related to vectors.
     
     vector_filename: path of the vector file
     vector_size: size of the vectors
     """
+
     @abstractmethod
     def initialize_vectors(self, vector_file, vec_size):
         pass
-    
+
     """
     It runs the tasks in sequential
     
@@ -26,8 +28,11 @@ class AbstractEvaluationManager():
     top_k: parameters of the semantic analogies task
     analogy_function: function to compute the analogy among vectors
     """
+
     @abstractmethod
-    def run_tests_in_sequential(self, tasks, similarity_metric, top_k, analogy_function=None):
+    def run_tests_in_sequential(
+        self, tasks, similarity_metric, top_k, analogy_function=None
+    ):
         pass
 
     """
@@ -38,13 +43,17 @@ class AbstractEvaluationManager():
     top_k: parameters of the semantic analogies task
     analogy_function: function to compute the analogy among vectors
     """
+
     @abstractmethod
-    def run_tests_in_parallel(self, tasks, similarity_metric, top_k, analogy_function=None):
-        pass 
+    def run_tests_in_parallel(
+        self, tasks, similarity_metric, top_k, analogy_function=None
+    ):
+        pass
 
     """
     It creates the result folder.
     """
+
     @abstractmethod
     def create_result_directory(self):
         pass
@@ -55,6 +64,7 @@ class AbstractEvaluationManager():
     compare_with: list of the runs to compare with. Default: _all
     scores_dictionary: dictionary of the scores of all the tasks
     """
+
     @abstractmethod
     def compare_with(self, compare_with, scores_dictionary):
         pass

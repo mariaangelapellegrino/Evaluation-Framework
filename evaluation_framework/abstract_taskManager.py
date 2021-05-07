@@ -3,11 +3,12 @@ from abc import abstractmethod
 """
 It abstracts the behavior of a Task manager. It should be extended by each task manager.
 """
-class AbstractTaskManager():
- 
+
+
+class AbstractTaskManager:
     def __init__(self):
         super().__init__()
-    
+
     """
     It evaluates the specific task.
     
@@ -18,6 +19,15 @@ class AbstractTaskManager():
     log_dictionary: dictionary to store all the information to store in the log file
     scores_dictionary: dictionary to store all the scores which will be used in the comparison phase
     """
+
     @abstractmethod
-    def evaluate(self, vectors, vector_file, vector_size, result_directory, log_dictionary, scores_dictionary):
+    def evaluate(
+        self,
+        vectors,
+        vector_file,
+        vector_size,
+        result_directory,
+        log_dictionary,
+        scores_dictionary,
+    ):
         pass
