@@ -22,7 +22,7 @@ import evaluation_framework.SemanticAnalogies.semanticAnalogies_model
 import evaluation_framework.SemanticAnalogies.semanticAnalogies_taskManager
 
 
-'''
+"""
 from evaluation_framework.Classification.classification_model import ClassificationModel
 from evaluation_framework.Classification.classification_taskManager import ClassificationManager
 
@@ -40,4 +40,4 @@ from evaluation_framework.Regression.regression_taskManager import RegressionMan
 
 from evaluation_framework.SemanticAnalogies.semanticAnalogies_model import SemanticAnalogiesModel
 from evaluation_framework.SemanticAnalogies.semanticAnalogies_taskManager import SemanticAnalogiesManager
-'''
+"""

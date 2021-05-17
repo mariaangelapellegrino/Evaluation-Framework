@@ -6,25 +6,28 @@ from evaluation_framework.abstract_dataManager import AbstractDataManager
 """
 It models how to manage vectors provided in TXT file.
 """
+
+
 class DataManager(AbstractDataManager):
     """
     It initializes the DataManager for each provided task.
-    
+
     debugging_mode: {TRUE,FALSE}.
     """
+
     def __init__(self, debugging_mode):
         self.debugging_mode = debugging_mode
 
         self.taskDataManager = dict()
-        self.taskDataManager['classification'] = ClassificationDataManager
-        self.taskDataManager['clustering'] = ClusteringDataManager
-        self.taskDataManager['regression'] = RegressionDataManager
-        self.taskDataManager['document_similarity'] = DocumentSimilarityDataManager
-        self.taskDataManager['entity_relatedness'] = EntityRelatednessDataManager
-        self.taskDataManager['semantic_analogies'] = SemanticAnalogiesDataManager
-        
+        self.taskDataManager["classification"] = ClassificationDataManager
+        self.taskDataManager["clustering"] = ClusteringDataManager
+        self.taskDataManager["regression"] = RegressionDataManager
+        self.taskDataManager["document_similarity"] = DocumentSimilarityDataManager
+        self.taskDataManager["entity_relatedness"] = EntityRelatednessDataManager
+        self.taskDataManager["semantic_analogies"] = SemanticAnalogiesDataManager
+
         if self.debugging_mode:
-            print('TXT data manager initialized')
+            print("TXT data manager initialized")
 
     """
     It reads the vectors file or it stores the information to read it.
@@ -32,6 +35,7 @@ class DataManager(AbstractDataManager):
     vector_filename: path of the file provided in input, which contains entities and the related vectors.
     vector_size: size of the vectors
     """
+
     def initialize_vectors(self, vector_filename, vector_size):
         return self.read_vector_file(vector_filename, vector_size)
 
@@ -41,8 +45,15 @@ class DataManager(AbstractDataManager):
     vector_filename: path of the file provided in input, which contains entities and the related vectors.
     vector_size: size of the vectors
     """
+
     def read_vector_file(self, vector_filename, vec_size):
-        local_vectors = pd.read_csv(vector_filename, "\s+",  names=self.create_header(vec_size),  encoding='utf-8', index_col=False)
+        local_vectors = pd.read_csv(
+            vector_filename,
+            "\s+",
+            names=self.create_header(vec_size),
+            encoding="utf-8",
+            index_col=False,
+        )
         return local_vectors
 
     """
@@ -50,8 +61,9 @@ class DataManager(AbstractDataManager):
     
     vec_size: size of the vectors
     """
+
     def create_header(self, vec_size):
-        headers = ['name']
+        headers = ["name"]
         for i in range(0, vec_size):
             headers.append(i)
         return headers
@@ -63,9 +75,10 @@ class DataManager(AbstractDataManager):
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
         pass
-    
+
     """
     Warning: it does nothing.
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -79,20 +92,31 @@ class DataManager(AbstractDataManager):
     column_key: column of the dataset used as gold standard which contains the entity name
     column_score: column of the dataset used as gold standard which contains the values used as gold standard
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size, 
-        goldStandard_filename, goldStandard_data, column_key, column_score):
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data,
+        column_key,
+        column_score,
+    ):
         pass
-    '''
+
+    """
     def read_file(self, task, filename, columns):
         return self.taskDataManager[task].read_file(filename, columns)  
     
     def intersect_vectors_goldStandard(self, task, vectors, vector_filename, vector_size, goldStandard_filename, goldStandard_data, columns):
         return self.taskDataManager[task].intersect_vectors_goldStandard(vectors, vector_filename, vector_size, goldStandard_filename, goldStandard_data, columns)
-    '''
-   
+    """
+
     """
     It returns the task dataManager attached to the task provided in input, if any.
     """
+
     def get_data_manager(self, task):
         if task in self.taskDataManager:
             return self.taskDataManager[task]
@@ -102,7 +126,8 @@ class DataManager(AbstractDataManager):
     """
     It stores a new dataManager attached to the taskName. 
     If the taskName has already an attached dataManager, it will be updated. Otherwise, it will be added.
-    """ 
+    """
+
     def add_task_dataManager(self, taskName, dataManager):
         self.dict[taskName] = dataManager
 
@@ -114,8 +139,9 @@ class DataManager(AbstractDataManager):
     vector_filename: path of the input file which contains the vectors provided in input
     vector_size: size of the vectors
     """
+
     def create_vocab(self, vectors, vector_filename, vector_size):
-        words = vectors['name']
+        words = vectors["name"]
         vocab = {w: idx for idx, w in enumerate(words)}
 
         return vocab
@@ -128,32 +154,37 @@ class DataManager(AbstractDataManager):
     vector_size: size of the vectors
     vocab: dictionary which key is the entity name and the value is a progressive value
     """
+
     def normalize_vectors(self, vectors, vector_filename, vec_size, vocab):
         W = vectors.iloc[:, 1:].to_numpy()
         d = np.sqrt(np.sum(W ** 2, axis=1))
         return (W.T / d).T
 
-    
+
 """
 DataManager attached to the Classification task
 """
+
+
 class ClassificationDataManager(DataManager):
     """
     It initializes the DataManager for the classification data manager.
     """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Classification data manager initialized')
-    
+            print("Classification data manager initialized")
+
     """
     It reads the dataset used as gold standard
     
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
-        return pd.read_csv(filename,"\t", usecols=columns, encoding='utf-8')     
+        return pd.read_csv(filename, "\t", usecols=columns, encoding="utf-8")
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -167,40 +198,64 @@ class ClassificationDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'label' according to the provide datasets.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
-        goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI15', column_score = 'label'):
-        
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key="DBpedia_URI15",
+        column_score="label",
+    ):
+
         gold = self.read_file(goldStandard_filename, [column_key, column_score])
 
-        gold.rename(columns={column_key: 'name'}, inplace=True)
-        gold.rename(columns={column_score: 'label'}, inplace=True)
+        gold.rename(columns={column_key: "name"}, inplace=True)
+        gold.rename(columns={column_score: "label"}, inplace=True)
 
-        merged = pd.merge(gold, vectors, on='name', how='inner')
-        outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
+        merged = pd.merge(gold, vectors, on="name", how="inner")
+        outputLeftMerge = pd.merge(gold, vectors, how="outer", indicator=True)
+        ignored = outputLeftMerge[outputLeftMerge["_merge"] == "left_only"][
+            gold.columns
+        ]
 
-        return merged, ignored                                            
+        return merged, ignored
+
+
 """
 DataManager attached to the Clustering task
 """
+
+
 class ClusteringDataManager(DataManager):
     """
     It initializes the DataManager for the clustering data manager.
     """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Clustering data manager initialized')
-        
+            print("Clustering data manager initialized")
+
     """
     It reads the dataset used as gold standard
     
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
-        return pd.read_csv(filename, delim_whitespace=True, usecols=columns, index_col=False, skipinitialspace=True, skip_blank_lines=True, encoding='utf-8')
+        return pd.read_csv(
+            filename,
+            delim_whitespace=True,
+            usecols=columns,
+            index_col=False,
+            skipinitialspace=True,
+            skip_blank_lines=True,
+            encoding="utf-8",
+        )
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -214,40 +269,63 @@ class ClusteringDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'cluster' according to the provide datasets.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
-        goldStandard_filename, goldStandard_data = None,
-        column_key ='DBpedia_URI', column_score = 'cluster'): 
-        
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key="DBpedia_URI",
+        column_score="cluster",
+    ):
+
         gold = self.read_file(goldStandard_filename, [column_key, column_score])
 
-        gold.rename(columns={column_key: 'name'}, inplace=True)
-        gold.rename(columns={column_score: 'cluster'}, inplace=True)
+        gold.rename(columns={column_key: "name"}, inplace=True)
+        gold.rename(columns={column_score: "cluster"}, inplace=True)
 
-        merged = pd.merge(gold, vectors, on='name', how='inner')
-        outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
+        merged = pd.merge(gold, vectors, on="name", how="inner")
+        outputLeftMerge = pd.merge(gold, vectors, how="outer", indicator=True)
+        ignored = outputLeftMerge[outputLeftMerge["_merge"] == "left_only"][
+            gold.columns
+        ]
 
         return merged, ignored
+
+
 """
 DataManager attached to the DocumentSimilarity task
 """
-class DocumentSimilarityDataManager(DataManager):  
+
+
+class DocumentSimilarityDataManager(DataManager):
     """
     It initializes the DataManager for the document similarity data manager.
     """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Document similarity data manager initialized')
-          
+            print("Document similarity data manager initialized")
+
     """
     It reads the dataset used as gold standard
     
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
-        return pd.read_csv(filename, ",",  usecols=columns, index_col=False, skipinitialspace=True, skip_blank_lines=True)
+        return pd.read_csv(
+            filename,
+            ",",
+            usecols=columns,
+            index_col=False,
+            skipinitialspace=True,
+            skip_blank_lines=True,
+        )
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -261,20 +339,31 @@ class DocumentSimilarityDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size, 
-        goldStandard_filename, goldStandard_data = None, 
-        column_key = None, column_score = None):
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key=None,
+        column_score=None,
+    ):
 
         entities = self.get_entities(goldStandard_filename)
-        merged = pd.merge(entities, vectors, on='name', how='inner')
-        outputLeftMerge = pd.merge(entities, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][entities.columns]
+        merged = pd.merge(entities, vectors, on="name", how="inner")
+        outputLeftMerge = pd.merge(entities, vectors, how="outer", indicator=True)
+        ignored = outputLeftMerge[outputLeftMerge["_merge"] == "left_only"][
+            entities.columns
+        ]
 
         return merged, ignored
 
     """
     It reads the file used as gold standard which contains entities attached to the documents.
     """
+
     def get_entities(self, filename):
         with open(filename) as f:
             data = json.load(f)
@@ -283,34 +372,38 @@ class DocumentSimilarityDataManager(DataManager):
         doc_list = list()
         entities_list = list()
         weight_list = list()
-        i=0
-    
+        i = 0
+
         for doc_obj in data:
             i += 1
             for annotation in doc_obj["annotations"]:
-                key = annotation['entity']
+                key = annotation["entity"]
 
                 doc_list.append(i)
                 entities_list.append(key)
-                weight_list.append(float(annotation['weight']))
+                weight_list.append(float(annotation["weight"]))
 
-        dict_entities['doc'] = doc_list
-        dict_entities['name'] = entities_list
-        dict_entities['weight'] = weight_list
+        dict_entities["doc"] = doc_list
+        dict_entities["name"] = entities_list
+        dict_entities["weight"] = weight_list
 
         return pd.DataFrame.from_dict(dict_entities)
-    
+
+
 """
 DataManager attached to the EntityRelatedness task
 """
-class EntityRelatednessDataManager(DataManager): 
+
+
+class EntityRelatednessDataManager(DataManager):
     """
     It initializes the DataManager for the entity relatedness data manager.
-    """   
+    """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Entity relatedness data manager initialized')
+            print("Entity relatedness data manager initialized")
 
     """
     It reads the dataset used as gold standard
@@ -318,7 +411,8 @@ class EntityRelatednessDataManager(DataManager):
     filename: path of the dataset
     columns: list of columns to retrieve
     """
-    def read_file(self, filename, columns = None):
+
+    def read_file(self, filename, columns=None):
         entities_groups = {}
         related_entities = []
 
@@ -326,14 +420,14 @@ class EntityRelatednessDataManager(DataManager):
             for i, line in enumerate(f):
                 key = line.rstrip().lstrip()
 
-                if i%21 == 0:
+                if i % 21 == 0:
                     main_entitiy = key
                     related_entities = []
 
-                else :
+                else:
                     related_entities.append(key)
 
-                if i%21 == 20:
+                if i % 21 == 20:
                     entities_groups[main_entitiy] = related_entities
 
         return entities_groups
@@ -350,40 +444,57 @@ class EntityRelatednessDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name. 
     column_score: column of the dataset used as gold standard which contains the values used as gold standard.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
-        goldStandard_filename, goldStandard_data = None, 
-        column_key = None, column_score = None): 
-        
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key=None,
+        column_score=None,
+    ):
+
         if goldStandard_data is None:
             entities = self.read_file(goldStandard_filename)
-            goldStandard_data = pd.DataFrame({'name': list(entities.keys())})
-        
-        merged = pd.merge(goldStandard_data, vectors, on='name', how='inner')
-        outputLeftMerge = pd.merge(goldStandard_data, vectors, on='name', how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge']=='left_only'][goldStandard_data.columns]
-        
+            goldStandard_data = pd.DataFrame({"name": list(entities.keys())})
+
+        merged = pd.merge(goldStandard_data, vectors, on="name", how="inner")
+        outputLeftMerge = pd.merge(
+            goldStandard_data, vectors, on="name", how="outer", indicator=True
+        )
+        ignored = outputLeftMerge[outputLeftMerge["_merge"] == "left_only"][
+            goldStandard_data.columns
+        ]
+
         return merged, ignored
-    
+
+
 """
 DataManager attached to the Regression task
 """
-class RegressionDataManager(DataManager):    
+
+
+class RegressionDataManager(DataManager):
     """
     It initializes the DataManager for the regression data manager.
     """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Regression data manager initialized')
-        
+            print("Regression data manager initialized")
+
     """
     It reads the dataset used as gold standard
     
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
-        return pd.read_csv(filename,"\t", usecols=columns, encoding='utf-8') 
+        return pd.read_csv(filename, "\t", usecols=columns, encoding="utf-8")
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -397,32 +508,46 @@ class RegressionDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name. Default: 'DBpedia_URI15' according to the provided datasets.
     column_score: column of the dataset used as gold standard which contains the values used as gold standard. Default: 'rating' according to the provide datasets.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
-        goldStandard_filename, goldStandard_data = None, 
-        column_key = 'DBpedia_URI15', column_score = 'rating'): 
-        
-        gold = self.read_file(goldStandard_filename, [column_key, column_score])
-        
-        gold.rename(columns={column_key: 'name'}, inplace=True)
-        gold.rename(columns={column_score: 'label'}, inplace=True)
 
-        merged = pd.merge(gold, vectors, on='name', how='inner')
-        outputLeftMerge = pd.merge(gold, vectors, how='outer', indicator=True)
-        ignored = outputLeftMerge[outputLeftMerge['_merge'] == 'left_only'][gold.columns]
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key="DBpedia_URI15",
+        column_score="rating",
+    ):
+
+        gold = self.read_file(goldStandard_filename, [column_key, column_score])
+
+        gold.rename(columns={column_key: "name"}, inplace=True)
+        gold.rename(columns={column_score: "label"}, inplace=True)
+
+        merged = pd.merge(gold, vectors, on="name", how="inner")
+        outputLeftMerge = pd.merge(gold, vectors, how="outer", indicator=True)
+        ignored = outputLeftMerge[outputLeftMerge["_merge"] == "left_only"][
+            gold.columns
+        ]
 
         return merged, ignored
-    
+
+
 """
 DataManager attached to the SemanticAnalogies task
 """
-class SemanticAnalogiesDataManager(DataManager):    
+
+
+class SemanticAnalogiesDataManager(DataManager):
     """
     It initializes the DataManager for the semantic analogies data manager.
     """
+
     def __init__(self, debugging_mode):
-        self.debugging_mode = debugging_mode 
+        self.debugging_mode = debugging_mode
         if self.debugging_mode:
-            print('Semantic analogies data manager initialized')
+            print("Semantic analogies data manager initialized")
 
     """
     Warning: it does nothing
@@ -431,8 +556,9 @@ class SemanticAnalogiesDataManager(DataManager):
     filename: path of the dataset
     columns: list of columns to retrieve
     """
+
     def read_file(self, filename, columns):
-        pass     
+        pass
 
     """
     It intersects the input file which contains the vectors and the file used as gold standard.
@@ -446,22 +572,30 @@ class SemanticAnalogiesDataManager(DataManager):
     column_key: column of the dataset used as gold standard which contains the entity name. 
     column_score: column of the dataset used as gold standard which contains the values used as gold standard.
     """
-    def intersect_vectors_goldStandard(self, vectors, vector_filename, vector_size,
-        goldStandard_filename, goldStandard_data = None, 
-        column_key = None, column_score = None): 
-        
+
+    def intersect_vectors_goldStandard(
+        self,
+        vectors,
+        vector_filename,
+        vector_size,
+        goldStandard_filename,
+        goldStandard_data=None,
+        column_key=None,
+        column_score=None,
+    ):
+
         vocab = self.create_vocab(vectors, vector_filename, vector_size)
-        
+
         full_data = []
         with open(goldStandard_filename) as f:
             for line in f:
                 full_data.append(line.rstrip().split())
 
         data = [x for x in full_data if all(word in vocab for word in x)]
-        
-        if len(data)==0:
+
+        if len(data) == 0:
             ignored = [x for x in full_data]
         else:
             ignored = [x for x in full_data if not x in data]
-            
+
         return data, ignored
