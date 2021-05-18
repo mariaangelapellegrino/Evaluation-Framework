@@ -1,11 +1,11 @@
-from abc import abstractmethod
+from abc import ABCMeta, abstractmethod
 
 """
 It abstracts the behavior of a Task manager. It should be extended by each task manager.
 """
 
 
-class AbstractTaskManager:
+class AbstractTaskManager(metaclass=ABCMeta):
     def __init__(self):
         super().__init__()
 

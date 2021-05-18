@@ -22,9 +22,11 @@ class ClassificationManager(AbstractTaskManager):
 
     data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
     debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    datasets:
     """
 
-    def __init__(self, data_manager, debugging_mode):
+    def __init__(self, data_manager, debugging_mode, datasets=None):
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         if self.debugging_mode:
@@ -44,7 +46,7 @@ class ClassificationManager(AbstractTaskManager):
     vectors: dataframe which contains the vectors data
     vector_file: path of the vector file
     vector_size: size of the vectors
-    result_directory: directory where the results must be stored
+    results_folder: directory where the results must be stored
     log_dictionary: dictionary to store all the information to store in the log file
     scores_dictionary: dictionary to store all the scores which will be used in the comparison phase
     """
