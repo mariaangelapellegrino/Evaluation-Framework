@@ -2,20 +2,20 @@ from collections import defaultdict
 import csv
 import os
 import pandas as pd
-import sys
 from numpy import mean
+from typing import List
 
 from evaluation_framework.Clustering.clustering_model import ClusteringModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = "Clustering"
 
-"""
-Manager of the Clustering task
-"""
-
 
 class ClusteringManager(AbstractTaskManager):
+    """
+    Manager of the Clustering task
+    """
+
     """
     It initializes the manager of the clustering task.
 
@@ -24,10 +24,28 @@ class ClusteringManager(AbstractTaskManager):
     debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
     """
 
-    def __init__(self, data_manager, distance_metric, debugging_mode):
+    def __init__(
+        self,
+        data_manager,
+        distance_metric: str,
+        debugging_mode: bool,
+        datasets: List[str] = None,
+    ):
+        """
+
+        Parameters
+        ----------
+        data_manager
+        distance_metric : str
+        debugging_mode : bool
+        datasets : List[str]
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
+        """
+
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         self.distance_metric = distance_metric
+        self.datasets = datasets
         if self.debugging_mode:
             print("Clustering task manager initialized")
 
@@ -53,15 +71,19 @@ class ClusteringManager(AbstractTaskManager):
     def evaluate(
         self,
         vectors,
-        vector_file,
-        vector_size,
-        results_folder,
+        vector_file: str,
+        vector_size: int,
+        results_folder: str,
         log_dictionary,
         scores_dictionary,
     ):
         log_errors = ""
 
-        gold_standard_filenames = self.get_gold_standard_file()
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
 
         totalscores = defaultdict(dict)
 
@@ -258,7 +280,7 @@ class ClusteringManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
         return [
             "citiesAndCountries_cluster",
             "cities2000AndCountries_cluster",
@@ -271,7 +293,7 @@ class ClusteringManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
         return [
             "adjusted_rand_index",
             "adjusted_mutual_info_score",

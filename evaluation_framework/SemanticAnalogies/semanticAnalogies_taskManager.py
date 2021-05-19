@@ -7,31 +7,51 @@ from evaluation_framework.SemanticAnalogies.semanticAnalogies_model import (
 )
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
+import numpy as np
 from _collections import defaultdict
 from pathlib2 import Path
+from typing import List, Callable
 
 task_name = "SemanticAnalogies"
-
-"""
-Manager of the Semantic analogies task
-"""
 
 
 class SemanticAnalogiesManager(AbstractTaskManager):
     """
-    It initializes the manager of the semantic analogies task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    top_k: the predicted vector is compared with all the vectors and the k nearest ones are depicted. If the actual vector is among the k nearest one, the task is considered correct
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
-    analogy_function (optional): is the function to compute the analogy. It takes 3 vectors and returns the predicted one
+    Manager of the semantic analogies task.
     """
 
-    def __init__(self, data_manager, top_k, debugging_mode, analogy_function=None):
+    def __init__(
+        self,
+        data_manager,
+        top_k: int,
+        debugging_mode: bool,
+        analogy_function: Callable[
+            [np.ndarray, np.ndarray, np.ndarray], np.ndarray
+        ] = None,
+        datasets: List[str] = None,
+    ):
+        """Constructor. It initializes the manager of the semantic analogies task.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        top_k : int
+            the predicted vector is compared with all the vectors and the k nearest ones are depicted. If the actual
+            vector is among the k nearest one, the task is considered correct.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise
+        analogy_function : Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray]
+            Is the function to compute the analogy. It takes 3 vectors and returns the predicted one.
+        datasets : List[str]
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
+        """
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         self.analogy_function = analogy_function
         self.top_k = top_k
+        self.datasets = datasets
         if debugging_mode:
             print("SemanticAnalogies task manager initialized")
 
@@ -70,7 +90,11 @@ class SemanticAnalogiesManager(AbstractTaskManager):
             vectors, vector_file, vector_size, vocab
         )
 
-        gold_standard_filenames = self.get_gold_standard_file()
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
 
         scores = list()
         totalscores = defaultdict(list)
@@ -233,12 +257,14 @@ class SemanticAnalogiesManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
+        """It returns the dataset used as gold standard.
+
+        Returns
+        -------
+            It returns the dataset used as gold standard.
+        """
         return [
             "capital_country_entities",
             "all_capital_country_entities",
@@ -246,10 +272,12 @@ class SemanticAnalogiesManager(AbstractTaskManager):
             "city_state_entities",
         ]
 
-    """
-    It returns the metrics used in the evaluation of the semantic analogies task.
-    """
-
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the semantic analogies task.
+
+        Returns
+        -------
+            It returns the metrics used in the evaluation of the semantic analogies task.
+        """
         return ["accuracy"]

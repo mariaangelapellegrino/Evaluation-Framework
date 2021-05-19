@@ -18,7 +18,7 @@ Manager of the Classification task
 
 
 class ClassificationManager(AbstractTaskManager):
-    def __init__(self, data_manager, debugging_mode: bool, datasets=None):
+    def __init__(self, data_manager, debugging_mode: bool, datasets: List[str] = None):
         """Constructor
 
         Parameters
@@ -281,7 +281,7 @@ class ClassificationManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
     """
@@ -289,5 +289,5 @@ class ClassificationManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
         return ["accuracy"]

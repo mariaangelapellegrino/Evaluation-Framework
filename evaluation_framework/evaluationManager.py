@@ -83,7 +83,7 @@ class EvaluationManager(AbstractEvaluationManager):
     """
 
     def run_tests_in_sequential(
-        self, tasks, similarity_metric, top_k, analogy_function=None
+        self, tasks, similarity_metric, top_k: int, analogy_function=None
     ) -> Dict:
         self.log_file.write("Distance metric:" + similarity_metric + "\n\n")
 
@@ -287,7 +287,7 @@ class EvaluationManager(AbstractEvaluationManager):
     """
 
     def run_tests_in_parallel(
-        self, tasks, similarity_metric, top_k, analogy_function=None
+        self, tasks, similarity_metric, top_k: int, analogy_function=None
     ):
         self.similarity_metric = similarity_metric
         self.top_k = top_k

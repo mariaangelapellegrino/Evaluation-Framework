@@ -43,20 +43,20 @@ class FrameworkManager:
     """
 
     def evaluate(
-            self,
-            vector_filename: str,
-            vector_file_format: str = "txt",
-            vector_size: int = 200,
-            parallel: bool = False,
-            tasks: List[str] = available_tasks,
-            similarity_metric: str = "cosine",
-            top_k: int = 2,
-            compare_with: str = "_all",
-            debugging_mode: bool = False,
-            analogy_function: Callable[
-                [np.ndarray, np.ndarray, np.ndarray], np.ndarray
-            ] = None,
-            result_directory_path: str = None,
+        self,
+        vector_filename: str,
+        vector_file_format: str = "txt",
+        vector_size: int = 200,
+        parallel: bool = False,
+        tasks: List[str] = available_tasks,
+        similarity_metric: str = "cosine",
+        top_k: int = 2,
+        compare_with: str = "_all",
+        debugging_mode: bool = False,
+        analogy_function: Callable[
+            [np.ndarray, np.ndarray, np.ndarray], np.ndarray
+        ] = None,
+        result_directory_path: str = None,
     ):
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
@@ -115,21 +115,22 @@ class FrameworkManager:
 
         if parallel:
             scores_dictionary = self.evaluation_manager.run_tests_in_parallel(
-                tasks, similarity_metric, top_k, analogy_function
+                tasks, similarity_metric, self.top_k, analogy_function
             )
         else:
             scores_dictionary = self.evaluation_manager.run_tests_in_sequential(
-                tasks, similarity_metric, top_k, analogy_function
+                tasks, similarity_metric, self.top_k, analogy_function
             )
 
         self.evaluation_manager.compare_with(compare_with, scores_dictionary)
 
-    """
-    It checks if the parameters are all valid. 
-    If no problem occurs, the evaluation will start.
-    """
+    def check_parameters(self) -> None:
+        """It checks if the parameters are all valid. If no problem occurs, the evaluation will start.
 
-    def check_parameters(self):
+        Returns
+        -------
+            None
+        """
         if self.vector_filename is None:
             raise Exception("The vector filename is a mandatory parameter.")
 

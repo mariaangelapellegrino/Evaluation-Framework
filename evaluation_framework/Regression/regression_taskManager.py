@@ -11,13 +11,12 @@ from typing import List
 task_name = "Regression"
 
 
-
 class RegressionManager(AbstractTaskManager):
     """
     Manager of the Regression task
     """
 
-    def __init__(self, data_manager, debugging_mode: bool, datasets=None):
+    def __init__(self, data_manager, debugging_mode: bool, datasets: List[str] = None):
         """Constructor. It initializes the manager of the regression task.
 
         Parameters
@@ -26,7 +25,8 @@ class RegressionManager(AbstractTaskManager):
             The data manager to read the dataset(s) and the input file with the vectors to evaluate.
         debugging_mode : bool
             TRUE to run the model by reporting all the errors and information; FALSE otherwise
-        datasets
+        datasets : List[str] or None
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
         """
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
@@ -238,8 +238,6 @@ class RegressionManager(AbstractTaskManager):
         )
         return results_df
 
-
-
     @staticmethod
     def get_gold_standard_file() -> List[str]:
         """
@@ -257,5 +255,5 @@ class RegressionManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
         return ["root_mean_squared_error"]

@@ -115,3 +115,4 @@ playground.py
 # Project-specific files
 comparison.csv
 /evaluation_framework/results
+/evaluation_framework/myresults
