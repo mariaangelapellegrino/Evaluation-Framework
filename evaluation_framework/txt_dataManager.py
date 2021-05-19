@@ -9,13 +9,13 @@ It models how to manage vectors provided in TXT file.
 
 
 class DataManager(AbstractDataManager):
-    """
-    It initializes the DataManager for each provided task.
+    def __init__(self, debugging_mode: bool):
+        """Constructor. It initializes the DataManager for each provided task.
 
-    debugging_mode: {TRUE,FALSE}.
-    """
-
-    def __init__(self, debugging_mode):
+        Parameters
+        ----------
+        debugging_mode : bool
+        """
         self.debugging_mode = debugging_mode
 
         self.taskDataManager = dict()
@@ -29,14 +29,20 @@ class DataManager(AbstractDataManager):
         if self.debugging_mode:
             print("TXT data manager initialized")
 
-    """
-    It reads the vectors file or it stores the information to read it.
-    
-    vector_filename: path of the file provided in input, which contains entities and the related vectors.
-    vector_size: size of the vectors
-    """
+    def initialize_vectors(self, vector_filename: str, vector_size: int):
+        """
 
-    def initialize_vectors(self, vector_filename, vector_size):
+        Parameters
+        ----------
+        vector_filename: str
+            Path of the file provided in input, which contains entities and the related vectors.
+        vector_size: int
+            Size of the vectors.
+
+        Returns
+        -------
+
+        """
         return self.read_vector_file(vector_filename, vector_size)
 
     """
@@ -117,7 +123,7 @@ class DataManager(AbstractDataManager):
     It returns the task dataManager attached to the task provided in input, if any.
     """
 
-    def get_data_manager(self, task):
+    def get_data_manager(self, task: str):
         if task in self.taskDataManager:
             return self.taskDataManager[task]
         else:
@@ -203,7 +209,7 @@ class ClassificationDataManager(DataManager):
         self,
         vectors,
         vector_filename,
-        vector_size,
+        vector_size: int,
         goldStandard_filename,
         goldStandard_data=None,
         column_key="DBpedia_URI15",

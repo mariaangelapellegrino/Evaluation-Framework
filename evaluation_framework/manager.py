@@ -17,12 +17,12 @@ available_tasks = [
 ]
 available_file_formats = ["txt", "hdf5"]
 
-"""
-It checks the parameters of the evaluation and starts it.
-"""
-
 
 class FrameworkManager:
+    """
+    It checks the parameters of the evaluation and starts it.
+    """
+
     def __init__(self):
         print("Start evaluation...")
 
@@ -43,20 +43,20 @@ class FrameworkManager:
     """
 
     def evaluate(
-        self,
-        vector_filename: str,
-        vector_file_format: str = "txt",
-        vector_size: int = 200,
-        parallel: bool = False,
-        tasks: List[str] = available_tasks,
-        similarity_metric: str = "cosine",
-        top_k: int = 2,
-        compare_with: str = "_all",
-        debugging_mode: bool = False,
-        analogy_function: Callable[
-            [np.ndarray, np.ndarray, np.ndarray], np.ndarray
-        ] = None,
-        result_directory_path: str = None,
+            self,
+            vector_filename: str,
+            vector_file_format: str = "txt",
+            vector_size: int = 200,
+            parallel: bool = False,
+            tasks: List[str] = available_tasks,
+            similarity_metric: str = "cosine",
+            top_k: int = 2,
+            compare_with: str = "_all",
+            debugging_mode: bool = False,
+            analogy_function: Callable[
+                [np.ndarray, np.ndarray, np.ndarray], np.ndarray
+            ] = None,
+            result_directory_path: str = None,
     ):
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
@@ -133,7 +133,7 @@ class FrameworkManager:
         if self.vector_filename is None:
             raise Exception("The vector filename is a mandatory parameter.")
 
-        if not self.vector_file_format in available_file_formats:
+        if self.vector_file_format not in available_file_formats:
             raise Exception(
                 "Not supported file format. The managed file format are: "
                 + available_file_formats
@@ -142,7 +142,7 @@ class FrameworkManager:
         if self.vector_size < 0:
             raise Exception("The vector size must be not negative.")
 
-        if self.parallel != True and self.parallel != False:
+        if self.parallel is not True and self.parallel is False:
             raise Exception("The parameter PARALLEL is boolean.")
 
         if self.tasks != "_all":

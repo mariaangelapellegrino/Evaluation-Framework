@@ -34,28 +34,35 @@ It coordinates the execution of the tasks.
 
 
 class EvaluationManager(AbstractEvaluationManager):
-    """
-    It initializes the evaluation manager.
+    def __init__(self, data_manager, debugging_mode: bool):
+        """Constructor. It initializes the evaluation manager.
 
-    data_manager: data manager related to the specific file format
-    debugging_mode: {True, False}
-    """
-
-    def __init__(self, data_manager, debugging_mode):
+        Parameters
+        ----------
+        data_manager
+            data manager related to the specific file format
+        debugging_mode: bool
+        """
         self.start_time = time.time()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         if self.debugging_mode:
             print("Created evaluation manager")
 
-    """
-    It stores the information related to vectors.
-    
-    vector_filename: path of the vector file
-    vector_size: size of the vectors
-    """
+    def initialize_vectors(self, vector_filename: str, vector_size: int) -> None:
+        """It stores the information related to vectors.
 
-    def initialize_vectors(self, vector_filename, vector_size):
+        Parameters
+        ----------
+        vector_filename : str
+            Path of the vector file.
+        vector_size : int
+            Size of the vectors.
+
+        Returns
+        -------
+
+        """
         self.vector_filename = vector_filename
         self.vector_size = vector_size
         self.vectors = self.data_manager.initialize_vectors(

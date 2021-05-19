@@ -6,25 +6,31 @@ import pandas as pd
 from evaluation_framework.Regression.regression_model import RegressionModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
+from typing import List
 
 task_name = "Regression"
 
-"""
-Manager of the Regression task
-"""
 
 
 class RegressionManager(AbstractTaskManager):
     """
-    It initializes the manager of the regression task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    Manager of the Regression task
     """
 
-    def __init__(self, data_manager, debugging_mode):
+    def __init__(self, data_manager, debugging_mode: bool, datasets=None):
+        """Constructor. It initializes the manager of the regression task.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise
+        datasets
+        """
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
+        self.datasets = datasets
         if debugging_mode:
             print("Regression task manager initialized")
 
@@ -58,7 +64,11 @@ class RegressionManager(AbstractTaskManager):
     ):
         log_errors = ""
 
-        gold_standard_filenames = self.get_gold_standard_file()
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
 
         totalscores = defaultdict(dict)
 
@@ -228,12 +238,18 @@ class RegressionManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
+
 
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
+        """
+        It returns the dataset used as gold standard.
+
+
+        Returns
+        -------
+            List of datasets (str).
+        """
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
     """
