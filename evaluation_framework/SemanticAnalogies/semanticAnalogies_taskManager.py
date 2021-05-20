@@ -77,7 +77,7 @@ class SemanticAnalogiesManager(AbstractTaskManager):
     def evaluate(
         self,
         vectors,
-        vector_file,
+        vector_file: str,
         vector_size,
         results_folder,
         log_dictionary,
@@ -100,9 +100,9 @@ class SemanticAnalogiesManager(AbstractTaskManager):
         totalscores = defaultdict(list)
 
         for gold_standard_filename in gold_standard_filenames:
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".txt"
-            gold_standard_file = str(Path(os.path.join(script_dir, rel_path)))
+            gold_standard_file = SemanticAnalogiesManager.get_file_for_dataset(
+                dataset=gold_standard_filename
+            )
 
             data, ignored = self.data_manager.intersect_vectors_goldStandard(
                 vectors, vector_file, vector_size, gold_standard_file
@@ -256,6 +256,24 @@ class SemanticAnalogiesManager(AbstractTaskManager):
             ],
         )
         return results_df
+
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".txt"
+        gold_standard_file = str(Path(os.path.join(script_dir, rel_path)))
+        return gold_standard_file
 
     @staticmethod
     def get_gold_standard_file() -> List[str]:

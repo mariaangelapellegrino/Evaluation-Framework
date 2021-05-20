@@ -76,9 +76,9 @@ class ClassificationManager(AbstractTaskManager):
             gold_standard_filenames = self.get_gold_standard_file()
 
         for gold_standard_filename in gold_standard_filenames:
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".tsv"
-            gold_standard_file = os.path.join(script_dir, rel_path)
+            gold_standard_file = ClassificationManager.get_file_for_dataset(
+                gold_standard_filename
+            )
 
             classification_model_names = ["NB", "KNN", "C45"]
             SVM_configurations = [
@@ -284,10 +284,30 @@ class ClassificationManager(AbstractTaskManager):
     def get_gold_standard_file() -> List[str]:
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
-    """
-    It returns the metrics used in the evaluation of the Classification task.
-    """
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".tsv"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file
 
     @staticmethod
     def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the Classification task.
+
+        Returns
+        -------
+
+        """
         return ["accuracy"]

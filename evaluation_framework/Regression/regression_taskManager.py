@@ -73,9 +73,9 @@ class RegressionManager(AbstractTaskManager):
         totalscores = defaultdict(dict)
 
         for gold_standard_filename in gold_standard_filenames:
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".tsv"
-            gold_standard_file = os.path.join(script_dir, rel_path)
+            gold_standard_file = RegressionManager.get_file_for_dataset(
+                dataset=gold_standard_filename
+            )
 
             regression_model_names = ["LR", "KNN", "M5"]
 
@@ -250,10 +250,30 @@ class RegressionManager(AbstractTaskManager):
         """
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
-    """
-    It returns the metrics used in the evaluation of the Classification task.
-    """
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".tsv"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file
 
     @staticmethod
     def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the Classification task.
+
+        Returns
+        -------
+            List of metrics where each metric is represented as a string.
+        """
         return ["root_mean_squared_error"]
