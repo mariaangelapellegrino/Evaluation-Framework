@@ -8,24 +8,29 @@ from evaluation_framework.EntityRelatedness.entityRelatedness_model import (
 )
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
+from typing import List
 
 task_name = "EntityRelatedness"
-
-"""
-Manager of the Entity relatedness task
-"""
 
 
 class EntityRelatednessManager(AbstractTaskManager):
     """
-    It initializes the manager of the classification task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    distance_metric: distance metric used to compute the similarity score
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    Manager of the Entity relatedness task
     """
 
     def __init__(self, data_manager, distance_metric, debugging_mode):
+        """Constructor.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        distance_metric
+            Distance metric used to compute the similarity score.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise.
+        """
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         self.distance_metric = distance_metric
@@ -37,7 +42,7 @@ class EntityRelatednessManager(AbstractTaskManager):
     """
 
     @staticmethod
-    def get_task_name():
+    def get_task_name() -> str:
         return task_name
 
     """
@@ -62,9 +67,9 @@ class EntityRelatednessManager(AbstractTaskManager):
     ):
         log_errors = ""
         gold_standard_filename = "KORE"
-        script_dir = os.path.dirname(__file__)
-        rel_path = "data/" + gold_standard_filename + ".txt"
-        gold_standard_file = os.path.join(script_dir, rel_path)
+        gold_standard_file = EntityRelatednessManager.get_file_for_dataset(
+            dataset=gold_standard_filename
+        )
 
         groups = self.data_manager.read_file(gold_standard_file)
 
@@ -256,9 +261,27 @@ class EntityRelatednessManager(AbstractTaskManager):
         return results_df
 
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
         return ["KORE"]
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
         return ["kendalltau_correlation"]
+
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".txt"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file

@@ -276,12 +276,14 @@ class ClassificationManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
     def get_gold_standard_file() -> List[str]:
+        """It returns the dataset used as gold standard.
+
+        Returns
+        -------
+            It returns the dataset used as gold standard.
+        """
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
     @staticmethod
@@ -304,10 +306,10 @@ class ClassificationManager(AbstractTaskManager):
 
     @staticmethod
     def get_metric_list() -> List[str]:
-        """It returns the metrics used in the evaluation of the Classification task.
+        """It returns the metrics used in the evaluation of the classification task.
 
         Returns
         -------
-
+            Metrics in a list. A metric is represented by a string.
         """
         return ["accuracy"]
