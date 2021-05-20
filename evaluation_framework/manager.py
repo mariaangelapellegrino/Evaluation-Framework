@@ -26,38 +26,54 @@ class FrameworkManager:
     def __init__(self):
         print("Start evaluation...")
 
-    """
-    It checks the parameters of the evaluation and starts it.
-    
-    vector_filename: path of the vector file provided in input
-    vector_file_format: {txt, hdf5}. Default: txt
-    vector_size: size of the vectors. Default: 200
-    parallel: {True, False}, True to run the tasks in parallel, False otherwise. Default: False
-    tasks: list of the tasks to run
-    similarity_metric: metric used to compute the distance among vectors. Default: cosine
-    top_k: parameter used in the SemanticAnalogies task. Default: 2
-    compare_with: list of the technique to compare the results with. Default: _all
-    debugging_mode: {True, False}, True to run the tasks by reporting all the information collected during the run, False otherwise. Default: False
-    analogy_function: function to compute the analogy among vectors. Default: None to use the default function.
-    result_directory_path: Optionally set the result directory path. 
-    """
-
     def evaluate(
-        self,
-        vector_filename: str,
-        vector_file_format: str = "txt",
-        vector_size: int = 200,
-        parallel: bool = False,
-        tasks: List[str] = available_tasks,
-        similarity_metric: str = "cosine",
-        top_k: int = 2,
-        compare_with: str = "_all",
-        debugging_mode: bool = False,
-        analogy_function: Callable[
-            [np.ndarray, np.ndarray, np.ndarray], np.ndarray
-        ] = None,
-        result_directory_path: str = None,
+            self,
+            vector_filename: str,
+            vector_file_format: str = "txt",
+            vector_size: int = 200,
+            parallel: bool = False,
+            tasks: List[str] = available_tasks,
+            similarity_metric: str = "cosine",
+            top_k: int = 2,
+            compare_with: str = "_all",
+            debugging_mode: bool = False,
+            analogy_function: Callable[
+                [np.ndarray, np.ndarray, np.ndarray], np.ndarray
+            ] = None,
+            result_directory_path: str = None,
     ):
+        """It checks the parameters of the evaluation and starts it.
+
+        Parameters
+        ----------
+        vector_filename : str
+            Path of the vector file provided in input.
+        vector_file_format : str
+            {txt, hdf5}. Default: txt
+        vector_size : int
+            Size of the vectors. Default: 200
+        parallel : bool
+            {True, False}, True to run the tasks in parallel, False otherwise. Default: False
+        tasks : List[str]
+            List of the tasks to run.
+        similarity_metric : str
+            Metric used to compute the distance among vectors. Default: 'cosine'.
+        top_k : int
+             Parameter used in the SemanticAnalogies task. Default: 2
+        compare_with : str
+             List of the technique to compare the results with. Default: _all
+        debugging_mode : bool
+            {True, False}, True to run the tasks by reporting all the information collected during the run,
+            False otherwise. Default: False
+        analogy_function : Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray]
+             function to compute the analogy among vectors. Default: None to use the default function.
+        result_directory_path : str or None
+             Optionally set the result directory path.
+
+        Returns
+        -------
+
+        """
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
         self.vector_size = vector_size
@@ -143,7 +159,7 @@ class FrameworkManager:
         if self.vector_size < 0:
             raise Exception("The vector size must be not negative.")
 
-        if self.parallel is not True and self.parallel is False:
+        if type(self.parallel) is not bool:
             raise Exception("The parameter PARALLEL is boolean.")
 
         if self.tasks != "_all":
@@ -162,7 +178,7 @@ class FrameworkManager:
 
         # compare_with TODO
 
-        if self.debugging_mode != True and self.debugging_mode != False:
+        if self.debugging_mode is not True and self.debugging_mode is False:
             raise Exception("The parameter DEBUGGING_MODE is boolean.")
 
     """
