@@ -6,25 +6,31 @@ import pandas as pd
 from evaluation_framework.Regression.regression_model import RegressionModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
+from typing import List
 
 task_name = "Regression"
-
-"""
-Manager of the Regression task
-"""
 
 
 class RegressionManager(AbstractTaskManager):
     """
-    It initializes the manager of the regression task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    Manager of the Regression task
     """
 
-    def __init__(self, data_manager, debugging_mode):
+    def __init__(self, data_manager, debugging_mode: bool, datasets: List[str] = None):
+        """Constructor. It initializes the manager of the regression task.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise
+        datasets : List[str] or None
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
+        """
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
+        self.datasets = datasets
         if debugging_mode:
             print("Regression task manager initialized")
 
@@ -58,14 +64,18 @@ class RegressionManager(AbstractTaskManager):
     ):
         log_errors = ""
 
-        gold_standard_filenames = self.get_gold_standard_file()
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
 
         totalscores = defaultdict(dict)
 
         for gold_standard_filename in gold_standard_filenames:
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".tsv"
-            gold_standard_file = os.path.join(script_dir, rel_path)
+            gold_standard_file = RegressionManager.get_file_for_dataset(
+                dataset=gold_standard_filename
+            )
 
             regression_model_names = ["LR", "KNN", "M5"]
 
@@ -228,18 +238,42 @@ class RegressionManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
+        """
+        It returns the dataset used as gold standard.
+
+
+        Returns
+        -------
+            List of datasets (str).
+        """
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
-    """
-    It returns the metrics used in the evaluation of the Classification task.
-    """
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".tsv"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the Classification task.
+
+        Returns
+        -------
+            List of metrics where each metric is represented as a string.
+        """
         return ["root_mean_squared_error"]

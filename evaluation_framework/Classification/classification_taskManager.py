@@ -8,6 +8,7 @@ from evaluation_framework.Classification.classification_model import (
 )
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 from numpy import mean
+from typing import List
 
 task_name = "Classification"
 
@@ -17,18 +18,24 @@ Manager of the Classification task
 
 
 class ClassificationManager(AbstractTaskManager):
-    """
-    It initializes the manager of the classification task.
+    def __init__(self, data_manager, debugging_mode: bool, datasets: List[str] = None):
+        """Constructor
 
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
-    """
-
-    def __init__(self, data_manager, debugging_mode):
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        debugging_mode: bool
+            {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+        datasets: List[str] or None
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
+        """
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
+        self.datasets = datasets
         if self.debugging_mode:
-            print("Classification task manager initialized")
+            print("Classification task manager initialized.")
 
     """
     It returns the task name.
@@ -44,15 +51,15 @@ class ClassificationManager(AbstractTaskManager):
     vectors: dataframe which contains the vectors data
     vector_file: path of the vector file
     vector_size: size of the vectors
-    result_directory: directory where the results must be stored
+    results_folder: directory where the results must be stored
     log_dictionary: dictionary to store all the information to store in the log file
     scores_dictionary: dictionary to store all the scores which will be used in the comparison phase
     """
 
     def evaluate(
         self,
-        vectors,
-        vector_file,
+        vectors: pd.DataFrame,
+        vector_file: str,
         vector_size,
         results_folder,
         log_dictionary,
@@ -60,14 +67,18 @@ class ClassificationManager(AbstractTaskManager):
     ):
         log_errors = ""
 
-        gold_standard_filenames = self.get_gold_standard_file()
-
         totalscores = defaultdict(dict)
 
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
+
         for gold_standard_filename in gold_standard_filenames:
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".tsv"
-            gold_standard_file = os.path.join(script_dir, rel_path)
+            gold_standard_file = ClassificationManager.get_file_for_dataset(
+                gold_standard_filename
+            )
 
             classification_model_names = ["NB", "KNN", "C45"]
             SVM_configurations = [
@@ -84,7 +95,10 @@ class ClassificationManager(AbstractTaskManager):
             totalscores_element = defaultdict(list)
 
             data, ignored = self.data_manager.intersect_vectors_goldStandard(
-                vectors, vector_file, vector_size, gold_standard_file
+                vectors=vectors,
+                vector_filename=vector_file,
+                vector_size=vector_size,
+                goldStandard_filename=gold_standard_file,
             )
             data_coverage = len(data) / (len(data) + len(ignored))
 
@@ -262,18 +276,40 @@ class ClassificationManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
+        """It returns the dataset used as gold standard.
+
+        Returns
+        -------
+            It returns the dataset used as gold standard.
+        """
         return ["Cities", "MetacriticMovies", "MetacriticAlbums", "AAUP", "Forbes"]
 
-    """
-    It returns the metrics used in the evaluation of the Classification task.
-    """
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".tsv"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the classification task.
+
+        Returns
+        -------
+            Metrics in a list. A metric is represented by a string.
+        """
         return ["accuracy"]

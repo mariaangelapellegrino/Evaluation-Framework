@@ -2,32 +2,45 @@ from collections import defaultdict
 import csv
 import os
 import pandas as pd
-import sys
 from numpy import mean
+from typing import List
 
 from evaluation_framework.Clustering.clustering_model import ClusteringModel as Model
 from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = "Clustering"
 
-"""
-Manager of the Clustering task
-"""
-
 
 class ClusteringManager(AbstractTaskManager):
     """
-    It initializes the manager of the clustering task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    distance_metric: metric used to compute the similarity among vectors
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    Manager of the Clustering task
     """
 
-    def __init__(self, data_manager, distance_metric, debugging_mode):
+    def __init__(
+        self,
+        data_manager,
+        distance_metric: str,
+        debugging_mode: bool,
+        datasets: List[str] = None,
+    ):
+        """Constructor. It initializes the manager of the clustering task.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate
+        distance_metric : str
+            Metric used to compute the similarity among vectors.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise.
+        datasets : List[str]
+            None if all datasets shall be evaluated. Specific datasets can also be named using this parameter.
+        """
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         self.distance_metric = distance_metric
+        self.datasets = datasets
         if self.debugging_mode:
             print("Clustering task manager initialized")
 
@@ -53,15 +66,19 @@ class ClusteringManager(AbstractTaskManager):
     def evaluate(
         self,
         vectors,
-        vector_file,
-        vector_size,
-        results_folder,
+        vector_file: str,
+        vector_size: int,
+        results_folder: str,
         log_dictionary,
         scores_dictionary,
     ):
         log_errors = ""
 
-        gold_standard_filenames = self.get_gold_standard_file()
+        # check whether gold standard datasets have been passed through the constructor
+        if self.datasets is not None:
+            gold_standard_filenames = self.datasets
+        else:
+            gold_standard_filenames = self.get_gold_standard_file()
 
         totalscores = defaultdict(dict)
 
@@ -69,10 +86,9 @@ class ClusteringManager(AbstractTaskManager):
 
         for i in range(len(gold_standard_filenames)):
             gold_standard_filename = gold_standard_filenames[i]
-
-            script_dir = os.path.dirname(__file__)
-            rel_path = "data/" + gold_standard_filename + ".tsv"
-            gold_standard_file = os.path.join(script_dir, rel_path)
+            gold_standard_file = ClusteringManager.get_file_for_dataset(
+                gold_standard_filename
+            )
 
             n_clusters = n_clusters_list[i]
 
@@ -253,12 +269,14 @@ class ClusteringManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
-    def get_gold_standard_file():
+    def get_gold_standard_file() -> List[str]:
+        """This method returns the name of the datasets (not file paths!) in a list.
+
+        Returns
+        -------
+            List of dataset names.
+        """
         return [
             "citiesAndCountries_cluster",
             "cities2000AndCountries_cluster",
@@ -266,12 +284,32 @@ class ClusteringManager(AbstractTaskManager):
             "teams_cluster",
         ]
 
-    """
-    It returns the metrics used in the evaluation of the Clustering task.
-    """
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        script_dir = os.path.dirname(__file__)
+        rel_path = "data/" + dataset + ".tsv"
+        gold_standard_file = os.path.join(script_dir, rel_path)
+        return gold_standard_file
 
     @staticmethod
-    def get_metric_list():
+    def get_metric_list() -> List[str]:
+        """It returns the metrics used in the evaluation of the Clustering task.
+
+        Returns
+        -------
+            The full list of metrics where each metric is a string.
+        """
         return [
             "adjusted_rand_index",
             "adjusted_mutual_info_score",

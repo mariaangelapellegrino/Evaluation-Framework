@@ -1,3 +1,4 @@
+import os.path
 import xml.etree.ElementTree as ET
 
 from evaluation_framework.evaluationManager import EvaluationManager
@@ -16,45 +17,63 @@ available_tasks = [
 ]
 available_file_formats = ["txt", "hdf5"]
 
-"""
-It checks the parameters of the evaluation and starts it.
-"""
-
 
 class FrameworkManager:
+    """
+    It checks the parameters of the evaluation and starts it.
+    """
+
     def __init__(self):
         print("Start evaluation...")
 
-    """
-    It checks the parameters of the evaluation and starts it.
-    
-    vector_filename: path of the vector file provided in input
-    vector_file_format: {txt, hdf5}. Default: txt
-    vector_size: size of the vectors. Default: 200
-    parallel: {True, False}, True to run the tasks in parallel, False otherwise. Default: False
-    tasks: list of the tasks to run
-    similarity_metric: metric used to compute the distance among vectors. Default: cosine
-    top_k: parameter used in the SemanticAnalogies task. Default: 2
-    compare_with: list of the technique to compare the results with. Default: _all
-    debugging_mode: {True, False}, True to run the tasks by reporting all the information collected during the run, False otherwise. Default: False
-    analogy_function: function to compute the analogy among vectors. Default: None to use the default function.
-    """
-
     def evaluate(
-        self,
-        vector_filename: str,
-        vector_file_format: str = "txt",
-        vector_size: int = 200,
-        parallel: bool = False,
-        tasks: List[str] = available_tasks,
-        similarity_metric: str = "cosine",
-        top_k: int = 2,
-        compare_with: str = "_all",
-        debugging_mode: bool = False,
-        analogy_function: Callable[
-            [np.ndarray, np.ndarray, np.ndarray], np.ndarray
-        ] = None,
+            self,
+            vector_filename: str,
+            vector_file_format: str = "txt",
+            vector_size: int = 200,
+            parallel: bool = False,
+            tasks: List[str] = available_tasks,
+            similarity_metric: str = "cosine",
+            top_k: int = 2,
+            compare_with: str = "_all",
+            debugging_mode: bool = False,
+            analogy_function: Callable[
+                [np.ndarray, np.ndarray, np.ndarray], np.ndarray
+            ] = None,
+            result_directory_path: str = None,
     ):
+        """It checks the parameters of the evaluation and starts it.
+
+        Parameters
+        ----------
+        vector_filename : str
+            Path of the vector file provided in input.
+        vector_file_format : str
+            {txt, hdf5}. Default: txt
+        vector_size : int
+            Size of the vectors. Default: 200
+        parallel : bool
+            {True, False}, True to run the tasks in parallel, False otherwise. Default: False
+        tasks : List[str]
+            List of the tasks to run.
+        similarity_metric : str
+            Metric used to compute the distance among vectors. Default: 'cosine'.
+        top_k : int
+             Parameter used in the SemanticAnalogies task. Default: 2
+        compare_with : str
+             List of the technique to compare the results with. Default: _all
+        debugging_mode : bool
+            {True, False}, True to run the tasks by reporting all the information collected during the run,
+            False otherwise. Default: False
+        analogy_function : Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray]
+             function to compute the analogy among vectors. Default: None to use the default function.
+        result_directory_path : str or None
+             Optionally set the result directory path.
+
+        Returns
+        -------
+
+        """
         self.vector_filename = vector_filename
         self.vector_file_format = vector_file_format
         self.vector_size = vector_size
@@ -77,31 +96,61 @@ class FrameworkManager:
             self.dataManager, self.debugging_mode
         )
 
-        self.evaluation_manager.create_result_directory()
+        if result_directory_path is None:
+            self.evaluation_manager.create_result_directory()
+        else:
+            if os.path.isfile(result_directory_path):
+                print(
+                    "The specified result directory is a file. Please specify a directory. Using default..."
+                )
+                self.evaluation_manager.create_result_directory()
+            else:
+                if not os.path.isdir(result_directory_path):
+                    try:
+                        os.mkdir(result_directory_path)
+                        self.evaluation_manager.result_directory = result_directory_path
+                        self.evaluation_manager.log_file = open(
+                            os.path.join(
+                                self.evaluation_manager.result_directory, "log.txt"
+                            ),
+                            "w",
+                        )
+                    except OSError:
+                        print("Could not create the result directory. Using default...")
+                        self.evaluation_manager.create_result_directory()
+                else:
+                    self.evaluation_manager.result_directory = result_directory_path
+                    self.evaluation_manager.log_file = open(
+                        os.path.join(
+                            self.evaluation_manager.result_directory, "log.txt"
+                        ),
+                        "w",
+                    )
 
         self.evaluation_manager.initialize_vectors(vector_filename, vector_size)
 
         if parallel:
             scores_dictionary = self.evaluation_manager.run_tests_in_parallel(
-                tasks, similarity_metric, top_k, analogy_function
+                tasks, similarity_metric, self.top_k, analogy_function
             )
         else:
             scores_dictionary = self.evaluation_manager.run_tests_in_sequential(
-                tasks, similarity_metric, top_k, analogy_function
+                tasks, similarity_metric, self.top_k, analogy_function
             )
 
         self.evaluation_manager.compare_with(compare_with, scores_dictionary)
 
-    """
-    It checks if the parameters are all valid. 
-    If no problem occurs, the evaluation will start.
-    """
+    def check_parameters(self) -> None:
+        """It checks if the parameters are all valid. If no problem occurs, the evaluation will start.
 
-    def check_parameters(self):
+        Returns
+        -------
+            None
+        """
         if self.vector_filename is None:
             raise Exception("The vector filename is a mandatory parameter.")
 
-        if not self.vector_file_format in available_file_formats:
+        if self.vector_file_format not in available_file_formats:
             raise Exception(
                 "Not supported file format. The managed file format are: "
                 + available_file_formats
@@ -110,7 +159,7 @@ class FrameworkManager:
         if self.vector_size < 0:
             raise Exception("The vector size must be not negative.")
 
-        if self.parallel != True and self.parallel != False:
+        if type(self.parallel) is not bool:
             raise Exception("The parameter PARALLEL is boolean.")
 
         if self.tasks != "_all":
@@ -129,7 +178,7 @@ class FrameworkManager:
 
         # compare_with TODO
 
-        if self.debugging_mode != True and self.debugging_mode != False:
+        if self.debugging_mode is not True and self.debugging_mode is False:
             raise Exception("The parameter DEBUGGING_MODE is boolean.")
 
     """

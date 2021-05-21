@@ -2,7 +2,7 @@ import csv
 import os
 import pandas as pd
 from collections import defaultdict
-
+from typing import List
 
 from evaluation_framework.DocumentSimilarity.documentSimilarity_model import (
     DocumentSimilarityModel as Model,
@@ -11,33 +11,39 @@ from evaluation_framework.abstract_taskManager import AbstractTaskManager
 
 task_name = "DocumentSimilarity"
 
-"""
-Manager of the Document similarity task
-"""
-
 
 class DocumentSimilarityManager(AbstractTaskManager):
     """
-    It initializes the manager of the document similarity task.
-
-    data_manager: the data manager to read the dataset(s) and the input file with the vectors to evaluate
-    distance_metric: distance metric used to compute the similarity score
-    debugging_mode: {TRUE, FALSE}, TRUE to run the model by reporting all the errors and information; FALSE otherwise
+    Manager of the Document similarity task
     """
 
     def __init__(self, data_manager, distance_metric, debugging_mode):
+        """Constructor. It initializes the manager of the document similarity task.
+
+        Parameters
+        ----------
+        data_manager
+            The data manager to read the dataset(s) and the input file with the vectors to evaluate.
+        distance_metric
+            Distance metric used to compute the similarity score.
+        debugging_mode : bool
+            TRUE to run the model by reporting all the errors and information; FALSE otherwise.
+        """
+        super().__init__()
         self.debugging_mode = debugging_mode
         self.data_manager = data_manager
         self.distance_metric = distance_metric
         if self.debugging_mode:
             print("Document Similarity task manager initialized")
 
-    """
-    It returns the task name.
-    """
-
     @staticmethod
-    def get_task_name():
+    def get_task_name() -> str:
+        """It returns the task name.
+
+        Returns
+        -------
+            Task name (string).
+        """
         return task_name
 
     """
@@ -54,8 +60,8 @@ class DocumentSimilarityManager(AbstractTaskManager):
     def evaluate(
         self,
         vectors,
-        vector_file,
-        vector_size,
+        vector_file: str,
+        vector_size: int,
         results_folder,
         log_dictionary,
         scores_dictionary,
@@ -70,11 +76,7 @@ class DocumentSimilarityManager(AbstractTaskManager):
         stats_file = os.path.join(script_dir, rel_path)
 
         stats = self.data_manager.read_file(stats_file, ["doc1", "doc2", "average"])
-
-        document_entities_filename = "LP50_entities.json"
-
-        rel_path = "data/" + document_entities_filename
-        document_entities_file = os.path.join(script_dir, rel_path)
+        document_entities_file = DocumentSimilarityManager.get_file_for_dataset("LP50")
 
         vocab = self.data_manager.create_vocab(vectors, vector_file, vector_size)
         W_norm = self.data_manager.normalize_vectors(
@@ -239,18 +241,42 @@ class DocumentSimilarityManager(AbstractTaskManager):
         )
         return results_df
 
-    """
-    It returns the dataset used as gold standard.
-    """
-
     @staticmethod
-    def get_gold_standard_file():
-        return ["LP50"]
+    def get_gold_standard_file() -> List[str]:
+        """It returns the dataset used as gold standard.
 
-    """
-    It returns the metrics used in the evaluation of the Classification task.
-    """
+        Returns
+        -------
+            List of datasets (str).
+        """
+        return ["LP50"]
 
     @staticmethod
     def get_metric_list():
+        """It returns the metrics used in the evaluation of the Classification task.
+
+        Returns
+        -------
+            List of metrics where each metric is represented by a string.
+        """
         return ["pearson_score", "spearman_score", "harmonic_mean"]
+
+    @staticmethod
+    def get_file_for_dataset(dataset: str) -> str:
+        """This method returns the absolute file path of a dataset.
+
+        Parameters
+        ----------
+        dataset : str
+            The dataset name for which the underlying file path shall be obtained.
+
+        Returns
+        -------
+            The full path to the dataset file.
+        """
+        if dataset in ["LP50", "LP50_entities", "LP50_entities.json", "lp50"]:
+            script_dir = os.path.dirname(__file__)
+            document_entities_filename = "LP50_entities.json"
+            rel_path = "data/" + document_entities_filename
+            document_entities_file = os.path.join(script_dir, rel_path)
+            return document_entities_file
