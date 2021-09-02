@@ -136,24 +136,31 @@ In **Evaluation-Framework/tutorial_results_interpretation** folder you can find 
 
 ## Dataset to generate embeddings
 	
-We used a subset of English DBpedia 2016 (around 60M triples including 5M entities/instances).
+We used a subset of English <a href="http://downloads.dbpedia.org/2016-04/">DBpedia 2016-04</a> (around 60M triples including 5M entities/instances).
 The considered dataset consists of instance types, skos categories, article categories, transitive instance types and mapping based objects.
 
 Used datasets can be downloaded to the following links:
-SHA-1
-b3d1e5c5ef25c85dd89995732a5957e21de29ead article_categories_en.ttl
-29fec5589a51d175ef11adcb0f7e5f6821c7ed9c instance_types_en.ttl
-3001cb5898fda21b590abab936c75cb04783c731 instance_types_transitive_en.ttl
-f2268b9d19bdbd7abfcad408e82805bd81f29610 mappingbased_objects_en.ttl
-887e02a41e69476eabd0df285a7f76d9cd6bf433 skos_categories_en.ttl
 
-And then concatenate (in alphabetic order of the file names)
-4127b5d0eb6ecc45350e7f0c619b3b6b88c3c24c allData.nt
+| SHA-1                                    | File Name                        |
+|:----------------------------------------:|:--------------------------------:|
+| b3d1e5c5ef25c85dd89995732a5957e21de29ead | article_categories_en.ttl        |       
+| 29fec5589a51d175ef11adcb0f7e5f6821c7ed9c | instance_types_en.ttl            |        
+| 3001cb5898fda21b590abab936c75cb04783c731 | instance_types_transitive_en.ttl |    
+| f2268b9d19bdbd7abfcad408e82805bd81f29610 | mappingbased_objects_en.ttl      |    
+| 887e02a41e69476eabd0df285a7f76d9cd6bf433 | skos_categories_en.ttl           |       
+
+And then (optionally) concatenate (in alphabetic order of the file names):
+
+| SHA-1                                    | File Name                        |
+|:----------------------------------------:|:--------------------------------:|
+| 4127b5d0eb6ecc45350e7f0c619b3b6b88c3c24c | allData.nt                       |  
+
+ 
 	
 ## Dependencies
-The framework is tested to work on Python 3.7.
+The framework is tested to work with Python 3.7.
 
-The required dependencies are: Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19.2, Scipy==1.1.0, H5py==2.8.0, unicodecsv==0.14.1.
+The required dependencies are: `Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19.2, Scipy==1.1.0, H5py==2.8.0, unicodecsv==0.14.1`.
 
 ## License
 The Apache license applies to the provided source code. For the datasets, please check the licensing information. 
