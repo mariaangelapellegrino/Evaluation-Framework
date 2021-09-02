@@ -178,7 +178,7 @@ class FrameworkManager:
 
         # compare_with TODO
 
-        if self.debugging_mode is not True and self.debugging_mode is False:
+        if type(self.debugging_mode) is not bool:
             raise Exception("The parameter DEBUGGING_MODE is boolean.")
 
     """
