@@ -160,7 +160,11 @@ And then (optionally) concatenate (in alphabetic order of the file names):
 ## Dependencies
 The framework is tested to work with Python 3.7.
 
-The required dependencies are: `Numpy==1.14.0, Pandas==0.22.0, Scikit-learn==0.19.2, Scipy==1.1.0, H5py==2.8.0, unicodecsv==0.14.1`.
+The required dependencies are: `numpy==1.22.0, pandas==1.0.5, scikit-learn==0.23.1, scipy==1.5.1, h5py==2.8.0, pathlib`.
+
+To use the version on the master branch (2.0) with python 3 instead of the latest version on [pypi.org](https://pypi.org/project/evaluation-framework/) (1.3) the following pip command can be used to import the framework as a library:
+
+    pip install git+https://github.com/mariaangelapellegrino/Evaluation-Framework@master
 
 ## License
 The Apache license applies to the provided source code. For the datasets, please check the licensing information. 
